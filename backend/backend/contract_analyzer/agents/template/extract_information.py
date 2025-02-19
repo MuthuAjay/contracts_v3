@@ -183,6 +183,13 @@ class ExtractionProcessor:
 
             # break
             self.check_results(value)
+            
+        if len(self.error_strs) > 0:
+            for error_str in self.error_strs:
+                response = agent.run(error_str)
+                self._store_result([response.content])
+                
+                self.check_results(value)
 
     def _build_extraction_prompt(self, context: str, value: List) -> str:
         """Build extraction prompt"""
@@ -246,7 +253,13 @@ class ExtractionProcessor:
                 print(f"Error parsing JSON: {e}")
                 print(f"Problematic JSON string: {json_str[:100]}...")
                 
-                self.error_strs.append(json_str)
+                # Create Error Prompt
+                
+                error_prompt = f"""Error parsing JSON: {e} for JSON string: {json_str}... \n Fix the JSON string 
+                
+                Note Just return the JSON String in the correct format. Do not print any other information or analysis
+                """
+                self.error_strs.append(error_prompt)
                 continue
 
         return merged_data
