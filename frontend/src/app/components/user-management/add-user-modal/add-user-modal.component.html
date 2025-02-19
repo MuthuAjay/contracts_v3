@@ -1,0 +1,68 @@
+<div class="modalForm">
+    <div class="header">
+        <h3>Add user</h3>
+    </div>
+   <div class="formBody">
+    <form>
+        <!-- Source Type Dropdown -->
+        <div class="mb-3">
+          <label for="sourceType" class="form-label">Source Type</label>
+          <select class="form-select" id="sourceType">
+            <option value="batch">Batch</option>
+            <option value="liveBatch">Live Batch</option>
+          </select>
+        </div>
+      
+        <!-- Email Field -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+      
+        <!-- Batch Radio Buttons -->
+        <div class="mb-3">
+          <label class="form-label">Batch</label><br>
+          <input type="radio" id="batch" name="batch" value="batch">
+          <label for="batch">Batch</label>
+          <input type="radio" id="liveBatch" name="batch" value="liveBatch">
+          <label for="liveBatch">Live Batch</label>
+        </div>
+      
+        <!-- Conditional Fields based on Batch Selection -->
+        <div id="batchFields">
+          <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDate">
+          </div>
+          <div class="mb-3">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="endDate">
+          </div>
+          <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="time" class="form-control" id="time">
+          </div>
+        </div>
+      
+        <div id="liveBatchFields">
+          <div class="mb-3">
+            <label for="startDateLive" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDateLive">
+          </div>
+          <div class="mb-3">
+            <label for="timeLive" class="form-label">Time</label>
+            <input type="time" class="form-control" id="timeLive">
+          </div>
+        </div>
+      
+        <!-- Monthly Textbox -->
+        <div class="mb-3">
+          <label for="monthly" class="form-label">Monthly</label>
+          <input type="text" class="form-control" id="monthly" placeholder="Enter value">
+        </div>
+      
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </div>
+</div>

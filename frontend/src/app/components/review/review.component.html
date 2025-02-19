@@ -1,0 +1,83 @@
+<div class="main-cnt">
+    <h1>Integration Settings</h1>
+    <p class="subtitle">Configure and manage your CLM platform integrations</p>
+    
+    <div class="integrations-grid">
+      <!-- DocuSign -->
+      <div class="integration-card">
+        <div class="integration-header">
+          <span class="integration-name">DocuSign</span>
+          <span class="status connected">Connected</span>
+        </div>
+        <div class="sync-info">Last synced: 2 hours ago</div>
+        <button class="button secondary-button">Configure Settings</button>
+      </div>
+
+      <!-- Salesforce -->
+      <div class="integration-card">
+        <div class="integration-header">
+          <span class="integration-name">Salesforce</span>
+          <span class="status disconnected">Disconnected</span>
+        </div>
+        <div class="sync-info">Status: Ready to connect</div>
+        <button class="button primary-button">Connect</button>
+      </div>
+
+      <!-- Microsoft Teams -->
+      <div class="integration-card">
+        <div class="integration-header">
+          <span class="integration-name">Microsoft Teams</span>
+          <span class="status connected">Connected</span>
+        </div>
+        <div class="sync-info">Last synced: 5 mins ago</div>
+        <button class="button secondary-button">Configure Settings</button>
+      </div>
+
+      <!-- Google Workspace -->
+      <div class="integration-card">
+        <div class="integration-header">
+          <span class="integration-name">Google Workspace</span>
+          <span class="status disconnected">Disconnected</span>
+        </div>
+        <div class="sync-info">Status: Ready to connect</div>
+        <button class="button primary-button">Connect</button>
+      </div>
+
+      <!-- Slack -->
+      <div class="integration-card">
+        <div class="integration-header">
+          <span class="integration-name">Slack</span>
+          <span class="status connected">Connected</span>
+        </div>
+        <div class="sync-info">Last synced: 1 hour ago</div>
+        <button class="button secondary-button">Configure Settings</button>
+      </div>
+
+      <!-- Add New Integration -->
+      <div class="integration-card add-integration">
+        <div>Add New Integration</div>
+        <p class="sync-info">Browse available integrations from our marketplace</p>
+        <button class="button primary-button">Browse Marketplace</button>
+      </div>
+    </div>
+
+    <!-- API Configuration -->
+    <div class="api-section">
+      <h2>API Configuration</h2>
+      <div class="input-group">
+        <label class="input-label">API Key</label>
+        <input type="password" class="input-field" value="••••••••••••••••••••" readonly>
+        <div class="button-group">
+          <button class="button secondary-button">Copy</button>
+          <button class="button secondary-button">Regenerate</button>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-label">Webhook URL</label>
+        <input type="text" class="input-field" value="https://api.example.com/webhook">
+        <div class="button-group">
+          <button class="button secondary-button">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>

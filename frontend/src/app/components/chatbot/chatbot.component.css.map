@@ -1,0 +1,13 @@
+{
+    "version": 3,
+    "sourceRoot": "",
+    "sources": [
+      "chatbot.component.css"
+    ],
+    "names": [],
+    "mappings": "AAAA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;EACA;AACF;;AAEA;EACE;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;AACF;;AAEA;EACE;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;EACA;EACA;EACA;EACA;AACF;;AAEA;EACE;IACE;IACA;EACF;;EAEA;IACE;IACA;EACF;;EAEA;IACE;EACF;;EAEA;IACE;IACA;EACF;;EAEA;IACE;IACA;EACF;AACF;;AAEA;EACE;IACE;IACA;IACA;IACA;EACF;AACF;;AAEA;EACE;IACE;EACF;;EAEA;IACE;EACF;;EAEA;IACE;EACF;AACF;;AAEA;EACE;IACE;IACA;IACA;IACA;IACA;IACA;EACF;;EAEA;IACE;EACF;;EAEA;IACE;IACA;EACF;;EAEA;IACE;EACF;;EAEA;IACE;EACF;AACF",
+    "file": "chatbot.component.css",
+    "sourcesContent": [
+      "/* Root Container */\n.chat-container {\n  display: flex;\n  flex-direction: column;\n  height: 100vh;\n  background-color: #ffffff;\n  position: relative;\n  overflow: hidden;\n  --primary-color: #10a37f;\n  --secondary-color: #4285f4;\n  --error-color: #dc2626;\n  --text-primary: #1a1a1a;\n  --text-secondary: #374151;\n  --text-muted: #6b7280;\n  --border-color: #e5e5e5;\n  --bg-message: #f7f7f8;\n  --shadow-color: rgba(16, 163, 127, 0.2);\n  --transition-speed: 0.3s;\n}\n\n/* Messages Container */\n.messages {\n  flex: 1;\n  overflow-y: auto;\n  padding-bottom: 8rem;\n  scroll-behavior: smooth;\n}\n\n.messages::-webkit-scrollbar {\n  width: 6px;\n}\n\n.messages::-webkit-scrollbar-track {\n  background: transparent;\n}\n\n.messages::-webkit-scrollbar-thumb {\n  background-color: rgba(0, 0, 0, 0.2);\n  border-radius: 3px;\n}\n\n/* Rest of the CSS content... */"
+    ]
+  }

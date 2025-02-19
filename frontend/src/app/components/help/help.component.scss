@@ -1,0 +1,240 @@
+.main-cnt {
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+}
+
+.metric-icon {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-success {
+  background: #dcfce7;
+  color: #22c55e;
+}
+
+.icon-info {
+  background: #e0f2fe;
+  color: #3b82f6;
+}
+
+.icon-warning {
+  background: #fef9c3;
+  color: #eab308;
+}
+
+.metric-value {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #22c55e;
+}
+
+.metric-title {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.requirements-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.requirement-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.status-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.requirement-content {
+  flex-grow: 1;
+}
+
+.requirement-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.requirement-desc {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-success {
+  background: #dcfce7;
+  color: #22c55e;
+}
+
+.badge-warning {
+  background: #fef9c3;
+  color: #eab308;
+}
+
+.collaboration-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.invite-btn {
+  background: #454545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.team-section {
+  margin-bottom: 24px;
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  margin-right: 12px;
+}
+
+.member-info {
+  flex-grow: 1;
+}
+
+.member-name {
+  font-weight: 500;
+}
+
+.member-role {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.online-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 0;
+}
+
+.activity-time {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.deadline-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.deadline-date {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.deadline-desc {
+  font-size: 14px;
+  color: #64748b;
+}

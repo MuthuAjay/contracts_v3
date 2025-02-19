@@ -1,0 +1,46 @@
+<div class="main-conactrat">
+    <div class="header">
+        <h1>Contract Extraction Data</h1>
+
+    </div>
+<!--     
+    <div class="filters">
+        <div class="search-box">
+            <input type="text" placeholder="Search contracts...">
+        </div>
+        <select class="dropdown">
+            <option>All Contract Types</option>
+        </select>
+        <select class="dropdown">
+            <option>All Statuses</option>
+        </select>
+        <select class="dropdown">
+            <option>Sort By</option>
+        </select>
+    </div> -->
+    
+    <div class="table-view">
+        <table>
+            <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>Extracted Value</th>
+                    <th>Timestamp</th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of extractionData">
+                    <td>{{item.term}}</td>
+                    <td>{{item.extracted_value}}</td>
+                    <td>{{item.timestamp}}</td>
+                    
+                </tr>
+              
+            </tbody>
+        </table>
+        
+        
+       
+    </div>
+</div>

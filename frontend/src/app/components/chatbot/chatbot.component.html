@@ -1,0 +1,103 @@
+<div class="chat-container">
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <h1>EyGPT Chat</h1>
+      <button class="clear-chat" (click)="clearChat()" aria-label="Clear chat history">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Messages -->
+  <main class="messages" #messageContainer>
+    <div 
+      *ngFor="let message of messages" 
+      class="message" 
+      [ngClass]="{
+        'bot': message.isBot,
+        'error': message.status === 'error',
+        'sending': message.status === 'sending'
+      }"
+      [attr.aria-label]="message.isBot ? 'Assistant message' : 'Your message'"
+    >
+      <div class="avatar" [ngClass]="{'bot-avatar': message.isBot}">
+        <svg *ngIf="message.isBot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 8V4H8"></path><path d="M12 4h4"></path>
+          <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+          <path d="M2 14h2"></path><path d="M20 14h2"></path>
+          <path d="M15 13v2"></path><path d="M9 13v2"></path>
+        </svg>
+        <svg *ngIf="!message.isBot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      
+      <div class="content">
+        <div class="message-header">
+          <p class="name">{{message.isBot ? 'Assistant' : 'You'}}</p>
+          <span class="timestamp">{{message.timestamp | date:'shortTime'}}</span>
+        </div>
+        
+        <div class="text" [ngClass]="{'error-text': message.status === 'error'}">
+          {{message.content}}
+          
+          <!-- Loading animation -->
+          <div *ngIf="message.status === 'sending'" class="loading-animation">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+              <circle fill="#FF156D" stroke="#FF156D" stroke-width="15" r="15" cx="40" cy="65">
+                <animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" 
+                  keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"/>
+              </circle>
+              <circle fill="#FF156D" stroke="#FF156D" stroke-width="15" r="15" cx="100" cy="65">
+                <animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" 
+                  keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"/>
+              </circle>
+              <circle fill="#FF156D" stroke="#FF156D" stroke-width="15" r="15" cx="160" cy="65">
+                <animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" 
+                  keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"/>
+              </circle>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Input Area -->
+  <footer>
+    <div class="input-container">
+      <textarea
+        #inputArea
+        [(ngModel)]="newMessage"
+        placeholder="Message EyGPT..."
+        rows="1"
+        (keydown)="onKeyDown($event)"
+        (input)="onInput()"
+        [disabled]="isLoading"
+        aria-label="Message input"
+      ></textarea>
+      
+      <button 
+        (click)="sendMessage()" 
+        [disabled]="isLoading || !newMessage.trim()"
+        aria-label="Send message"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m22 2-7 20-4-9-9-4Z"></path>
+          <path d="M22 2 11 13"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <p class="disclaimer">EyGPT can make mistakes. Consider checking important information.</p>
+    
+    <!-- Error message -->
+    <div *ngIf="error" class="error-message" role="alert">
+      {{error}}
+    </div>
+  </footer>
+</div>

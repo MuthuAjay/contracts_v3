@@ -1,0 +1,79 @@
+<div class="main-cnt">
+    <header class="header">
+      <h1>Template Builder</h1>
+      <div class="header-buttons">
+        <button class="btn btn-primary">
+          <span>+</span>
+          New Template
+        </button>
+        <button class="btn">
+          Import Template
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <aside class="sidebar">
+        <h2 class="sidebar-title">Template Categories</h2>
+        <a href="#" class="menu-item active">
+          <i>📄</i>
+          Non-Disclosure Agreements
+        </a>
+        <a href="#" class="menu-item">
+          <i>📄</i>
+          Service Agreements
+        </a>
+        <a href="#" class="menu-item">
+          <i>📄</i>
+          Employment Contracts
+        </a>
+      </aside>
+
+      <div class="editor-section">
+        <div class="input-group">
+          <label>Template Name</label>
+          <input type="text" class="input-field" value="Standard NDA Template">
+        </div>
+
+        <div class="input-group">
+          <label>Category</label>
+          <select class="input-field">
+            <option>Non-Disclosure Agreements</option>
+          </select>
+        </div>
+
+        <div class="editor-toolbar">
+          <button class="toolbar-btn">≡</button>
+          <button class="toolbar-btn">B</button>
+          <button class="toolbar-btn">I</button>
+          <button class="toolbar-btn">U</button>
+        </div>
+
+        <div class="editor-content">
+          This Non-Disclosure Agreement (the "Agreement") is entered into as of [DATE] by and between:
+
+          [COMPANY NAME], a company organized and existing under the laws of [JURISDICTION], with its principal place of business at [ADDRESS] ("Disclosing Party")
+
+          and
+
+          [RECIPIENT NAME], a company organized and existing under the laws of [JURISDICTION], with its principal place of business at [ADDRESS] ("Receiving Party")
+
+          1. Definition of Confidential Information
+          ...
+        </div>
+
+        <div class="dynamic-fields">
+          <h3 class="sidebar-title">Dynamic Fields</h3>
+          <div class="field-row">
+            <input type="text" class="input-field" value="[DATE]">
+            <select class="input-field">
+              <option>Date</option>
+            </select>
+          </div>
+          <button class="add-field-btn">
+            + Add Field
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>

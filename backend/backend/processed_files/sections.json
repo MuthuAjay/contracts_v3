@@ -1,0 +1,448 @@
+{
+  "1": {
+    "name": "SCOPE OF WORK",
+    "content": "Mindtree proposes to deploy resources (Staff Augmentation) to meet the requirements of Strata for Year One.",
+    "subsections": {
+      "1.1": {
+        "content": "General scope: The support services include L2 and L3 support: Support payroll team:in Payroll related issues Manage Payroll related updates that SAP releases for UAE Manage ALEs, RFCs and make sure that data is transferring correctly between all the systems Manage and resolve SuccessFactors related issues Manage releases from SuccessFactors Manage and resolve Fiori related issues with respect to SAP HCM Manage Fiori releases Customize the forms, workflows as and when required in Fiori, SuccessFactors Providing training material on any new functionalities and conduct training Data migration of historical data 1.2. Organizational scope: Support services shall be provided to Strata Manufacturing PJsC, Al Ain, Abu Dhabi, United Arab Emirates. 1.3. Geographical scope: The support services shall be provided from two locations, onsite and offshore. Onsite support: Al Ain, Abu Dhabi, United Arab Emirates Offshore support: India 1.4. Skill scope: Mindtree shall deploy resources with the following skills in order to perform the activities described in the RFP. MDC\\757175_1 17 CONFIDENTIAL SAP HCM with UAE payroll SAP SuccessFactors  BizX Platform SAP SuccessFactors - Employee Central (EC) with Boomi integration tool. SAP SuccessFactors - Performance Management & Goal Management (PMGM) SAP ABAP HR SAP UI5 (Fiori) 1.5. Application & Module Scope: The skills mentioned in the previous section shall be used to support the following applications and modules. SAP HCM system >  Personnel Administration >  Organizational Management > Time Management > UAE Payroll SAP SuccessFactors >BizX Platform >Employee Central w/ Boomi >Performance Management & Goal Management SAP ABAP HR SAP Fiori Standard applications Travel Leave Expense Payslips Approval apps Inbox app MDC\\757175_1 18 M CONFIDENTIAL > Customized applications Leave encashment Leave encashment approval Time & Attendance 7 Leave request 1.6. Resource Job Description: Each of the resources deployed in this engagement will perform the activities described in the RFP within the scope of his skill specialization during the one year period.. Both onsite and offshore team, will work as per customer calendar (Sunday to Thursday, 9 AM to 5 PM GST).",
+        "letters": {}
+      }
+    }
+  },
+  "2": {
+    "name": "PROPOSED DEPLOYMENT MODEL",
+    "content": "",
+    "subsections": {
+      "2.1": {
+        "content": "Resource mapping for scope of skills: Mindtree recommends the following resource deployment to carry out support activities skill scope Rosource mapping Onsite! Ofshoro SAP HCM with UAE payroll One SAP HCM certified consultant Onsite with specialization in UAE payroll SAP SuccessFactors Employee Central (EC) Onsite One SAP SuccessFactors certified with Boomi integration tool consuitant consultant with specialization in Employee Central module & Boomi Fintegration tool WOnsite SAP SuccessFactors - 8izX Platform consultant One SAP SuccessFactors certified consultant with specialization ins SAP SuccessFactors - Performance Performance Management & Goal Management & Goal Management (PmGM) Management module consultant SAP ABAP HR One SAP ABAP consuitant Offshore SAP Fiori One SAP Fiori developer Otfshore In the steady state, Mindtree suggests that the above deployment composition (skills and number) be revisited after 3 months of steady state (post transition to Mindtree consultants). During transition, it is suggested that additionally, the SAP Fiori consultant be present onsite. Strata is free to choose the onsite-offshore mix with onsite, offshore rates applied accordingly.",
+        "letters": {}
+      },
+      "2.2": {
+        "content": "Evaluation of Resource performance Mindtree has proposed suitable candidates for this cngagement based on the activities to be performed in the RFP and the skills required to perform the same. A pre-deployment call would be arranged with the candidate between Mindtree, candidate and Strata and based on a positive outcome, this candidate would be deployed. Pexfornanee would be measured. 19 MDC\\757175_1 CONFIDENTIAL against the activities to be performed within that skill set, for a period of 3 months. Any. concerns would be jointly addressed..",
+        "letters": {}
+      }
+    }
+  },
+  "3": {
+    "name": "SUPPORT DELIVERY",
+    "content": "Strata maintains responsibility for task allocation and distribution of support/enhancement activities.For request for change/customizing, Mindtree will provide an effort estimate. The priority of this enhancement or change requested shall be determined by Strata. In a situation where additional skills or additional resources for the same skill set are required to service a change request or enhancement, additional team members will be inducted into the project based on the agreed rate card. 3.1. Call out during Non-Working Hours and Weekends Consultant availability may be required during Non-working hours and weekends to handle P1 tickets. For this purpose, Mindtree will provide a roster to Strata with the cell phone numbers of consultants on a monthly basis. This service will be charged as overtime at a. premium over the normal rates for compensating consultants' availability. Please refer to the commercials section further details. 3.2. Deliverable Standards Mindtree will follow the deliverable standards established by Strata. 4. ASSUMPTIONS & DEPENDENCIES 4.1.. Assumptions: 1. Strata to provide all system environments like Ticketing tool, UAT, Dev and Production Environment at the start of the support engagement. 2. Strata to provide provisioning access to SAP Success Factors consultants. 3. Strata to provide SID to the team members for searching for Knowledge base /. solution SAP notes, raising issue with SAP on SAP product errors, etc. 4. SAP HCM / Success Factors systems are in use by the end users. 5 All issues reported till go-live are in resolved state. 6 Support to be provided in English Language ONLY. 7. Processes that need to be customized to meet Strata requirements will be limited to. Functional specifications and solution documents. 8 All issues / requirement will be raised using ticketing tool. 9.. All P2 and P3 issues are handled by the consultant only during client working day/hours. 10gy Effort estimation related customizing will bedefined! MDC\\757175_1 20 CONFIDENTIAL 11. SAP HCM / SuccessFactors / Fiori Applications will use only on desktops and laptops. 12 Templates to migrate data into SAP HCM/SF systems will be provided by current implementation team. 13. Technical assistance to migrate data is performed during client working hours based on defined priority. This means, any priority issue ticket is assigned during mid of data migration activity, preference will be given to the issue ticket and data migration will be suspended until issue ticket is resolved. 14. Oracle application team will extract data from oracle application for data migration. 15. Oracle application team will assist to map fields between oracle application and SAP HCM/SF applications for data migration. 16. Verification of migrated data in SAP HCM/SF systems will be performed by Strata. 17. All updates/releases to Success Factors will be done via FTP file transfer approachg. 18. Testing will be done only for English languages: 19 A lead time of 4-6 wecks have to be considered for mobilization of resources after Staffing Requests are raised.. 20. Support Project Team will use Mindtree laptops to connect to Strata SAP systems: Any VPN tool required to access Strata network, Strata will provide VPN software 21. along with licenses to each consultant. 22. Mindtree will provide approval to install client specific ticketing tool/VPN'software or any other software required to work for Strata using Mindtree laptop.. 23. The Mindtree consuItants shall follow Strata's Working hour's 9 AM to 5 PM GST from Sunday to Thursday. 24. Support Project team will follow Strata holiday calendar. 25. Gap analysis performed based on:. o. The KT and supporting documents p.The issues/bugs identified and fix given to them during various test phases. o Study of detail system landscape 26. All connectivity and telephone connectivity either via skype/tele would have to be provided by the customer. 27. There is no travel planned outside of project location. Any local travel for official mDC\\757175..I 21 CONFIDENTIAL 28.. Knowledge transfer from existing support/implementation team to Mindtree support project team will be planned by Strata.. 29... During Knowledge transfer period, all resources should be placed onsite.. 30 It is assumed that all data required for Go live is migrated. In case, any other data needs to be migrated POST GO-LIVE, Strata would own this migration piece from a perspective of data quality (and any errors that crop up due to poor quality of data),. data transformation & data availability. The Mindtree team can provide any technical assistance required for the migration 31. It is assumed that any P1 and P2 issues that has been reported in the warranty period post Go live fixed by the current support team, before completion of transition. It is also assumed, all outstanding issues reported during acceptance testing cycles are. fixed by current support team before completion of transition. 32. All action towards contract termination / extension will be driven by Strata with inputs from Mindtree.. 33.. Mindtree consultants shall follow Mindtree leave guidelines. Strata shall be appraised of the Ieave plans of the resource deployed well in advance. 4.2. Dependencies 1. Strata will provide documentations like configuration workbook, configuration. document, functional and technical specification documents for the SAP HCM, SuccessFactors, ABAP and SAP Fiori.. 2. Strata will provide the translations in Arabic for all static labels required to be localized. All static labels in Arabic mapped to English labels. 3g Data migration templates from current implementation team. 4 Extraction of data from Oracle application by oracle application team 5. Mapping of data to migrate between oracle application and SAP HCM/SF applications 6. Updated Functional and Design specification document to be shared before start of. support engagement. 7. Strata will provide the CSS properties for different elements, font size and styles. 8. Ticketing tool and licenses required to manage the tickets is to be provided by Strata. Strata shall assume responsibilities of transition to the on boarded Mindtree. 9 consultants. The rates during the period of transition and steady rate are one and the. same. MD)C\\757175_1 22 IM CONFIDENTIAL B FEES AND EXPENSES 1 Mindtree proposes a Fixed monthly contract (staff augmentation) Engagement. The price for each of the role is provided below:. Role Onsita/j ! Monthly Rate (In Yoarty Totat (in USDy USD)! 1 j SF - EC consultant Onsite 8,000 : 96,000 SF - PMGM consultant Onsite 8,000 96,000 SAP HCM consultant 000' Onsite 000'96 SAP ABAP consultant Offshore 4,000 48,000 [SAP Florl consultant Offshore 4,000 48,000 The rates are on USD The no of working days is 21 days in one month. Iocation, plus annual leave of 21 working days as per labor laws. Work Lacation will be at Strata, Al Ain, Abu Dhabi, WAE. Assuming the soltware licenses, Dev, Test environments will be provided by Strata. Working hour's 9 AM to 5 PM GST from Sunday to Thursday. Strata on actuals. Any additional onsite work required by Strata would be mutually discussed and closed. 2. All the payments are based on the acceptance of deliverables by the Company Project representative. C PROJECT REPRESENTATIVE The Project Representative for the Company shall be Name: Shaikha Abdulrahman AIBlooshi. Address: Strata Manufacturing PJSC P.O. Box 86519 Al Ain United Arab Emirates] Email: SRahman@strata.ae Fax: +971 3 7071 491 The Project Representative for the Contractor shall be Name: Ajay Subramaniam Address:~ 5w, 423, Dafza P O Box 293859 Email: ajay.s@mindtree.com Fax: 0097142602401 MDC\\757175_1 23 M CONFIDENTIAL D INVOICES Invoices shall be addressed to: Strata Manufacturing PJSC Accounts Payable Finance Unit P.O. Box 86519 Al Ain United Arab Emirates. Phone: +971 3 7071 300 Each invoice must be an original and must include the following minimum details:. Name of the Company's Project Representative (see name in item C above) and the Project 0 Name, or if no name, a brief description of the Project;. Agreement Reference Number (see top left corner of the cover page); and. Names of all contracting Parties, as set out in this agreement.. [remainder of page intentionally left blank] MDC\\757175_1 24 W CONFIDENTIAL WHEREAS the Parties have hereby caused their duly authorised representatives to execute and deliver this Agreement on the date first above written. SIGNATORIES For and on behalf of STRATA MANUFACTURING PJSC By: Badr Al Olama Title: CEO By: Amer Siddiqui Title: CFO For and on behalf of MINDTREE LIMITED By: Jagannathan Chakravarthi Chiet Financial Oicer Title 16' Nov.20 |s MT |2015-16/MsA/p R| 9 8 MDC\\757175_1 25 M",
+    "subsections": {}
+  },
+  "4": {
+    "name": "TIME FOR PERFORMANCE",
+    "content": "",
+    "subsections": {
+      "4.1": {
+        "content": "Any time for performance of the Services shall be as specified in Schedule 1 and time shall be of the essence. If no time for performance is specified for completion of the Services or any particular part of the Services, then the Contractor shall perform such Services within a time to be agreed by the Parties, or, failing such agreement, within a reasonable time given the nature and extent of the Services.",
+        "letters": {}
+      },
+      "4.2": {
+        "content": "The Contractor shall not be liable to the Company for any delay in providing the Services caused either in whole or in part by any failure to act of the Company nor for any delay caused either in whole or in part resulting from acts beyond the reasonable control of the Contractor, including acts of God, war, fire, flood, explosion, epidemics or civil commotion.",
+        "letters": {}
+      }
+    }
+  },
+  "5": {
+    "name": "CONTRACTOR'S UNDERTAKINGS",
+    "content": "",
+    "subsections": {
+      "5.1": {
+        "content": "The Contractor represents, warrants and undertakes to the Company that:",
+        "letters": {
+          "a": "it has been duly incorporated, organised and/or established and is validly existing under the laws of the jurisdiction of its incorporation, organisation or establishment (as the case may be) and has the relevant constitutional approvals to conduct the Services in accordance with. the terms of this agreement;.",
+          "b": "the agreement has been duly authorised by, and upon execution will constitute a valid and legally binding agreement of, the Contractor, enforceable against the Contractor in. accordance with its terms;.",
+          "c": "regulatory authority or otherwise) for the performance of the Services;.",
+          "d": "the Contractor and all Contractor's Personnel owe a duty of loyalty to the Company and may. not use their positions to profit personally at the expense of the Company (financially or. otherwise). The Contractor will promptly notify the Company of any such actual or potential conflict of interest.",
+          "e": "(i) it will not provide military products, services and technology (collectively, for the. purpose of this Clause 5.1(f), items) subject to the U.S. International Traffic in Arms. Regulations (ITAR) or equivalent defense export controls of other countries without the MDC\\757175_1 3 A CONFIDENTIAL prior written approval of the Company; (ii) it will provide the Company with the export control jurisdiction (e.g., US - EAR or ITAR; UK - commercial/dual use or military) and export classification number of all items designated as controlled on an applicable export control list supplied to the Company prior to, or at the time of, supplying them to Company; (iii) in the event that it receives export controlled items from the Company under this agreement, it will not export, reexport, release or transfer such exported controlled items,. except in accordance with applicable law and the terms of this agreement; (iv) it will ensure that, in respect of any Services which it supplies which contain substances the use or importation of which is regulated (or known to be potentially regulated) in the jurisdictions in which the Company or its end-customers (as notified to the Contractor) operate, the Company is provided in a timely manner with all necessary information and other assistance to allow the Company or its end-customer to comply with those regulations;.",
+          "f": "it will make available the Contractor's Personnel to perform the duties of the Contractor under this agreement or provide replacements of equivalent status, in each case as may be approved by the Company, such approval not to be unreasonably withheld;",
+          "g": "it and the Contractor's Personnel have the necessary skill and expertise which would reasonably be expected to be observed by a skilled and experienced person engaged in carrying out activities the same as, or similar to, the Services on the terms set out in this agreement;",
+          "h": "unless specifically authorised in writing by the Company, it shall not have any authority to- incur expenditure in the name or for the account of the Company or hold itself out in any way as having authority to bind the Company;.",
+          "i": "in a manner inconsistent with the terms of this agreement; (ii) in a capricious manner; or (iii) (where applicable) to deal in securities of the Company, any of its Affiliates or any third party to which (all or some of) the information relates, nor encourage another person to so deal except as permitted by law. The Contractor will promptly notify the Company details of any use of inside information in breach of this paragraph; and.",
+          "k": "there is no conflict of interest for the Contractor to enter into this agreement or to perform the Services and that it will promptly notify the Company if any circumstances arise in which the Contractor will or may be conflicted;. (1) it has not and will not solicit accept or give directly or through a third party anything of value, gifts, loans, cash, entertainment, meals, travel, any commission or other financial benefit or inducement from or to any person or party in connection with the Services The Contractor will promptly notify the Company details of any such gifts, loans, cash, entertainment, meals, travel, commission, benefit or inducement which may be offered;.",
+          "m": "it has not and will not accept, facilitate, promise to make or provide, in the performance of this agreement, any anything of value, gifts, loans, cash, entertainment, meals, travel, any commission or other financial benefit or inducement, ditectly o indirectly to or for the benefit of: MDC\\757175_! CONFIDENTIAL",
+          "n": "respect to the provision of the Services and (where applicable) the calculation of, or ability to claim, the Fee. In the event that the Contractor is aware of, or has reasonable grounds to suspect, fraud with respect to the provision of the Services or (where applicable) the calculation of, or ability to claim, the Fee, it shall promptly notify the Company. In this event, the Contractor shall provide the Company and its nominee with access to the Contractor's books and records relevant to the provision of the Services and the caleulation of, or ability to claim, the Fee. Further the Contractor shall allow the Company and its. nominee to audit such records;. while providing the Services the Contractor may become aware of some information relating (0) to the Company, its Affiliates or a third party (which information may include inside or material non-public information). The Contractor shall not use such information:"
+        }
+      },
+      "5.2": {
+        "content": "Notification by the Contractor under Clause Error! Reference source not found.(k), (1), (m), (n) (o)(o) or (p) shall be made to Mubadala Compliance on +971 2 413 3333 or ComplianceHelpline@mubadalawae.",
+        "letters": {}
+      }
+    }
+  },
+  "6": {
+    "name": "THE COMPANY'S OBLIGATIONS",
+    "content": "",
+    "subsections": {
+      "6.1": {
+        "content": "The Company shall: MDC\\757175_! CONFIDENTIAL",
+        "letters": {
+          "a": "provide the Contractor with any information and documents as the Contractor may reasonably request for the proper performance of its obligations under this agreement; and.",
+          "b": "use its reasonable efforts to allow the Contractor such access to the Company's premises and to such other premises and property if necessary to perform the Scrvices during normal business hours; provided that the Company reserves the right (at its sole discretion) to refuse entry to, or to require the Contractor to remove promptly, any Contractor's Personnel or any personnel of its subcontractors or Affiliates."
+        }
+      },
+      "6.2": {
+        "content": "The Company makes no representation or warranty, express or implied, whether as to the accuracy, reliability or completeness (or otherwise) of any information or documents.",
+        "letters": {}
+      }
+    }
+  },
+  "7": {
+    "name": "PAYMENT",
+    "content": "",
+    "subsections": {
+      "7.1": {
+        "content": "In consideration for the Contractor performing the Services on the terms of this agreement, the Company shall pay to the Contractor the Fees and expenses, if any, in accordance with the terms of Schedule 1. Other than as expressly provided in Schedule 1, the Fees shall be inclusive of all charges, disbursements and taxes of any nature whatsoever.",
+        "letters": {}
+      },
+      "7.2": {
+        "content": "The Contractor shall be entitled to render invoices in accordance with Schedule 1 and payment of any sums due shall be made, subject to Clause 7.3, and unless the Parties agree otherwise, within 30 days from the date of invoice date; provided that an invoice shall be deemed to be properly rendered only once the Contractor has submitted all documents reasonably required by the Company to support each invoice. All invoices and supporting documentation must be sent to the invoice address specified in Schedule 1..",
+        "letters": {}
+      },
+      "7.3": {
+        "content": "If any part of the Fees is subject to a bona fide dispute between the Company and the Contractor, the following provisions shall apply:.",
+        "letters": {
+          "a": "the Company shall pay to the Contractor, in accordance with Clause 7.2, all amounts not. disputed in good faith by the Company;.",
+          "b": "the Company shall notify the Contractor within 14 days after the date of receipt of the invoice of any disputed items and shall describe in reasonable detail the Company's reasons for disputing each item ,but in no event later than 14 days after the invoice is received, failing which such dispute is waived; and.",
+          "c": "within seven (7) days after the Contractor has received the notice referred to in Clause 7.3(b), the Parties shall seek to reach settlement on the items that are the subject of the dispute."
+        }
+      },
+      "7.4": {
+        "content": "The Company shall reimburse the Contractor for all expenses, if any, of the types identified in. Schedule 1 which are properly and reasonably incurred by the Contractor or the Contractor's Personnel in the provision of the Services; provided that (i) the Company may require the Contractor to provide appropriate receipts or any other reasonable evidence of such expenditures and (ii) if any. of these expenses exceed the aggregate amount (if any) specified in Schedule 1, the Company shall not be obliged to reimburse the Contractor for the excess unless the additional expenses have been approved by the Company prior to their being incurred.",
+        "letters": {}
+      },
+      "7.5": {
+        "content": "The Fees specified in Schedule 1 may not be increased without the pior (fen consent of the Company MDC\\757175_1 6 CONFIDENTIAL",
+        "letters": {}
+      },
+      "7.6": {
+        "content": "The Company shall have the right to deduct from any monies due or which may become due to the Contractor, any monies or sums recoverable from the Contractor to the Company in respect of any claims against the Contractor..",
+        "letters": {}
+      },
+      "7.7": {
+        "content": "Payment by the Company shall be without limitation to any claims or rights which the Company may have against the Contractor and shall not constitute any acceptance by the Company of the performance by the Contractor of its obligations hereunder.",
+        "letters": {}
+      }
+    }
+  },
+  "8": {
+    "name": "PROJECT MANAGEMENT AND PERSONNEL",
+    "content": "",
+    "subsections": {
+      "8.1": {
+        "content": "Each of the Company and the Contractor has appointed a Project Representative who shall be responsible for the coordination of all matters relating to the Services. The Project Representative for the Company and the Contractor is specified in Schedule 1. The Contractor undertakes to comply with the reasonable instructions. of the Company and/or the Company's Project Representative which may be given from time to time.",
+        "letters": {}
+      },
+      "8.2": {
+        "content": "The Company and the Contractor shall meet as often as reasonably requested by the Company to ensure efficient performance of the Services.",
+        "letters": {}
+      },
+      "8.3": {
+        "content": "The Contractor will prepare and submit any reports (including any Deliverables) and supply any information relating to the Services as may from time to time be reasonably required by the Company, in the format required by the Company.",
+        "letters": {}
+      },
+      "8.4": {
+        "content": "The Contractor will keep detailed records of all activities undertaken in connection with the provision of Services and shall, at the Company's request, make them available for inspection and/or provide copies thereof to the Company.",
+        "letters": {}
+      },
+      "8.5": {
+        "content": "The Company shall be entitled to request and obtain, at its discretion, the removal and replacement of any of the Contractor's Personnel, at the Contractor's expense, provided that the Company shall not exercise this right unreasonably..",
+        "letters": {}
+      },
+      "8.6": {
+        "content": "The Contractor shall ensure that while any of the Contractor's Personnel are on the Company's premises they will observe and comply with all applicable rules and regulations relating to health, safety and security..",
+        "letters": {}
+      },
+      "8.7": {
+        "content": "The Contractor agrees that the Contractor's Personnel who will access the Company's premises or electronic information system must execute all agreements and forms reasonably requested by the Company, including authorization to conduct a background investigation. The Company wil authorize any necessary information system access mechanisms, including access IDs and passwords, and in no event will the Contractor permit any such mechanisms to be shared or used by other than the individual to whom issued or to be used for any purpose other than the fulfillment of the Contractor's obligations under this agreement. Once each calendar quarter and upon reasonable request by the Company, Contractor agrees to provide the Company with an accurate, up-to-date list of those Contractor's Personnel having access to the Company's electronic information systems software, or data. The Contractor agrees that any failure to comply with the provisions of this Clause entitles the Company to deny or restrict the access privileges of such non-complying Contractor's Personnel, as the Company deems appropriate in its sole discretion. mDC\\757 175_1 7 .Ar CONFIDENTIAL",
+        "letters": {}
+      }
+    }
+  },
+  "9": {
+    "name": "INTELLECTUAL PROPERTY RIGHTS AND RELIANCE",
+    "content": "",
+    "subsections": {
+      "9.1": {
+        "content": "The Company acknowledges that the Contractor's Materials are vested, and shall remain vested, in the Contractor.",
+        "letters": {}
+      },
+      "9.2": {
+        "content": "The Contractor acknowledges that in the course of providing the Services the Contractor may use products, materials and methodologies proprietary to the Company or Affiliates of the Company.. The Contractor agrees that it shall not acquire any rights in those proprietary products, materials and methodologies whether under this agreement or otherwise.",
+        "letters": {}
+      },
+      "9.3": {
+        "content": "All Intellectual Property Rights in the Project Materials, whether on the date of receipt of the Project Materials or anytime thereafter, shall belong exclusively to the Company (or such Affiliate of the Company as the Company may direct) and shall vest in the Company (or such Affiliate of the Company as the Company may direct) unconditionally and immediately on the Project Materials. having been created, developed, written or prepared, and the Contractor shall, and shall ensure that each subcontractor shall, at its own expense and at no cost to the Company or any of its Affiliates, take all steps and sign all documents necessary to formalise such vesting in the Company (or such person or entity as the Company shall direct) or otherwise register such Intellectual Property Rights in the name of the Company or any person or entity designated by the Company.",
+        "letters": {}
+      },
+      "9.4": {
+        "content": "In consideration of the Company entering into this agreement, the Contractor: :",
+        "letters": {
+          "a": "as beneficial owner assigns (or shall procure the assignment) to the Company (or such other person or entity as the Company shall direct) for all purposes the copyright and (to the extent capable of assignment under this Clause 9.4) all other Intellectual Property Rights in the Project Materials; and.",
+          "b": "unconditionally and irrevocably waives (or shall procure the waiver of) all moral rights that exist or may exist in the Project Materials."
+        }
+      },
+      "9.5": {
+        "content": "The Contractor, warrants and undertakes that the Project Materials will be, so far as they do not. comprise material originating from the Company, its employees, agents or subcontractors, original works of authorship and their use or possession by the Company, any of its Affiliates or the Contractor will indemnify the Company, any of its Affiliates or the Contractor to any claim for infringement of any trademark or copyright of any third party, as mentioned in clause 9.6..",
+        "letters": {}
+      },
+      "9.6": {
+        "content": "The Contractor undertakes to defend and hold harmless the Company and its Affiliates from and against any third party claim or action that the use or possession of the Project Materials (other than to the extent that the relevant Project Materials comprise material originating from the Company, its employees, agents or subcontractors) or any part of them by the Company or any of its Affiliates or the receipt by the Company or any of its Affiliates of any Services (or any part thereof) infringes the. trade mark and copyright of a third party (the IPR Claim) and shall indemnify the Company and each of its Affiliates from and against any and all such third party claims resulting in losses, damages, costs (including reasonable legal and other professional fees) expenses and other liabilities. incurred by or awarded against the Company or any of its Affiliates as a result of or in connection. with any IPR Claim. Contractor shall indemnify the Company under this clause provided the Company immediately notifies the Contractor about such claim and Contractor is provided sole control of defence.. MDC\\757175_1 x Vi CONFIDENTIAL",
+        "letters": {}
+      },
+      "9.7": {
+        "content": "If any lPR Claim is made, or in the Contractor's reasonable opinion is likely to be made, against the Company or any of its Affiliates, the Contractor shall promptly and at its own cost and expense either:",
+        "letters": {
+          "a": "obtain for the Company and each of its Affiliates (or such other person or entity as the Company shall require) the right to continue using the Services and the Project Materials in the manner permitted under this agreement; or.",
+          "b": "modify or replace the infringing part of the Services and the Project Materials so as to avoid the infringement or alleged infringement, without prejudice to the representations and warranties in this agreement'in relation to all and every part of the Services or the Project. Materials, and without diminishing or curtailing in any material respect the value of the. Project Materials and/or the Services.."
+        }
+      },
+      "9.8": {
+        "content": "The Contractor consents to allow the Company and any Affiliate of the Company to rely on the work product in the Deliverables provided hereunder and generally on the Services being provided hereunder in accordance with the terms and conditions set forth herein.",
+        "letters": {}
+      },
+      "9.9": {
+        "content": "This Clause 9 shall remain in full force and effect notwithstanding any termination or expiry of this agreement.",
+        "letters": {}
+      }
+    }
+  },
+  "10": {
+    "name": "CONFIDENTIALITY AND ANNOUNCEMENTS",
+    "content": "",
+    "subsections": {
+      "10.1": {
+        "content": "The Contractor undertakes to the Company and for the benefit of each of the Company's Affiliates (who shall be entitled to enforce the terms of this Clause 10) to treat as confidential all Confidential Information. Confidential Information means all information of whatever nature relating wholly or partly to the Services or the affairs of the Company or its Affiliates which:.",
+        "letters": {
+          "a": "is supplied by or on behalf of the Company to the Contractor or its Authorised Recipients (as defined below) in writing or orally and whether before or after the date of this agreement;.",
+          "b": "is obtained by the Contractor or its Authorised Recipients in writing or orally, through or following discussions with the management, employees, agents or advisers of the Company or an Affiliate thereof;.",
+          "c": "is acquired by observation or attendance by the Contractor or its Authorised Recipients at the offices or other premises of the Company; or.",
+          "d": "consists of any reports, analyses, compilations, studies or other documents prepared by, on behalf of or for the Contractor, and which contain or are derived from or otherwise reflect any information described in Clause 10.1(a) to Clause 10.1(c)."
+        }
+      },
+      "10.2": {
+        "content": "The Contractor may only use the Confidential Information for the purposes of this agreement. The Contractor may, with the Company's prior written consent (not to be unreasonably withheld), provide its employees, officers, directors, subcontractors and professional advisers (the Authorised Recipients) with access to the Confidential Information on a strictly \"need-to-know\" basis only. The Contractor shall ensure that each of its Authorised Recipients is bound to hold all Confidential Information in confidence to the standard required under this agreement. Where an Authorised Recipient is not an employee, officer or director of the Contractor, the Contractor shall use its best endeavours to procure that the Authorised Recipient enters into a written confidentia. Lity undertaking MDC\\757175_1 CONFIDENTIAL",
+        "letters": {}
+      },
+      "10.3": {
+        "content": "This Clause 10 shall not apply to any information whichi",
+        "letters": {
+          "a": "at the time of its supply by (or on behalf of) the Company is in, or subsequently comes into. the public domain, except through breach of any of the undertakings set out in this agreement;",
+          "b": "is already in the lawful possession of the Contractor or an Authorised Recipient;",
+          "c": "Recipient from a third party who does not owe the Company an obligation of confidence in relation to it, or",
+          "d": "is required to be disclosed by law, regulation or any governmental or competent regulatory authority (including any securities exchange); provided that, to the extent reasonably practicable, the Party required to make such disclosure shall consult in advance with (and take into account the reasonable requests of) the Company on the proposed form, timing, content and purpose of the disclosure."
+        }
+      },
+      "10.4": {
+        "content": "Without affecting any other rights or remedies that the Company may have, the Contractor. acknowledges that a person with rights under this Clause 10 may be irreparably harmed by any breach of its terms and that damages alone may not necessarily be an adequate remedy Accordingly, the Contractor hereby acknowledges (without proof of actual damages) that injunctive relief, specific performance or other equitable relief in favour of the Company or any Affiliate thereof may be an appropriate and necessary remedy for any threatened or actual breach of the terms of Clause 10.",
+        "letters": {}
+      },
+      "10.5": {
+        "content": "This Clause 10 shall remain in full force and effect notwithstanding any termination or expiry of this. agreement for five (5) years,from the date of completion of the Services.",
+        "letters": {}
+      }
+    }
+  },
+  "11": {
+    "name": "TERMINATION",
+    "content": "",
+    "subsections": {
+      "11.1": {
+        "content": "The Company shall be entitled to terminate this agreement without cause and without need for a. judicial order at any time on giving the Contractor not less than seven (7) days' prior written notice. of termination.",
+        "letters": {}
+      },
+      "11.2": {
+        "content": "Each Party shall have the right, without prejudice to its other rights or remedies, to terminate this agreement immediately by written notice to the other and without need for a judicial order:",
+        "letters": {
+          "a": "if the other Party is in material breach of any of its obligations under this agreement and either that breach is incapable of remedy or the other Party shall have failed to remedy that breach within seven (7) days after receiving written notice requiring it to remedy that breach;",
+          "b": "if the other Party is unable to pay its debts or becomes insolvent or an order is made or a. resolution passed for the administration, winding-up or dissolution of the other Party (otherwise than for the purposes of a solvent amalgamation or reconstruction) or an. administrative or other receiver, manager, liquidator, administrator, trustee or similar officer is appointed over all or any substantial part of the assets of the other Party or the other Party. enters into or proposes any composition or arrangement with its creditors generally or anything analogous to the foregoing occurs in any applicable jurisdiction; or MDC\\757175_1 CONFIDENTIAL",
+          "c": "if, in the case of the Contractor only (if such Contractor has a partnership or similar corporate structure), any of his partners dies, has a recciving order made against him or commits any act of bankruptcy.. 11.3  -If the Company terminates this agreement pursuant to Clause 11.1 or if the Contractor terminates this agreement under Clause 11.2, the Company shall pay the Contractor the proportion of the outstanding Fees payable for the Services as relates to the work properly and satisfactorily carried out or where the Services are charged on a time basis, for the time properly and necessarily spent on the Services prior to the effective date of termination."
+        }
+      },
+      "11.4": {
+        "content": "If the Company exercises its rights of. termination under Clause 11.2, it shall not be liable to the Contractor for any losses, claims, damages, fees, liabilities, costs or expenses suffered or incurred by the Contractor and resulting from such termination. In any event, under no circumstances shall the Company be liable to the Contractor for any indirect or consequential loss (including loss of goodwill, loss of profit, loss of any contract, loss of opportunity, loss of anticipated profits or revenue or costs of capital) as a result of termination of this agreement..",
+        "letters": {}
+      },
+      "11.5": {
+        "content": "Upon expiry or termination, as the case may be, of this agreement, the Contractor shall promptly deliver to the Company, upon its request, all Project Materials, Deliverables (in any state of completion) and Confidential Information together with any books, papers, materials and other related property relating to the business of the Company or relating to this agreement or the Services that are in the Contractor's possession or under the Contractor's control. No copies of the foregoing items may be retained by the Contractor for record purposes, except as required by law..",
+        "letters": {}
+      },
+      "11.6": {
+        "content": "Any termination of this agreement (howsoever occasioned) shall not affect any accrued rights or liabilities of either Party, nor shall it affect the coming into force or the continuance in force of any provision of this agreement which is expressly or by implication intended to come into force or continue in force on or after termination..",
+        "letters": {}
+      }
+    }
+  },
+  "12": {
+    "name": "LIABILITY",
+    "content": "",
+    "subsections": {
+      "12.1": {
+        "content": "The Contractor shall defend, hold harmless and indemnify the Company and any Affiliate of the. Company, from and against any and all third party losses, claims, costs, liabilities, damages (including any loss of, or damage to, any property of, or injury to or death of, any person) and expenses suffered or incurred by the Company or any Affiliate of the Company, their respective directors, officers, employees and agents (the Indemnified Persons) arising from or in connection with any wilful or negligent act or omission by the Contractor or its officers, directors, employees, agents or subcontractors and/or any breach by the Contractor of this agreement, applicable laws or arising directly or indirectly out of the performance by the Contractor of its obligations under this agreement.",
+        "letters": {}
+      },
+      "12.2": {
+        "content": "The Contractor shall defend, hold harmless and indemnify the Company and any Affiliate of the Company from and against any levies, demands or claims that may be made by the relevant authorities (outside the United Arab Emirates) against the Indemnified Persons or any payments. made by the Indemnified Persons in respect of tax demands or other charges or contributions (outside the United Arab Emirates) relating to the provision of the Services by the Contractor..",
+        "letters": {}
+      },
+      "12.3": {
+        "content": "If the Contractor is in breach of its obligations under this agreement and fails to remedy such breach. within seven (7) days after receiving notice requiring it to do so, the Company shall have the right, without prejudice to any other remedy it may have, to engage one or more hirdy. Arliesi (each such mDC\\757 I75_1 11 CONFIDENTIAL third party a Replacement) to perform, a portion or all of the Services that as of the date thereof have not been performed to the satisfaction of the Company (the Uncompleted Services). The Contractor shall indemnify the Company and its Affiliates from and against any and all losses, reasonable costs and expenses suffered or incurred by the Company or its Affiliates arising out of the engagement of any Replacements for performance of any, or all, of the Uncompleted Services to the extent that such losses, costs and expenses exceed that portion of the Fees attributable to the Uncompleted Services.",
+        "letters": {}
+      },
+      "12.4": {
+        "content": "The total liability of the Contractor under this Agreement shall be limited to two (2) times the Fee payable to the Contractor under this Agreement, assuming no early termination and full performance of the Services. Such limitation of liability shall not apply in cases of fraud, gross negligence. corrupt practices, personal death or bodily harm and/or wilful misconduct on part of the Contractor or in relation to any amounts which the Company or any of its Affiliates may claim from the Contractor under Clause 9. Except as stated above, in no event will either party be liable for any indirect and consequential damages.",
+        "letters": {}
+      },
+      "12.5": {
+        "content": "This Clause 12 shall remain in full force and effect notwithstanding any termination or-expiry of this agreement.",
+        "letters": {}
+      }
+    }
+  },
+  "13": {
+    "name": "INSURANCE",
+    "content": "",
+    "subsections": {
+      "13.1": {
+        "content": "The Contractor undertakes to obtain and maintain at its own expense and for the Term, the following policies of insurance:",
+        "letters": {
+          "a": "Professional Indemnity insurance with a limit of no less than USD 1,000,000 per event and in the annual aggregate.",
+          "b": "Public or commercial general liability insurance with cover of no less than AED 1,000,000 for a single event or series of related events in a single calendar year. The policy shall be extended to include the Company as additional-insureds, in favour of the Company;",
+          "c": "Workmen's compensation cover to cover risks which the Contractor is required to provide in accordance with Chapter VIII of the United Arab Emirates Federal Law of 1980 or other Iabour law in their relevant jurisdiction(s) and any subsequent amendments. The policy shall extend to include employer's liability of no less than AED 1,000,000 for a single event and shall include a subrogation waiver in favour of the Company and Mubadala Development Company PJsC, a primary clause and an indemnity to principal clause (with the Company and Mubadala Development Company PJSC noted as principals);.",
+          "d": "Automobile liability insurance (if applicable) in accordance with the laws of the United Arab Emirates with a third party property damage limit of not less than AED 1,000,o00each and. every occurrence and in aggregate ; and.",
+          "e": "Property all risks insurance 'io cover physical damage to assets owned by or for which the Contractor is responsible and used in connection with the Services including transit insurance covering transportation of the assets to and from the Contractor's premises including loading and unloading for an amount the equivalent of replacement as new. .."
+        }
+      },
+      "13.2": {
+        "content": "Evidence of the insurances must be provided upon request and to the satisfaction of the Company and/or Mubadala Development Company PJSC. MDC\\757175_1 12 CONFIDENTIAL",
+        "letters": {}
+      },
+      "13.3": {
+        "content": "The Contractor shall not cancel or materially change any insurance policy without providing the Company and/or Mubadala Development Company PJsC with at.least 30 days prior notice.",
+        "letters": {}
+      },
+      "13.4": {
+        "content": "Should the Contractor fail to evidence the insurances to the satisfaction of the Company and/or Mubadala Development Company PJsC, the Company reserves the right to arrange the insurances on the Contractor's behalf and deduct the associated costs from payments due. The Contractor shall be obligated to lend every assistance in arranging the insurances should the Company so opt to arrange cover.",
+        "letters": {}
+      },
+      "13.5": {
+        "content": "The Contractor shall ensure that any agent or subcontractor engaged by the Contractor in relation to the Services obtains and maintains all insurances as per the terms of this agreement. Any deficiencies in the cover or policy limits of insurances of such agents or subcontractors shall be the sole responsibility of the Contractor.",
+        "letters": {}
+      },
+      "13.6": {
+        "content": "All deductibles are to the sole account of the Contractor::",
+        "letters": {}
+      }
+    }
+  },
+  "14": {
+    "name": "ASSIGNMENT AND SUB-CONTRACTING",
+    "content": "",
+    "subsections": {
+      "14.1": {
+        "content": "The Contractor may not assign, sublicense, transfer, create a charge over or otherwise dispose of any. of its rights or subcontract, transfer or otherwise dispose of any of its obligations under this agreement without the prior written consent of the Company..",
+        "letters": {}
+      },
+      "14.2": {
+        "content": "Nothing in this agreement shall prevent or restrict the Company from assigning, sublicensing,. transferring, creating a charge over or otherwise disposing of any of its rights or from subcontracting, transferring or otherwise disposing of any of its obligations under this agreement to an Affiliate of the Company. The Company shall not assign any part of its rights or obligations. under this agreement, other than to an Affiliate, without the consent of the Contractor (such consent. not to be unreasonably withheld).",
+        "letters": {}
+      }
+    }
+  },
+  "15": {
+    "name": "EXCLUSIVITY AND CONFLICT OF INTEREST",
+    "content": "the Contractor shall not, and shall procure that its agents, subcontractors and servants shall not, whether as a Contractor, principal, partner, director, employee or otherwise, directly or. indirectly provide or procure the provision of any consultancy services nor carry out or procure the carrying out of any other business, activity, work or services to any other person that would conflict with its obligations under this agreement..",
+    "subsections": {}
+  },
+  "16": {
+    "name": "NOTICES",
+    "content": "",
+    "subsections": {
+      "16.1": {
+        "content": "Any notice or other document to be served under this agreement may be delivered or sent by post, email (with receipt confirmed) or facsimile, in the case of the Company to:. MDC\\757175_1 13 CONFIDENTIAL Strata Manufacturing PJSC P.O. Box 86519 Al Ain United Arab Emirates For the attention of: CEO of Strata Manufacturing PJSC Telephone: +971 (3) 7071 300 Fax. No: +971 (3) 7071 491 With a copy email to legalunit@inubadala.ae or, in the case of the Contractor, at its address set out in the preamble of this agreement or in Schedule 1 or as otherwise agreed between the Parties.",
+        "letters": {}
+      },
+      "16.2": {
+        "content": "When providing service of a notice or document it shall be sufficient to prove that delivery was made or that the envelope containing the notice or document was properly addressed and posted or that the facsimile message or e-mail was properly addressed and despatched (as the case may be) in accordance with Clause 16.1.",
+        "letters": {}
+      }
+    }
+  },
+  "17": {
+    "name": "GENERAL",
+    "content": "",
+    "subsections": {
+      "17.1": {
+        "content": "No partnership or agency Nothing in this agreement shall be deemed to constitute a partnership between the Parties, nor constitute either Party constituting or becoming in any way the agent of the other Party for any purpose.",
+        "letters": {}
+      },
+      "17.2": {
+        "content": "Counterparts This agreement may be executed in any number of counterparts. This has the same effect as if the signatures on the counterparts were on a single copy of this agreement.",
+        "letters": {}
+      },
+      "17.3": {
+        "content": "Waiver The rights of each Party under this agreement:",
+        "letters": {
+          "a": "may be exercised as often as necessary;",
+          "b": "are cumulative and not exclusive of rights or remedies provided by law; and",
+          "c": "may be waived only in writing and specifically. Delay in exercising or non-exercise of any such right is not a waiver of that right Amendments"
+        }
+      },
+      "17.4": {
+        "content": "Any amendment of this agreement shall not be binding on the Parties unless set out in writing, expressed to amend this agreement and signed by authorised representatives of each of the Parties. MDC\\757175_1 14 CONFIDENTIAL Severability",
+        "letters": {}
+      },
+      "17.5": {
+        "content": "If any term of this agreement is or becomes illegal, invalid or unenforceable in any jurisdiction, that shall not affect:",
+        "letters": {
+          "a": "the legality, validity or enforceability in that jurisdiction of any other term of this agreement; or",
+          "b": "the legality, validity or enforceability in other jurisdictions of that or any other provision of this agreement."
+        }
+      },
+      "17.6": {
+        "content": "Further assurance Each Party undertakes, at the request and cost and expense of the other Party, to sign all documents and to do all other acts, which may be necessary to give full effect to this agreement.",
+        "letters": {}
+      },
+      "17.7": {
+        "content": "Costs Each Party shall pay the costs and expenses incurred by it in connection with the entering into of this agreement.",
+        "letters": {}
+      },
+      "17.8": {
+        "content": "Language",
+        "letters": {
+          "a": "Any notice given in connection with this agreement must be in English..",
+          "b": "Any other document provided in connection with this agreement must be:.",
+          "i": "in English; or (ii) (unless the Parties otherwise agree) accompanied by a certified English translation,. in which case, the English translation prevails unless the document is a statutory 01 other official document."
+        }
+      },
+      "17.9": {
+        "content": "Third Party Rights",
+        "letters": {
+          "a": "This agreement, the documents referred to in it and any agreements relating to this agreement entered into on the date of this agreement between the Parties contain the whole agreement between the Parties relating to the transactions contemplated by this agreement and supersede all previous agreements between the parties relating to those transactions.",
+          "b": "Subject to Clause 17.10(c), each Party acknowledges that in entering into this agreement it has not relied on any representation, warranty, collateral contract or other assurance (except those set out in this agreement and the documents referred to in it) made by or on'behalf of any other Party before the date of this agreement. Each Party waivesgallp ghts: and remedies MDC\\757175_1 15 CONFIDENTIAL which, but for this Clause 17.10(b), might otherwise be availablc to it in respect of any such representation, warranty, collateral contracl or other assurance..",
+          "c": "Nothing in Clause 17 limits or excludes any liability for fraud."
+        }
+      }
+    }
+  },
+  "18": {
+    "name": "GOVERNING LAW AND ARBITRATION",
+    "content": "18.1, This agreement shall be governed by and construed in accordance with the laws of the'United Arab. Emirates.",
+    "subsections": {
+      "18.2": {
+        "content": "Any dispute or difference of any kind between the Parties in connection with or arising out of this agreement or the breach, termination or validity hereof (a Dispute) shall be finally settled in accordance with the rules promulgated by the Abu Dhabi Commercial Conciliation and Arbitration Centre (the Rules). Notwithstanding the foregoing, either Party may seek injunctive relief in any court of competent jurisdiction against the improper use or disclosure of Confidential Information. It. is hereby agreed that:",
+        "letters": {
+          "a": "the seat of the arbitration shall be the city of Abu Dhabi;",
+          "b": "there shall be three arbitrators, with each Party selecting one arbitrator within 15 days after the claimant commences the arbitration by giving written notice of the arbitration and the. third (and presiding) arbitrator selected by the two arbitrators so selected within 30 days. after their appointment. If the two arbitrators cannot agree on the third arbitrator within such 30 day period, the third arbitrator shall be appointed in accordance with the Rules;.",
+          "c": "the language of the arbitration shall be English;.",
+          "d": "the award shall be in writing and shall set forth in reasonable detail the facts of the Dispute and the reasons for the tribunal's decision; and.",
+          "e": "the award in such arbitration shall be final and binding upon the Parties and judgment thereon may be entered in any court having jurisdiction for its enforcement.."
+        }
+      }
+    }
+  },
+  "19": {
+    "name": "NON HIRING",
+    "content": "Each Party agrees that during the term of this Agreement and for a period of one (1) year thereafter, neither it nor its Affiliates shall directly or indirectly solicit, attempt to solicit or induce, hire, recruit or otherwise cause an employee or consultant of the one party to terminate his or her employment, contractual or other relationship with the other party in order to become an employee or consultant to. or for Contractor or Company or either Party's Affiliates. For the purpose of the foregoing employee or consultant shall mean any person who is presently employed or engaged by either Party or was employed or engaged by either Party in the immediately twelve (12) months preceding the solicitation or attempt to hire or hiring.. [signatures at last page] MDC\\757175.! 16 e! CONFIDENTIAL SCHEDULE 1 A SERVICES",
+    "subsections": {}
+  }
+}

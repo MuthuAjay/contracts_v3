@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEE,KAFG,CAEH,SAAS,CAAC;EACR,aAAa,EAAE,IAAI;CAWpB;;AAdH,AAKI,KALC,CAEH,SAAS,CAGP,EAAE,CAAC;EACD,KAAK,EAAE,IAAI;EACX,aAAa,EAAE,IAAI;CACpB;;AARL,AAUI,KAVC,CAEH,SAAS,CAQP,CAAC,CAAC;EACA,KAAK,EAAE,IAAI;EACX,WAAW,EAAE,GAAG;CACjB",
+    "sources": [
+        "help.component.scss"
+    ],
+    "names": [],
+    "file": "help.component.css"
+}

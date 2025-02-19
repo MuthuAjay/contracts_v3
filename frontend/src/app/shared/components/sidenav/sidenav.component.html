@@ -1,0 +1,30 @@
+<div class="sidebar" #sidebar>
+  <div class="logo-details">
+    <svg width="40" height="70" viewBox="0 0 69 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_3793_2177)">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.09 61.3999H28.46V69.3199H0.670044V34.8999H20.37L24.98 42.8199H11.1V48.4999H23.66V55.7199H11.1L11.09 61.3999ZM46.95 34.8999L41.05 46.1299L35.17 34.8999H23.65L35.78 55.7199V69.3199H46.18V55.7199L58.31 34.8999H46.95Z" fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M68.67 12.81V0L0 24.83L68.67 12.81Z" fill="#FFE600"/>
+      </g>
+      <defs>
+      <clipPath id="clip0_3793_2177">
+      <rect width="68.67" height="69.32" fill="white"/>
+      </clipPath>
+      </defs>
+      </svg>
+      
+   
+    <i class="fa-solid fa-bars"(click)="toggleSidebar(); menuBtnChange($event.target)"></i>
+    
+  </div>
+  <ul class="nav-list">
+    <li *ngFor="let item of menuItems">
+      <a [routerLink]="item.path">
+        <i [class]="item.icon"></i>
+        <span class="links_name">{{ item.label }}</span>
+      </a>
+      <span class="tooltip">{{ item.label }}</span>
+    </li>
+  </ul>
+
+</div>
+

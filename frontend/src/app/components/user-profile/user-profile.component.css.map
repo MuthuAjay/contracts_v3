@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEE,QAFM,CAEN,aAAa,CAAC;EACZ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,GAAG,EAAE,IAAI;CASV;;AAdH,AAOI,QAPI,CAEN,aAAa,CAKX,cAAc,CAAC;EACb,KAAK,EAAE,IAAI;CACZ;;AATL,AAWI,QAXI,CAEN,aAAa,CASX,MAAM,CAAC;EACL,UAAU,EAAE,UAAU;CACvB",
+    "sources": [
+        "user-profile.component.scss"
+    ],
+    "names": [],
+    "file": "user-profile.component.css"
+}

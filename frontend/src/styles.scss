@@ -1,0 +1,62 @@
+@use '@angular/material' as mat;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// // Custom Material theme
+// @include mat.core();
+
+// $primary: mat.define-palette(mat.$indigo-palette);
+// $accent: mat.define-palette(mat.$pink-palette);
+// $theme: mat.define-light-theme((
+//   color: (
+//     primary: $primary,
+//     accent: $accent
+//   )
+// ));
+
+
+// @include mat.all-component-themes($theme);
+@import "./Table";
+.header-titles{
+  display: flex
+;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px #d7d7d7;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    h2{
+      margin: 0px;
+      font-size: 16px;
+    }
+
+    .button {
+      padding: 8px 10px;
+      border: none;
+      outline: none;
+      background-color: #151515;
+      color: #eee;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.25s ease-out;
+      font-size: 13px;
+    }
+    
+    .button:hover {
+      transform: translateY(-3px);
+    }
+    
+    .button-span {
+      color: #aaa;
+    }
+  
+}
+
+// my css importing
+
+
+

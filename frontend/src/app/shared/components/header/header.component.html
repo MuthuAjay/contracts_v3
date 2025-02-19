@@ -1,0 +1,10 @@
+<mat-toolbar class="Main_toolbar">
+  <span>{{title}}</span>
+  <span class="spacer"></span>
+  <button mat-icon-button routerLink="/profile">
+    <i class="fa-regular fa-user"></i>
+  </button>
+  <button mat-icon-button (click)="logout()">
+    <i class="fa-solid fa-right-from-bracket"></i>
+  </button>
+</mat-toolbar>

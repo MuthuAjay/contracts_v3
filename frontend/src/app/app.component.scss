@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+mat-sidenav-container {
+  flex: 1;
+}
+
+mat-sidenav {
+  // width: 250px;
+  background-color: #f5f5f5;
+}
+
+.mat-drawer-content{
+  margin-left:78px !important ;
+}

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEE,oBAFkB,CAElB,KAAK,CAAC;EACJ,KAAK,EAAE,IAAI;CACZ;;AAJH,AAME,oBANkB,CAMlB,mBAAmB,CAAC;EAClB,KAAK,EAAE,KAAK;EACZ,UAAU,EAAE,MAAM;CACnB",
+    "sources": [
+        "keywords-management.component.scss"
+    ],
+    "names": [],
+    "file": "keywords-management.component.css"
+}
