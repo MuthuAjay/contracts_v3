@@ -1,0 +1,161 @@
+// contract-review.component.scss
+.contract-review-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+
+  .header-section {
+    margin-bottom: 32px;
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    h1 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .navigation-tabs {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+
+      button {
+        padding: 8px 16px;
+        border: none;
+        background: none;
+        color: #64748b;
+        cursor: pointer;
+        font-weight: 500;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        &:hover {
+          background-color: #f1f5f9;
+          color: #0f172a;
+        }
+
+        &.active {
+          background-color: #2563eb;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .content-section {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+
+    .content-card {
+      background: white;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+
+      mat-card-header {
+        padding: 16px 24px;
+        border-bottom: 1px solid #e2e8f0;
+
+        mat-card-title {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: #1e293b;
+          font-size: 18px;
+
+          mat-icon {
+            color: #3b82f6;
+          }
+        }
+      }
+
+      mat-card-content {
+        padding: 24px;
+
+        .section-content {
+          color: #475569;
+          line-height: 1.6;
+          white-space: pre-line;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    p {
+      margin-top: 16px;
+      color: #64748b;
+    }
+  }
+
+  .no-data-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    mat-icon {
+      font-size: 48px;
+      height: 48px;
+      width: 48px;
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: #64748b;
+    }
+  }
+}
+
+// Media Queries for Responsiveness
+@media (max-width: 768px) {
+  .contract-review-container {
+    padding: 16px;
+
+    .header-section {
+      padding: 16px;
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+
+    .content-section .content-card {
+      mat-card-header mat-card-title {
+        font-size: 16px;
+      }
+
+      mat-card-content {
+        padding: 16px;
+      }
+    }
+  }
+}

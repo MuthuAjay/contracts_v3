@@ -12,6 +12,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ReviewComponent } from './components/review/review.component';
 import { ExtractionComponent } from './components/extraction/extraction.component';
+import { ContractReviewComponent } from './components/contract-review/contract-review.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'Collaboration', component: HelpComponent,},
   { path: 'profile', component: UserProfileComponent,},
   { path: 'Integration', component: ReviewComponent,},
-  { path: 'extraction', component: ExtractionComponent,}
+  { path: 'extraction', component: ExtractionComponent,},
+  { path: 'contract-review', component: ContractReviewComponent,}
 ];
 
 @NgModule({

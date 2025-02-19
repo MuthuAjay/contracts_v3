@@ -141,7 +141,7 @@ def perform_contract_review(
 
 
 def perform_legal_research(
-    content: str, agent_manager: AgentManager
+    content: str, agent_manager: AgentManager, collection_name: str
 ) -> Optional[Dict[str, Any]]:
     agent = agent_manager.create_agent(
         "legal_researcher", model_type=Config._current_model_type
@@ -205,7 +205,7 @@ def perform_risk_assessment(
 
 
 def perform_contract_summary(
-    content: str, agent_manager: AgentManager
+    content: str, agent_manager: AgentManager, collection_name: str
 ) -> Optional[Dict[str, Any]]:
     agent = agent_manager.create_agent(
         "contract_summarizer", model_type=Config._current_model_type

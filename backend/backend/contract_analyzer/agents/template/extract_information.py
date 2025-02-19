@@ -12,6 +12,7 @@ class ExtractionProcessor:
 
     def __init__(self):
         self.results = []
+        self.error_strs = []
         self.contract_sections = {
             "Contract Metadata": [
                 "Contract Name",
@@ -225,6 +226,8 @@ class ExtractionProcessor:
         """Parse the response to extract value and section"""
         merged_data = {}
 
+        self.error_strs = []
+        
         # Process each JSON string in the list
         for json_str in json_strings:
             try:
@@ -242,6 +245,8 @@ class ExtractionProcessor:
             except json.JSONDecodeError as e:
                 print(f"Error parsing JSON: {e}")
                 print(f"Problematic JSON string: {json_str[:100]}...")
+                
+                self.error_strs.append(json_str)
                 continue
 
         return merged_data

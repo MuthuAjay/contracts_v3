@@ -15,5 +15,4 @@ ngOnInit(){
   this.extractionData = JSON.parse(data)['Information Extraction']['results']
   console.log(this.extractionData)
 }
-
 }

@@ -1,32 +1,35 @@
 import { Component, inject } from '@angular/core';
 import { AddUserModalComponent } from './add-user-modal/add-user-modal.component';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ServicesService } from '../../services.service';
 import { Router } from '@angular/router';
+
 @Component({
-    selector: 'app-user-management',
-    templateUrl: './user-management.component.html',
-    styleUrls: ['./user-management.component.scss'],
-    standalone: false
+  selector: 'app-user-management',
+  templateUrl: './user-management.component.html',
+  styleUrls: ['./user-management.component.scss'],
+  standalone: false
 })
 export class UserManagementComponent {
   isPopupVisible = false;
-  uploadForm!:FormGroup
+  uploadForm!: FormGroup;
   selectedFiles: File[] = [];
-  selectedFiles_1:any
-  loadershow:boolean = false
-  extractedValue:any
-  showCategory:boolean = false
-constructor( private fb:FormBuilder, private apiService: ServicesService, private router:Router){
-  this.uploadForm = this.fb.group({
-    analysisType: [''],
-  })
-}
+  selectedFiles_1: any;
+  loadershow: boolean = false;
+  extractedValue: any;
+  showCategory: boolean = false;
 
-  togglePopup() {
-    this.isPopupVisible = !this.isPopupVisible;
+  constructor(
+    private fb: FormBuilder,
+    private apiService: ServicesService,
+    private router: Router
+  ) {
+    this.uploadForm = this.fb.group({
+      analysisType: [''],
+    });
   }
+
   readonly dialog = inject(MatDialog);
   users = [
     { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
@@ -34,47 +37,96 @@ constructor( private fb:FormBuilder, private apiService: ServicesService, privat
   ];
 
   displayedColumns: string[] = ['id', 'name', 'email', 'role', 'actions'];
+
+  onSubmit() {
+    if (this.extractedValue) {
+      const analysisType = this.uploadForm.value.analysisType;
+      console.log('Selected analysis type:', analysisType); // Debug log
+
+      if (analysisType === 'custom_analysis') {
+        this.router.navigate(['/Analytics']);
+        return;
+      }
+
+      this.extractedValue.type = analysisType;
+      this.extractedValue.custom_query = '';
+
+      this.apiService.analyze(this.extractedValue).subscribe({
+        next: (res: any) => {
+          if (res) {
+            this.loadershow = true;
+            console.log('API Response:', res); // Debug log
+            
+            // Handle different analysis types
+            switch (analysisType) {
+              case 'contract_review':
+                console.log('Handling contract review'); // Debug log
+                localStorage.setItem('contract_review', JSON.stringify(res));
+                this.router.navigate(['/contract-review']).then(() => {
+                  console.log('Navigation complete'); // Debug log
+                }).catch(err => {
+                  console.error('Navigation failed:', err);
+                });
+                break;
+
+              case 'contract_summary':
+                console.log('Handling contract summary'); // Debug log
+                localStorage.setItem('contract_review', JSON.stringify(res));
+                this.router.navigate(['/contract-review']).then(() => {
+                  console.log('Navigation complete'); // Debug log
+                }).catch(err => {
+                  console.error('Navigation failed:', err);
+                });
+                break;
+              
+              case 'legal_research':
+                localStorage.setItem('legal_research', JSON.stringify(res));
+                this.router.navigate(['/legal-research']);
+                break;
+                
+              case 'risk_assessment':
+                localStorage.setItem('risk_assessment', JSON.stringify(res));
+                this.router.navigate(['/risk-assessment']);
+                break;
+                
+              case 'information_extraction':
+                localStorage.setItem('extraction', JSON.stringify(res));
+                this.router.navigate(['/extraction']);
+                break;
+
+              default:
+                console.warn('Unhandled analysis type:', analysisType);
+                break;
+            }
+          }
+        },
+        error: (error) => {
+          console.error('Analysis failed:', error);
+          this.loadershow = false;
+        }
+      });
+    }
+  }
+
+  togglePopup() {
+    this.isPopupVisible = !this.isPopupVisible;
+  }
+
   openDialog() {
-    const dialogRef = this.dialog.open(AddUserModalComponent,{
+    const dialogRef = this.dialog.open(AddUserModalComponent, {
       height: '400px',
       width: '600px',
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      
       console.log(`Dialog result: ${result}`);
     });
   }
-  onSubmit(){
-      if (this.extractedValue) {
 
-        if(this.uploadForm.value.analysisType == "custom_analysis"){
-          this.router.navigate(['/Analytics']);
-        }else{
-
-          this.extractedValue.type = this.uploadForm.value.analysisType;
-          this.extractedValue.custom_query = ''
-         
-          this.apiService.analyze(this.extractedValue).subscribe((res:any) => {
-            console.log(res)
-            console.log('Upload complete', res);
-            if(res){
-              this.loadershow = true
-              localStorage.setItem("extraction", JSON.stringify(res));
-              this.router.navigate(['/extraction']);
-            }
-            
-          })
-        }
-       
-      }
-      // localStorage.setItem('extracted', JSON.stringify(res));
-    // })
-
+  fileUpload(e: any) {
+    console.log(e);
   }
-  fileUpload(e:any){
-    console.log(e)
-  }
+
   uploadFiles() {
     if (this.selectedFiles.length === 0) {
       alert("No files selected!");
@@ -84,31 +136,30 @@ constructor( private fb:FormBuilder, private apiService: ServicesService, privat
     const formData = new FormData();
     this.selectedFiles.forEach(file => formData.append('file', file));
 
-    // Simulate upload request (replace with actual HTTP service)
     console.log('Uploading...', formData);
     alert('Files uploaded successfully!');
   }
 
   onFileSelected(event: any) {
-    // alert("Hi")
-    const files: File[] = event.target.files[0];
     this.selectedFiles_1 = event.target.files[0];
-    console.log('Selected files:', files);
-
 
     const formData = new FormData();
     formData.append('file', this.selectedFiles_1);
-    this.apiService.upload_file(formData).subscribe((res:any) => {
-      if (res) {
+    
+    this.apiService.upload_file(formData).subscribe({
+      next: (res: any) => {
+        if (res) {
           localStorage.setItem("extractionInfo", JSON.stringify(res));
-          this.extractedValue = res
-          this.showCategory = true
-          this.loadershow = true
+          this.extractedValue = res;
+          this.showCategory = true;
+          this.loadershow = true;
+        }
+      },
+      error: (error) => {
+        console.error('File upload failed:', error);
+        this.loadershow = false;
+        // Handle error - you might want to show an error message to the user
       }
-})
-
-
-
+    });
   }
-
 }

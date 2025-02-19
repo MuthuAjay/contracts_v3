@@ -1,0 +1,108 @@
+<div class="contract-review-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1>Contract Review Analysis</h1>
+    <div class="navigation-tabs">
+      <button 
+        [class.active]="currentSection === 'all'"
+        (click)="setCurrentSection('all')">
+        All Sections
+      </button>
+      <button 
+        [class.active]="currentSection === 'review'"
+        (click)="setCurrentSection('review')">
+        Review
+      </button>
+      <button 
+        [class.active]="currentSection === 'terms'"
+        (click)="setCurrentSection('terms')">
+        Key Terms
+      </button>
+      <button 
+        [class.active]="currentSection === 'obligations'"
+        (click)="setCurrentSection('obligations')">
+        Obligations
+      </button>
+      <button 
+        [class.active]="currentSection === 'parties'"
+        (click)="setCurrentSection('parties')">
+        Parties
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading contract analysis...</p>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-section" *ngIf="!isLoading && contractData">
+    <!-- Contract Review Section -->
+    <mat-card *ngIf="currentSection === 'all' || currentSection === 'review'" class="content-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>description</mat-icon>
+          Contract Review Summary
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="section-content">
+          {{contractData['Contract Review']}}
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Key Terms Section -->
+    <mat-card *ngIf="currentSection === 'all' || currentSection === 'terms'" class="content-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>key</mat-icon>
+          Key Terms
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="section-content">
+          {{contractData['Key Terms']}}
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Obligations Section -->
+    <mat-card *ngIf="currentSection === 'all' || currentSection === 'obligations'" class="content-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>assignment</mat-icon>
+          Obligations
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="section-content">
+          {{contractData['Obligations']}}
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Parties Section -->
+    <mat-card *ngIf="currentSection === 'all' || currentSection === 'parties'" class="content-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>people</mat-icon>
+          Parties Involved
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="section-content">
+          {{contractData['Parties']}}
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- No Data State -->
+  <div *ngIf="!isLoading && !contractData" class="no-data-container">
+    <mat-icon>error_outline</mat-icon>
+    <p>No contract review data available</p>
+  </div>
+</div>
