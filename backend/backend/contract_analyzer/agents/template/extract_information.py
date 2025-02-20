@@ -194,7 +194,7 @@ class ExtractionProcessor:
     def generate_response_format(self, values):
         response_format = ''
         for value in values:
-            response_format += value + "<extracted_value>" + "\n"
+            response_format += f"{value}: " + "<extracted_value>" + "\n"
         
         return response_format
             
