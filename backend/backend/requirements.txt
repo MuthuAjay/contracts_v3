@@ -21,3 +21,4 @@ nltk
 xmltodict
 markdown
 albumentations
+marker-pdf

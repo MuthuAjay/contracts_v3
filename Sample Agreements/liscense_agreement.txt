@@ -1,0 +1,237 @@
+I have provided the Ocr Content of the Contract Document .
+
+```
+               LICENSE AGREEMENT
+
+         THIS  AGREEMENT  is made and entered  into this the 25th day of August,
+2009, by and between MOMENTUM BIOFUELS, INC. ("Licensor"),  a Texas corporation,
+with  offices  located at 4700 New West  Drive,  Pasadena,  Texas 77507 and HUNT
+GLOBAL RESOURCES, INC. ("Licensee"),  a Texas corporation,  with offices located
+at Waterway Plaza Two, Suite 325,  10001 Woodloch  Forest Drive,  The Woodlands,
+Texas 77380.
+
+                                   WITNESSETH
+
+         WHEREAS,  Licensor has invented and owns certain processes,  techniques
+and formulas that combine to create a unique  method of producing  bio-fuels and
+derivative products, which combined shall be referred to herein as "Intellectual
+Property",  or  "IP",  all of  which  Licensor  represents  that it has good and
+marketable title after assumption of its obligations regarding title to the same
+by Licensee; and
+
+         WHEREAS, Licensee wishes to acquire the right to use the said
+Intellectual Property for commercial purposes;
+
+         NOW THERFORE, the parties hereto have agreed as follows:
+
+         1.  Licensor  hereby  conveys to Licensee the  exclusive  right to use,
+improve,  sub-license and  commercialize  the  Intellectual  Property  described
+herein  for a  period  of ten  (10)  years  from  the  date  hereof  for  and in
+consideration of the agreements, terms, conditions, compensation and obligations
+contained in this License Agreement.
+
+         2. As consideration for the License herein granted,  Licensee agrees to
+pay to Licensor a royalty equal to three percent (3%) of the gross and collected
+revenue for all  bio-diesel  and related  products  produced by the Licensee and
+three  percent (3%) of the gross  revenue  collected  by the  Licensee  from the
+"Commercial  Sand"  business of Licensee,  as described in  Licensee's  business
+plan, a copy of which is attached hereto,  during the term hereof. The royalties
+described in this  paragraph  shall be paid  (quarterly on the first month after
+the end of each calendar  quarter,  or monthly at the end of the month following
+each month during the term hereof),  during the term of this License and for any
+period  necessary to complete the payment of sums due, but not determined at the
+time of termination of this License.
+
+         3.  Licensor  agrees to cooperate  with  Licensee so that  Licensee may
+enjoy to the  fullest  extent  possible,  all of the rights to the  Intellectual
+Property.  This  cooperation  includes the obligation on the part of Licensor to
+promptly  execute any and all papers that Licensee deems  necessary or desirable
+to perfect the rights assigned. Licensor further warrants and represents that it
+has not entered into any assignment,  contract or understanding in conflict with
+this agreement, except as may be set forth in that one certain Agreement of even
+date herewith.
+
+
+
+
+
+
+
+
+         4. This  Agreement  and all Exhibits  attached  hereto  constitute  the
+entire  agreement  between the parties with respect to the subject matter hereof
+and supersede all prior written or oral agreements or understandings between the
+parties  relating  thereto.  The terms and  provisions of this  Agreement may be
+modified or amended only by a written instrument executed by each of the parties
+hereto.
+
+         5. In the event that any term or provision  of this  Agreement is found
+to  be  invalid,   illegal  or   unenforceable,   the  validity,   legality  and
+enforceability  of the remaining terms and provisions hereof shall not be in any
+way affected or impaired  thereby,  and this Agreement  shall be construed as if
+such  invalid,  illegal or  unenforceable  provision  has never  been  contained
+therein.
+
+         6.   This Agreement shall be governed by and construed in accordance
+with the laws of the State of Texas.
+
+         7. All notices and other  communications  hereunder shall be in writing
+and shall be given by delivery in person or certified  mail RRR at the addresses
+set  forth  hereinabove,  with copy to  Michael  Littman,  Attorney  at Law 7609
+Ralston Rd.  Arvada,  Denver,  Co.  80002 for notices to Momentum and to Manfred
+Sternberg,  Attorney  at Law,  701 North  Post Road,  Suite 600,  Houston TX for
+notices to Hunt.
+
+         8. This Agreement may be executed in one or more counterparts,  each of
+which  shall  be  deemed  to be an  original,  but all of which  together  shall
+constitute one and the same instrument.
+
+         IN WITNESS WHEREOF,  the parties hereto have executed this Agreement by
+the duly authorized  officer whose signature appears below to be effective as of
+the date hereinabove written.
+
+MOMENTUM BIOFUELS, INC.             HUNT GLOBAL RESOURCES, INC.
+
+
+
+---------------------------------   -----------------------------------
+CEO                                                  CEO
+```
+
+Extract the following fields from the OCR content of the contract document:
+Do not Hallucinate the data. If the data is not present in the OCR content, do not make any assumptions.
+
+maintain the sequence of the fields as per the contract
+just return the values which are present
+
+Contract Name
+Agreement Type
+Country of agreement
+Contract Details
+ Entity Name
+Counterparty Name
+Summary
+Department of Contract Owner
+SPOC
+Agreement Group
+Family Agreement
+Family Documents Present
+Family Hierarchy
+Scanned
+ Signature by:
+Effective Date
+Contract Start Date
+Contract Duration
+Contract End Date
+Contingent Contract
+Perpetual Contract
+SLA
+Stamping Date
+Franking Date
+Franking Date_Availablity
+Governing Law
+Dispute Resolution
+Place of Courts
+Court Jurisdiction
+Place of Arbitration
+Arbitration Institution
+Number of Arbitrators
+Seat of Arbitration
+Venue of Arbitration
+Legal Action Rights with counterparty
+Counterparty - liability cap
+ - liability cap
+Counterparty - liability limitation summary
+ - liability limitation summary
+Indemnification
+Indemnification Summary
+Counterparty - liquidated damages
+ - liquidated damages
+Counterparty - damages summary
+ - damages summary
+Penalties
+Penal interest rate and other late payment charges
+ assignment rights
+ - assignment summary
+Counterparty assignment rights
+Counterparty - assignment summary
+Can  terminate for Convenience?
+If yes, number of notice days?
+Can Counterparty terminate for Convenience?
+Counterparty - If yes, number of notice days?
+ - termination summary
+Counterparty - termination summary
+Provision for lock-in period
+Period of lock in.
+Lock-in summary
+ - Change of Control Provision
+Counterparty  - Change of Control Provision
+Auto-renewal provision
+Notice period (in days) to stop auto renewal
+Renewal Option Notice Start Date
+Renewal Option Notice End Date
+Auto-renewal provision summary
+Acceleration clause applicable to 
+Acceleration clause applicable to Counterparty
+Acceleration clause - summary
+Exclusivity provision
+Scope
+Territory
+Carve-outs
+Exclusivity Period (Start Date)
+Exclusivity Period (End Date)
+Available to 
+Available to Counterparty
+Audit Rights - Summary
+Copyright
+Patent
+Trademark
+Other
+ABAC/FCPA provision
+ABAC/FCPA provision - summary
+Receive or Pay
+Currency
+Total Contract Value
+Fixed Fee
+Security Deposit / Bank Guarantee
+Fuel surcharges
+Advance payment period
+Advance payment Amount
+Term for Refund of Security Deposit
+Incentive
+Revenue Share
+Commission Percentage
+Minimum Guarantee
+Variable Fee
+Fee-Other
+Payment Type
+Payment Schedule (in days)
+Payment Terms / Details
+Milestones
+Payment to Affiliates / Agency
+Fee Escalation
+Stamp Duty Share
+Confidentiality
+Residual Confidentiality
+Exceptions to confidentiality
+Term (In months)
+Data Privacy Provision
+Data Privacy Summary
+Insurance coverage for 
+Insurance coverage for Counterparty
+Subcontracting rights for the  Counterpart
+Defect liability period
+Performance Guarantee
+Conflicts of Interests
+Force Majeure
+Insurance coverage
+Representation and Warranties
+Non-Compete
+Non-Solicitation
+Waiver
+Severability
+Survival
+Handwritten Comments
+Missing Pages
+Missing Signatures
+Review Comments (if any)
