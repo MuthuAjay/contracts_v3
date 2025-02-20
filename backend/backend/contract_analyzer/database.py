@@ -115,6 +115,7 @@ class VectorDB:
     def add_documents(
         self, 
         texts: str,
+        use_llm: bool = False,
     ) -> bool:
         """
         Add documents to the active collection
@@ -132,27 +133,51 @@ class VectorDB:
             return False
             
         try:
-            # creating documents
             
-            docs = process_agreement(texts)
-        
-            # create ids
+            if use_llm:
+                # creating documents
+                
+                docs = process_agreement(texts, use_llm=use_llm)
             
+                # create ids
+                
+                
+                print(f"********Adding {len(docs)} documents to collection")
+                
+                documents = ["content: " + key + " \n " + str(value) for key, value in docs.items()]
+                # adding documents to collection
+                self.active_collection.add(
+                    ids = list(docs.keys()),
+                    documents=documents,
+                )
+                
+                self.logger.info(f"Added {len(docs)} documents to collection")
+                
+                print("********Documents added")
+                
+                return True
             
-            print(f"********Adding {len(docs)} documents to collection")
-            
-            documents = ["content: " + key + " \n " + str(value) for key, value in docs.items()]
-            # adding documents to collection
-            self.active_collection.add(
-                ids = list(docs.keys()),
-                documents=documents,
-            )
-            
-            self.logger.info(f"Added {len(docs)} documents to collection")
-            
-            print("********Documents added")
-            
-            return True
+            else:
+                # Get chunks from process_agreement
+                chunks = process_agreement(texts, use_llm=use_llm, chunk_size=5000)
+                
+                print(f"********Adding {len(chunks)} chunks to collection")
+                
+                # Generate unique IDs for each chunk
+                chunk_ids = [f"chunk_{i}" for i in range(len(chunks))]
+                
+                # Format documents with content prefix
+                documents = [f"content: {chunk}" for chunk in chunks]
+                
+                # Add chunks to collection
+                self.active_collection.add(
+                    ids=chunk_ids,
+                    documents=documents,
+                )
+                
+                self.logger.info(f"Added {len(chunks)} chunks to collection")
+                print("********Chunks added")
+                return True
             
         except Exception as e:
             self.logger.error(f"Document addition failed: {str(e)}")

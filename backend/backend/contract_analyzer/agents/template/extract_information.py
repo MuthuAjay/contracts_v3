@@ -190,6 +190,14 @@ class ExtractionProcessor:
                 self._store_result([response.content])
                 
                 self.check_results(value)
+                
+    def generate_response_format(self, values):
+        response_format = ''
+        for value in values:
+            response_format += value + "<extracted_value>" + "\n"
+        
+        return response_format
+            
 
     def _build_extraction_prompt(self, context: str, value: List) -> str:
         """Build extraction prompt"""
@@ -200,21 +208,25 @@ class ExtractionProcessor:
         {value}
 
         Response Format:
-        Value: <extracted_value>
+        {self.generate_response_format(value)}
 
-        Note return in a json format with the field name and the extracted value only if the value is present in the OCR content
+        Note: 
+        Strictly return the Output in a json format
+        Strictly Do Not add any text in the reponse other than the answer
         Do not return any other information or analysis
         Do not Hallucinate the data. If the data is not present in the OCR content, do not make any assumptions.
         Do not print any other information or analysis
+        Do not return in List Format 
         """
 
     def clean_json_string(self, json_str):
         """Clean the JSON string by removing markdown code markers and any extra whitespace"""
         # Remove markdown code markers
-        print(json_str)
+        
         cleaned = json_str.replace("```json", "").replace("```", "")
         # Remove any leading/trailing whitespace
         cleaned = cleaned.strip()
+        print(json_str)
         return cleaned
 
     def check_results(self, value: List) -> None:

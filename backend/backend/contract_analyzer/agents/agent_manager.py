@@ -232,7 +232,6 @@ class AgentManager:
                 instructions=[
                     "Extract key information from documents",
                     "Identify entities, dates, and values",
-                    "Summarize key details",
                     "Provide structured data output"
                 ],
                 capabilities=[
