@@ -5,6 +5,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ServicesService } from '../../services.service';
 import { Router } from '@angular/router';
 
+// First, update the ContractDocument interface to include analysisResult
+interface ContractDocument {
+  id?: string;
+  fileName: string;
+  uploadDate: Date;
+  lastUpdated: Date;
+  type: string;
+  status: string;
+  extractedData?: any;
+  analysisResult?: any;  // Add this field
+}
+
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
@@ -19,6 +31,7 @@ export class UserManagementComponent {
   loadershow: boolean = false;
   extractedValue: any;
   showCategory: boolean = false;
+  contracts: ContractDocument[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -38,11 +51,11 @@ export class UserManagementComponent {
 
   displayedColumns: string[] = ['id', 'name', 'email', 'role', 'actions'];
 
+  // In the onSubmit method, update how we store the analysis result
   onSubmit() {
     if (this.extractedValue) {
       const analysisType = this.uploadForm.value.analysisType;
-      console.log('Selected analysis type:', analysisType); // Debug log
-
+      
       if (analysisType === 'custom_analysis') {
         this.router.navigate(['/Analytics']);
         return;
@@ -55,42 +68,57 @@ export class UserManagementComponent {
         next: (res: any) => {
           if (res) {
             this.loadershow = true;
-            console.log('API Response:', res); // Debug log
             
-            // Handle different analysis types
+            // Find the current contract and update it with the analysis result
+            const currentContract = this.contracts.find(c => 
+              c.fileName === this.selectedFiles_1.name
+            );
+            
+            if (currentContract) {
+              currentContract.analysisResult = res;
+              currentContract.type = analysisType;
+              currentContract.lastUpdated = new Date();
+              
+              // Update localStorage
+              localStorage.setItem('contracts', JSON.stringify(this.contracts));
+            }
+
+            // Store the result and navigate
             switch (analysisType) {
               case 'contract_review':
-                console.log('Handling contract review'); // Debug log
-                localStorage.setItem('contract_review', JSON.stringify(res));
-                this.router.navigate(['/contract-review']).then(() => {
-                  console.log('Navigation complete'); // Debug log
-                }).catch(err => {
-                  console.error('Navigation failed:', err);
-                });
+              case 'contract_summary':
+                localStorage.setItem('current_analysis', JSON.stringify({
+                  type: analysisType,
+                  result: res,
+                  fileName: this.selectedFiles_1.name
+                }));
+                this.router.navigate(['/contract-review']);
                 break;
 
-              case 'contract_summary':
-                console.log('Handling contract summary'); // Debug log
-                localStorage.setItem('contract_review', JSON.stringify(res));
-                this.router.navigate(['/contract-review']).then(() => {
-                  console.log('Navigation complete'); // Debug log
-                }).catch(err => {
-                  console.error('Navigation failed:', err);
-                });
-                break;
-              
               case 'legal_research':
-                localStorage.setItem('legal_research', JSON.stringify(res));
+                localStorage.setItem('current_analysis', JSON.stringify({
+                  type: analysisType,
+                  result: res,
+                  fileName: this.selectedFiles_1.name
+                }));
                 this.router.navigate(['/legal-research']);
                 break;
                 
               case 'risk_assessment':
-                localStorage.setItem('risk_assessment', JSON.stringify(res));
+                localStorage.setItem('current_analysis', JSON.stringify({
+                  type: analysisType,
+                  result: res,
+                  fileName: this.selectedFiles_1.name
+                }));
                 this.router.navigate(['/risk-assessment']);
                 break;
                 
               case 'information_extraction':
-                localStorage.setItem('extraction', JSON.stringify(res));
+                localStorage.setItem('current_analysis', JSON.stringify({
+                  type: analysisType,
+                  result: res,
+                  fileName: this.selectedFiles_1.name
+                }));
                 this.router.navigate(['/extraction']);
                 break;
 
@@ -142,9 +170,11 @@ export class UserManagementComponent {
 
   onFileSelected(event: any) {
     this.selectedFiles_1 = event.target.files[0];
-
     const formData = new FormData();
     formData.append('file', this.selectedFiles_1);
+    
+    // Check if file already exists
+    const existingContract = this.contracts.find(c => c.fileName === this.selectedFiles_1.name);
     
     this.apiService.upload_file(formData).subscribe({
       next: (res: any) => {
@@ -153,13 +183,123 @@ export class UserManagementComponent {
           this.extractedValue = res;
           this.showCategory = true;
           this.loadershow = true;
+
+          // Update or add new contract
+          const contractDoc: ContractDocument = {
+            fileName: this.selectedFiles_1.name,
+            uploadDate: existingContract ? existingContract.uploadDate : new Date(),
+            lastUpdated: new Date(),
+            type: this.uploadForm.value.analysisType || 'Unknown',
+            status: 'Active',
+            extractedData: res
+          };
+
+          if (existingContract) {
+            const index = this.contracts.findIndex(c => c.fileName === this.selectedFiles_1.name);
+            this.contracts[index] = contractDoc;
+          } else {
+            this.contracts.push(contractDoc);
+          }
+
+          // Save to localStorage for persistence
+          localStorage.setItem('contracts', JSON.stringify(this.contracts));
         }
       },
       error: (error) => {
         console.error('File upload failed:', error);
         this.loadershow = false;
-        // Handle error - you might want to show an error message to the user
       }
     });
+  }
+// Update the viewContract method
+viewContract(contract: ContractDocument) {
+  if (contract.analysisResult) {
+    try {
+      // Store current analysis state
+      localStorage.setItem('current_analysis', JSON.stringify({
+        type: contract.type,
+        result: contract.analysisResult,
+        fileName: contract.fileName
+      }));
+
+      // Navigate based on the contract type
+      switch (contract.type) {
+        case 'contract_review':
+        case 'contract_summary':
+          this.router.navigate(['/contract-review']);
+          break;
+
+        case 'legal_research':
+          this.router.navigate(['/legal-research']);
+          break;
+
+        case 'risk_assessment':
+          this.router.navigate(['/risk-assessment']);
+          break;
+
+        case 'information_extraction':
+          this.router.navigate(['/extraction']);
+          break;
+
+        default:
+          console.warn('Unknown contract type:', contract.type);
+          this.router.navigate(['/extraction']);
+          break;
+      }
+    } catch (error) {
+      console.error('Error viewing contract:', error);
+      alert('Error viewing contract. Please try again.');
+    }
+  } else {
+    alert('No analysis results available for this contract. Please run an analysis first.');
+  }
+}
+
+  deleteContract(contract: ContractDocument) {
+    if (confirm(`Are you sure you want to delete "${contract.fileName}"?`)) {
+      const index = this.contracts.findIndex(c => c.fileName === contract.fileName);
+      if (index > -1) {
+        // Remove from array
+        this.contracts.splice(index, 1);
+        
+        // Update localStorage
+        localStorage.setItem('contracts', JSON.stringify(this.contracts));
+        
+        // Clear related localStorage items if they match this contract
+        const extractionInfo = localStorage.getItem('extractionInfo');
+        if (extractionInfo) {
+          const parsedInfo = JSON.parse(extractionInfo);
+          if (parsedInfo.fileName === contract.fileName) {
+            localStorage.removeItem('extractionInfo');
+          }
+        }
+        
+        // Clear other analysis types if they match
+        const analysisTypes = [
+          'contract_review',
+          'legal_research',
+          'risk_assessment',
+          'extraction'
+        ];
+        
+        analysisTypes.forEach(type => {
+          const storedData = localStorage.getItem(type);
+          if (storedData) {
+            const parsedData = JSON.parse(storedData);
+            if (parsedData.fileName === contract.fileName) {
+              localStorage.removeItem(type);
+            }
+          }
+        });
+      }
+    }
+  }
+
+  ngOnInit() {
+    // Load saved contracts
+    const savedContracts = localStorage.getItem('contracts');
+    if (savedContracts) {
+      this.contracts = JSON.parse(savedContracts);
+    }
   }
 }
