@@ -1,5 +1,6 @@
 .main-conactrat {
     padding: 20px;
+    font-family: 'Roboto', sans-serif;
 
     .header {
         display: flex;
@@ -44,6 +45,35 @@
             font-size: 14px;
         }
     }
+
+    .table-view {
+        margin-top: 20px;
+      }
+      
+      .table-view table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+      }
+      
+      .table-view thead th {
+        background-color: #f8f8f8;
+        padding: 12px;
+        border-bottom: 1px solid #ccc;
+        text-align: left;
+        border-right: 1px solid #ccc;
+      }
+      
+      .table-view tbody td {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        color: #555;
+        border-right: 1px solid #eee;
+      }
+      
+      .table-view tr:hover {
+        background-color: #fafafa;
+      }
 
     .dropdown {
         padding: 8px 12px;
