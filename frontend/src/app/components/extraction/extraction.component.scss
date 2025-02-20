@@ -48,43 +48,43 @@
 
     .table-view {
         margin-top: 20px;
-      }
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.603);
+    }
       
-      .table-view table {
+    .table-view table {
         width: 100%;
-        border-collapse: collapse;
-        border: 1px solid #ccc;
-      }
+        border-collapse: separate;
+        border-spacing: 0;
+    }
       
-      .table-view thead th {
-        background-color: #f8f8f8;
-        padding: 12px;
-        border-bottom: 1px solid #ccc;
+    .table-view thead th {
+        background-color: #f9fafb;
+        font-size: 14px;
+        font-weight: 600;
+        color: hsl(231, 91%, 38%);
+        padding: 16px;
+        border-bottom: 1px solid #eee;
         text-align: left;
         border-right: 1px solid #ccc;
-      }
+    }
       
-      .table-view tbody td {
-        padding: 10px;
+    .table-view tbody td {
+        padding: 16px;
         border-bottom: 1px solid #eee;
-        color: #555;
+        font-size: 14px;
+        color: #374151;
         border-right: 1px solid #eee;
-      }
+    }
       
-      .table-view tr:hover {
-        background-color: #fafafa;
-      }
+    .table-view tr:hover {
+        background-color: #f3f4f6;
+    }
 
     .dropdown {
         padding: 8px 12px;
-        border: 1px solid #E5E7EB;
-        border-radius: 6px;
-        background: white;
-        min-width: 160px;
-        font-size: 14px;
-    }
-
-    .table-view {
         background-color: #fff;
         padding: 15px;
     }

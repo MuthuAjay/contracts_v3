@@ -10,6 +10,8 @@ backend/__pycache__/
 node_modules
 *.png
 *.jpg
+backend/backend/chroma_db/
+backend/backend/chroma_db
 server/uploads
 .venv
 venv
