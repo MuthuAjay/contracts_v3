@@ -32,6 +32,8 @@ export class UserManagementComponent {
   extractedValue: any;
   showCategory: boolean = false;
   contracts: ContractDocument[] = [];
+  extractionResults: any;
+  fileName: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -51,7 +53,7 @@ export class UserManagementComponent {
 
   displayedColumns: string[] = ['id', 'name', 'email', 'role', 'actions'];
 
-  // In the onSubmit method, update how we store the analysis result
+  // Modified onSubmit method with proper extraction data handling
   onSubmit() {
     if (this.extractedValue) {
       const analysisType = this.uploadForm.value.analysisType;
@@ -63,12 +65,11 @@ export class UserManagementComponent {
 
       this.extractedValue.type = analysisType;
       this.extractedValue.custom_query = '';
+      this.loadershow = true; // Show loader before API call
 
       this.apiService.analyze(this.extractedValue).subscribe({
         next: (res: any) => {
           if (res) {
-            this.loadershow = true;
-            
             // Find the current contract and update it with the analysis result
             const currentContract = this.contracts.find(c => 
               c.fileName === this.selectedFiles_1.name
@@ -84,44 +85,44 @@ export class UserManagementComponent {
             }
 
             // Store the result and navigate
+            const analysisData = {
+              type: analysisType,
+              result: res,
+              fileName: this.selectedFiles_1.name
+            };
+            
+            localStorage.setItem('current_analysis', JSON.stringify(analysisData));
+            
+            // Add debugging for information extraction
+            if (analysisType === 'information_extraction') {
+              console.log('Saving extraction data:', analysisData);
+              
+              // Format data specifically for the ExtractionComponent
+              const extractionData = {
+                'Information Extraction': {
+                  results: this.convertToExtractionResults(res)
+                }
+              };
+              
+              // Save in the expected format for the extraction component
+              localStorage.setItem('extraction', JSON.stringify(extractionData));
+            }
+            
+            // Navigate based on analysis type
             switch (analysisType) {
               case 'contract_review':
               case 'contract_summary':
-                localStorage.setItem('current_analysis', JSON.stringify({
-                  type: analysisType,
-                  result: res,
-                  fileName: this.selectedFiles_1.name
-                }));
                 this.router.navigate(['/contract-review']);
                 break;
-
               case 'legal_research':
-                localStorage.setItem('current_analysis', JSON.stringify({
-                  type: analysisType,
-                  result: res,
-                  fileName: this.selectedFiles_1.name
-                }));
                 this.router.navigate(['/legal-research']);
                 break;
-                
               case 'risk_assessment':
-                localStorage.setItem('current_analysis', JSON.stringify({
-                  type: analysisType,
-                  result: res,
-                  fileName: this.selectedFiles_1.name
-                }));
                 this.router.navigate(['/risk-assessment']);
                 break;
-                
               case 'information_extraction':
-                localStorage.setItem('current_analysis', JSON.stringify({
-                  type: analysisType,
-                  result: res,
-                  fileName: this.selectedFiles_1.name
-                }));
                 this.router.navigate(['/extraction']);
                 break;
-
               default:
                 console.warn('Unhandled analysis type:', analysisType);
                 break;
@@ -133,6 +134,61 @@ export class UserManagementComponent {
           this.loadershow = false;
         }
       });
+    }
+  }
+
+  // Update the convertToExtractionResults method in UserManagementComponent
+  private convertToExtractionResults(result: any): any[] {
+    // Handle case where result itself is nested with "Information Extraction" key
+    if (result && typeof result === 'object' && result['Information Extraction']) {
+      result = result['Information Extraction'];
+      
+      // If it has a results array, use that directly
+      if (Array.isArray(result.results)) {
+        return result.results;
+      }
+      
+      // Otherwise, continue with the result itself
+      result = result.results || result;
+    }
+    
+    if (Array.isArray(result)) {
+      // If already an array, ensure each item has the right structure
+      return result.map(item => {
+        if (typeof item === 'object' && item !== null) {
+          return {
+            term: item.term || 'Unknown',
+            // Convert any object values to JSON strings to prevent [object Object] display
+            extracted_value: typeof item.extracted_value === 'object' ? 
+              JSON.stringify(item.extracted_value) : 
+              String(item.extracted_value || ''),
+            timestamp: item.timestamp || new Date().toISOString()
+          };
+        } else {
+          return {
+            term: 'Unknown',
+            extracted_value: String(item),
+            timestamp: new Date().toISOString()
+          };
+        }
+      });
+    } else if (typeof result === 'object' && result !== null) {
+      // If it's an object, convert key-value pairs
+      return Object.entries(result).map(([key, value]) => ({
+        term: key,
+        // Convert any object values to JSON strings
+        extracted_value: typeof value === 'object' ? 
+          JSON.stringify(value) : 
+          String(value),
+        timestamp: new Date().toISOString()
+      }));
+    } else {
+      // Fallback for unknown formats
+      return [{
+        term: 'Result',
+        extracted_value: String(result),
+        timestamp: new Date().toISOString()
+      }];
     }
   }
 
@@ -211,49 +267,63 @@ export class UserManagementComponent {
       }
     });
   }
-// Update the viewContract method
-viewContract(contract: ContractDocument) {
-  if (contract.analysisResult) {
-    try {
-      // Store current analysis state
-      localStorage.setItem('current_analysis', JSON.stringify({
-        type: contract.type,
-        result: contract.analysisResult,
-        fileName: contract.fileName
-      }));
+  
+  // Updated viewContract method that formats extraction data properly
+  viewContract(contract: ContractDocument) {
+    if (contract.analysisResult) {
+      try {
+        // Store current analysis state
+        const analysisData = {
+          type: contract.type,
+          result: contract.analysisResult,
+          fileName: contract.fileName
+        };
+        
+        localStorage.setItem('current_analysis', JSON.stringify(analysisData));
+        
+        // Format and store extraction data if needed
+        if (contract.type === 'information_extraction') {
+          console.log('Viewing extraction data:', analysisData);
+          
+          // Format data specifically for the ExtractionComponent
+          const extractionData = {
+            'Information Extraction': {
+              results: this.convertToExtractionResults(contract.analysisResult)
+            }
+          };
+          
+          // Save in the expected format for the extraction component
+          localStorage.setItem('extraction', JSON.stringify(extractionData));
+        }
 
-      // Navigate based on the contract type
-      switch (contract.type) {
-        case 'contract_review':
-        case 'contract_summary':
-          this.router.navigate(['/contract-review']);
-          break;
-
-        case 'legal_research':
-          this.router.navigate(['/legal-research']);
-          break;
-
-        case 'risk_assessment':
-          this.router.navigate(['/risk-assessment']);
-          break;
-
-        case 'information_extraction':
-          this.router.navigate(['/extraction']);
-          break;
-
-        default:
-          console.warn('Unknown contract type:', contract.type);
-          this.router.navigate(['/extraction']);
-          break;
+        // Navigate based on the contract type
+        switch (contract.type) {
+          case 'contract_review':
+          case 'contract_summary':
+            this.router.navigate(['/contract-review']);
+            break;
+          case 'legal_research':
+            this.router.navigate(['/legal-research']);
+            break;
+          case 'risk_assessment':
+            this.router.navigate(['/risk-assessment']);
+            break;
+          case 'information_extraction':
+            this.router.navigate(['/extraction']);
+            break;
+          default:
+            console.warn('Unknown contract type:', contract.type);
+            this.router.navigate(['/extraction']);
+            break;
+        }
+      } catch (error) {
+        console.error('Error viewing contract:', error);
+        alert('Error viewing contract. Please try again.');
       }
-    } catch (error) {
-      console.error('Error viewing contract:', error);
-      alert('Error viewing contract. Please try again.');
+    } else {
+      alert('No analysis results available for this contract. Please run an analysis first.');
     }
-  } else {
-    alert('No analysis results available for this contract. Please run an analysis first.');
   }
-}
 
   deleteContract(contract: ContractDocument) {
     if (confirm(`Are you sure you want to delete "${contract.fileName}"?`)) {
@@ -271,6 +341,16 @@ viewContract(contract: ContractDocument) {
           const parsedInfo = JSON.parse(extractionInfo);
           if (parsedInfo.fileName === contract.fileName) {
             localStorage.removeItem('extractionInfo');
+          }
+        }
+        
+        // Also clear extraction data if it matches
+        const currentAnalysis = localStorage.getItem('current_analysis');
+        if (currentAnalysis) {
+          const analysisData = JSON.parse(currentAnalysis);
+          if (analysisData.fileName === contract.fileName) {
+            localStorage.removeItem('current_analysis');
+            localStorage.removeItem('extraction'); // Also remove extraction-specific data
           }
         }
         
@@ -300,6 +380,18 @@ viewContract(contract: ContractDocument) {
     const savedContracts = localStorage.getItem('contracts');
     if (savedContracts) {
       this.contracts = JSON.parse(savedContracts);
+    }
+    
+    // Retrieve the current analysis data
+    const currentAnalysis = localStorage.getItem('current_analysis');
+    if (currentAnalysis) {
+      const analysisData = JSON.parse(currentAnalysis);
+      if (analysisData.type === 'information_extraction') {
+        // Display the extraction data
+        this.extractionResults = analysisData.result;
+        this.fileName = analysisData.fileName;
+        console.log('Loaded extraction results:', this.extractionResults);
+      }
     }
   }
 }

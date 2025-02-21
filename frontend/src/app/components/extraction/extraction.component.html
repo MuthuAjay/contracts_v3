@@ -1,40 +1,42 @@
-<div class="main-conactrat">
+<div class="extraction-container">
     <div class="header">
-        <h1><i class="fas fa-file-contract"></i> Contract Extraction Data</h1>
-        <div class="header-actions">
-            <button class="refresh-btn" (click)="refreshData()">
-                <i class="fas fa-sync"></i> Refresh Data
-            </button>
-        </div>
+      <h2>Information Extraction Results</h2>
+      <button (click)="refreshData()" class="refresh-btn">Refresh Data</button>
     </div>
-
-    <div class="content-wrapper">
-        <div class="table-view">
-            <table>
-                <thead>
-                    <tr>
-                        <th><i class="fas fa-tag"></i> Term</th>
-                        <th><i class="fas fa-file-alt"></i> Extracted Value</th>
-                        <th><i class="fas fa-clock"></i> Timestamp</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of extractionData">
-                        <td>{{item.term}}</td>
-                        <td>
-                            <div class="extracted-value">
-                                {{item.extracted_value}}
-                            </div>
-                        </td>
-                        <td>{{item.timestamp | date:'medium'}}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="no-data" *ngIf="!extractionData?.length">
-                <i class="fas fa-inbox"></i>
-                <p>No extraction data available</p>
-            </div>
-        </div>
+  
+    <!-- Loading indicator -->
+    <div *ngIf="loading" class="loading-indicator">
+      <div class="spinner"></div>
+      <p>Loading extraction data...</p>
     </div>
-</div>
+  
+    <!-- Error message -->
+    <div *ngIf="!loading && error" class="error-message">
+      <p>{{ error }}</p>
+    </div>
+  
+    <!-- No data message -->
+    <div *ngIf="!loading && !error && extractionData.length === 0" class="no-data">
+      <p>No extraction data available. Please run an extraction analysis first.</p>
+    </div>
+  
+    <!-- Data display -->
+    <div *ngIf="!loading && !error && extractionData.length > 0" class="data-table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Extracted Value</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of extractionData">
+            <td>{{ item.term }}</td>
+            <td>{{ item.extracted_value }}</td>
+            <td>{{ item.timestamp | date:'medium' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
