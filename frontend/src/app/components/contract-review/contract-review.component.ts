@@ -176,6 +176,6 @@ export class ContractReviewComponent implements OnInit {
 
   // Return to contracts list
   backToContracts() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/Contract']);
   }
 }

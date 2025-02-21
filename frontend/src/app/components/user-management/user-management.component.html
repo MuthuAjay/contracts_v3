@@ -54,14 +54,14 @@
                   <td>
                       <!-- Per-document analysis dropdown -->
                       <div class="document-analysis">
-                          <select (change)="setAnalysisForContract($event, contract)" class="analysis-dropdown">
-                              <option value="">Select Analysis</option>
-                              <option *ngFor="let type of analysisTypes" [value]="type.value">{{ type.label }}</option>
-                          </select>
-                          <button (click)="runAnalysisForContract(contract)" class="run-analysis-btn" 
-                                  [disabled]="!contract.selectedAnalysis">
-                              Run
-                          </button>
+                        <select (change)="setAnalysisForContract($event, contract)" class="analysis-dropdown">
+                          <option value="">Select Analysis</option>
+                          <option *ngFor="let type of analysisTypes" [value]="type.value">{{ type.label }}</option>
+                        </select>
+                        <button (click)="runAnalysisForContract(contract)" class="run-analysis-btn" 
+                                [disabled]="!contract.selectedAnalysis">
+                          Run
+                        </button>
                       </div>
                       
                       <!-- Show previous analysis if available -->

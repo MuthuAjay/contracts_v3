@@ -95,30 +95,64 @@ export class UserManagementComponent implements OnInit {
   
   // Helper method to set the selected contract for analysis
   selectContractForAnalysis(contract: ContractDocument) {
+    if (!contract) {
+      console.error('No contract provided for analysis');
+      return;
+    }
+    
+    // Set the selected file to this specific contract
     this.selectedFiles_1 = { name: contract.fileName };
+    
+    // Set the extracted value to this specific contract's data
     this.extractedValue = contract.extractedData;
     
-    // Update form value
+    // Update form value with the contract's selected analysis type
     this.uploadForm.patchValue({
-      analysisType: contract.selectedAnalysis
+      analysisType: contract.selectedAnalysis || ''
     });
+    
+    console.log(`Selected contract for analysis: ${contract.fileName}`);
+    console.log(`Selected analysis type: ${contract.selectedAnalysis}`);
   }
   
   // Run analysis for the currently selected contract
   runAnalysisForSelectedContract(analysisType: string) {
-    if (!this.extractedValue) {
-      // Try to find the contract's extracted data from localStorage
-      const contract = this.contracts.find(c => c.fileName === this.selectedFiles_1.name);
-      
-      if (contract && contract.extractedData) {
-        this.extractedValue = contract.extractedData;
-      } else {
-        alert('No extracted data available for this contract. Please re-upload the file.');
-        return;
-      }
+    if (!this.selectedFiles_1 || !this.selectedFiles_1.name) {
+      alert('No file selected. Please select a contract first.');
+      return;
     }
 
+    // Find the contract by filename
+    const contract = this.contracts.find(c => c.fileName === this.selectedFiles_1.name);
+    
+    if (!contract) {
+      alert('Contract not found. Please refresh and try again.');
+      return;
+    }
+    
+    // Use the extracted data from the specific contract
+    if (!contract.extractedData) {
+      alert('No extracted data available for this contract. Please re-upload the file.');
+      return;
+    }
+    
+    // Set the extracted value to this specific contract's data
+    this.extractedValue = contract.extractedData;
+
+    // Handle custom analysis differently - store the contract info and navigate
     if (analysisType === 'custom_analysis') {
+      // Save the current contract info to localStorage for the Analytics page
+      const customAnalysisData = {
+        fileName: contract.fileName,
+        extractedData: contract.extractedData,
+        contractId: contract.id || '',
+        selectedContract: contract
+      };
+      
+      // Store for the analytics component to use
+      localStorage.setItem('custom_analysis_contract', JSON.stringify(customAnalysisData));
+      
+      // Navigate to Analytics
       this.router.navigate(['/Analytics']);
       return;
     }
@@ -130,40 +164,33 @@ export class UserManagementComponent implements OnInit {
     this.apiService.analyze(this.extractedValue).subscribe({
       next: (res: any) => {
         if (res) {
-          // Find the current contract and update it with the analysis result
-          const currentContract = this.contracts.find(c => 
-            c.fileName === this.selectedFiles_1.name
-          );
-          
-          if (currentContract) {
-            // Save previous analysis in history
-            if (!currentContract.analysisHistory) {
-              currentContract.analysisHistory = [];
-            }
-            
-            // Only add to history if we already had a result and it's different from current
-            if (currentContract.analysisResult) {
-              currentContract.analysisHistory.push({
-                type: currentContract.type,
-                result: currentContract.analysisResult,
-                date: new Date(currentContract.lastUpdated)
-              });
-            }
-            
-            // Update current analysis
-            currentContract.analysisResult = res;
-            currentContract.type = analysisType;
-            currentContract.lastUpdated = new Date();
-            
-            // Update localStorage
-            this.updateLocalStorage();
+          // Save previous analysis in history
+          if (!contract.analysisHistory) {
+            contract.analysisHistory = [];
           }
+          
+          // Only add to history if we already had a result
+          if (contract.analysisResult) {
+            contract.analysisHistory.push({
+              type: contract.type,
+              result: contract.analysisResult,
+              date: new Date(contract.lastUpdated)
+            });
+          }
+          
+          // Update current analysis
+          contract.analysisResult = res;
+          contract.type = analysisType;
+          contract.lastUpdated = new Date();
+          
+          // Update localStorage
+          this.updateLocalStorage();
 
           // Store the result and navigate
           const analysisData = {
             type: analysisType,
             result: res,
-            fileName: this.selectedFiles_1.name,
+            fileName: contract.fileName,
             analysisDate: new Date()
           };
           
@@ -173,7 +200,7 @@ export class UserManagementComponent implements OnInit {
           // Save specific analysis type data
           localStorage.setItem(analysisType, JSON.stringify(analysisData));
           
-          // Add debugging for information extraction
+          // Add handling for information extraction
           if (analysisType === 'information_extraction') {
             console.log('Saving extraction data:', analysisData);
             
@@ -201,8 +228,7 @@ export class UserManagementComponent implements OnInit {
         this.loadershow = false;
       }
     });
-  }
-  
+  }  
   // Helper method to navigate to the appropriate analysis view
   navigateToAnalysisResult(analysisType: string) {
     switch (analysisType) {
@@ -641,6 +667,11 @@ export class UserManagementComponent implements OnInit {
             item.date = new Date(item.date);
           });
         }
+        
+        // Make sure selectedAnalysis is initialized
+        if (!contract.selectedAnalysis) {
+          contract.selectedAnalysis = '';
+        }
       });
     }
     
@@ -652,6 +683,48 @@ export class UserManagementComponent implements OnInit {
         // Display the extraction data
         this.extractionResults = analysisData.result;
         this.fileName = analysisData.fileName;
+      }
+    }
+    
+    // Check if we're returning from a custom analysis
+    const customAnalysisResult = localStorage.getItem('custom_analysis_result');
+    if (customAnalysisResult) {
+      try {
+        const resultData = JSON.parse(customAnalysisResult);
+        
+        // Find the contract that was analyzed
+        if (resultData.fileName) {
+          const contract = this.contracts.find(c => c.fileName === resultData.fileName);
+          
+          if (contract) {
+            // Save previous analysis in history if any
+            if (contract.analysisResult) {
+              if (!contract.analysisHistory) {
+                contract.analysisHistory = [];
+              }
+              
+              contract.analysisHistory.push({
+                type: contract.type,
+                result: contract.analysisResult,
+                date: new Date(contract.lastUpdated)
+              });
+            }
+            
+            // Update the contract with the custom analysis result
+            contract.analysisResult = resultData.result;
+            contract.type = 'custom_analysis';
+            contract.lastUpdated = new Date();
+            
+            // Update localStorage
+            this.updateLocalStorage();
+          }
+        }
+        
+        // Clear the custom analysis result as we've processed it
+        localStorage.removeItem('custom_analysis_result');
+        
+      } catch (error) {
+        console.error('Error processing custom analysis result:', error);
       }
     }
   }
