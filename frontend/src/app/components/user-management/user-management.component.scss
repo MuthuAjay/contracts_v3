@@ -10,6 +10,8 @@
     h1 {
       font-size: 24px;
       font-weight: 600;
+      color: #333;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
     }
   }
   
@@ -24,6 +26,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+
+    &:hover {
+      background-color: darken(#454545, 10%); /* Darken on hover */
+    }
   }
   
   .filters {
@@ -42,6 +50,7 @@
       border: 1px solid #E5E7EB;
       border-radius: 6px;
       font-size: 14px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Inset shadow for depth */
     }
   }
   
@@ -52,11 +61,20 @@
     background: white;
     min-width: 160px;
     font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+
+    &:focus {
+      border-color: #A0AEC0; /* Highlight on focus */
+      outline: none; /* Remove default focus outline */
+    }
   }
   
   .table-view {
     background-color: #fff;
     padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a more prominent shadow */
   }
   
   table {
@@ -71,6 +89,7 @@
     text-transform: uppercase;
     color: #6B7280;
     border-bottom: 1px solid #E5E7EB;
+    background-color: #F7FAFC; /* Light background for header */
   }
   
   td {
@@ -84,6 +103,7 @@
     border-radius: 12px;
     font-size: 12px;
     font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     
     &.active {
       background: #DCFCE7;
@@ -101,6 +121,11 @@
       margin: 0px 10px;
       text-decoration: none;
       font-size: 14px;
+      transition: color 0.3s ease; /* Smooth transition for hover effect */
+
+      &:hover {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle text shadow on hover */
+      }
     }
     
     .view {
@@ -129,6 +154,18 @@
       background: white;
       border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover and click effects */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+      
+      &:hover {
+        background: #F3F4F6; /* Lighter background on hover */
+        transform: translateY(-1px); /* Slight lift on hover */
+      }
+
+      &:active {
+        transform: translateY(0); /* Reset position on click */
+        box-shadow: none; /* Remove shadow on click */
+      }
       
       &.current {
         background: #F3F4F6;
@@ -196,6 +233,11 @@
     cursor: pointer;
     margin-bottom: 20px;
     position: relative;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+
+    &:hover {
+      background-color: rgba(214, 214, 214, 0.2); /* Lighten on hover */
+    }
   }
 
   .folder-icon {
@@ -246,6 +288,7 @@
         padding: 9px 10px;
         border: solid 1px #e8e8e8;
         border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   }
 
   .file-icon {
@@ -276,11 +319,17 @@
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
-  }
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover and click effects */
 
-  .continue-button:hover {
-    background: #1f1f1f;
-    color: #fff;
+    &:hover {
+      background: #1f1f1f;
+      color: #fff;
+      transform: translateY(-1px); /* Slight lift on hover */
+    }
+
+    &:active {
+      transform: translateY(0); /* Reset position on click */
+    }
   }
 
   .file-input {
@@ -301,6 +350,13 @@
     border-radius: 6px;
     font-size: 16px;
     color: rgb(51, 51, 51);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+
+    &:focus {
+      border-color: #A0AEC0; /* Highlight on focus */
+      outline: none; /* Remove default focus outline */
+    }
   }
 
   @keyframes spin {
@@ -353,4 +409,185 @@
   margin: 0;
   color: #333;
   font-size: 1.1rem;
+}
+
+/* Analysis Dropdown Styles */
+.document-analysis {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .analysis-dropdown {
+    padding: 8px 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    background: white;
+    min-width: 160px;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+
+    &:focus {
+      border-color: #A0AEC0; /* Highlight on focus */
+      outline: none; /* Remove default focus outline */
+    }
+  }
+
+  .run-analysis-btn {
+    background: #3B82F6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover and click effects */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+
+    &:hover {
+      background-color: darken(#3B82F6, 10%); /* Darken on hover */
+      transform: translateY(-1px); /* Slight lift on hover */
+    }
+
+    &:active {
+      transform: translateY(0); /* Reset position on click */
+      box-shadow: none; /* Remove shadow on click */
+    }
+
+    &:disabled {
+      background-color: #9CA3AF; /* Grey out when disabled */
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* Last Analysis Badge Styles */
+.last-analysis {
+  margin-top: 8px;
+
+  .analysis-badge {
+    background-color: #6B7280;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  }
+}
+
+/* Contract ID Styles */
+.contract-id {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+/* No Data Message Styles */
+.no-data {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  color: #6B7280;
+}
+
+/* History Modal Styles */
+.history-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E5E7EB;
+
+    h2 {
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .modal-body {
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      .history-type {
+        font-weight: 500;
+      }
+
+      .history-date {
+        color: #6B7280;
+        font-size: 14px;
+      }
+
+      .view-btn {
+        background: #3B82F6;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken(#3B82F6, 10%);
+        }
+      }
+    }
+  }
+
+  .no-history {
+    text-align: center;
+    color: #6B7280;
+  }
 }
