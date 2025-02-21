@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -8,6 +8,37 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { LineToBrPipe } from './line-to-br.pipe';
+import { marked } from 'marked';
+import hljs from 'highlight.js';
+
+// Define the highlight function type
+interface MarkedHighlightOptions {
+  highlight: (code: string, lang: string) => string;
+  langPrefix?: string;
+  baseUrl?: string;
+  breaks?: boolean;
+  gfm?: boolean;
+  headerIds?: boolean;
+  mangle?: boolean;
+  pedantic?: boolean;
+  sanitize?: boolean;
+  sanitizer?: {
+      (input: string): string;
+  };
+  silent?: boolean;
+  smartLists?: boolean;
+  smartypants?: boolean;
+  xhtml?: boolean;
+}
+
+// Configure marked to use highlight.js for code syntax highlighting
+marked.setOptions(<MarkedHighlightOptions>{
+  highlight: function (code: string, lang: string) {
+    return hljs.highlight(code, { language: lang }).value;
+  },
+  breaks: true, // Enable line breaks with single line breaks
+  gfm: true,    // Enable GitHub Flavored Markdown
+});
 
 interface ContractData {
   'Contract Review'?: string;
@@ -33,7 +64,7 @@ interface ContractData {
     LineToBrPipe
   ]
 })
-export class ContractReviewComponent implements OnInit {
+export class ContractReviewComponent implements OnInit, AfterViewInit {
   contractData: ContractData | null = null;
   isLoading = true;
   currentSection = 'all';
@@ -47,7 +78,12 @@ export class ContractReviewComponent implements OnInit {
     this.loadContractData();
   }
 
-  loadContractData() {
+  ngAfterViewInit() {
+    // Syntax highlight all code blocks
+    hljs.highlightAll();
+  }
+
+  async loadContractData() {
     try {
       // First try to get data from current_analysis
       const currentAnalysis = localStorage.getItem('current_analysis');
@@ -68,7 +104,7 @@ export class ContractReviewComponent implements OnInit {
           } 
           // If result is an object, map it to our interface
           else if (typeof analysisData.result === 'object') {
-            this.contractData = this.formatContractData(analysisData.result);
+            this.contractData = await this.formatContractData(analysisData.result);
           }
         }
         
@@ -91,7 +127,7 @@ export class ContractReviewComponent implements OnInit {
                 'Contract Review': reviewData.result
               };
             } else if (typeof reviewData.result === 'object') {
-              this.contractData = this.formatContractData(reviewData.result);
+              this.contractData = await this.formatContractData(reviewData.result);
             } else {
               this.contractData = reviewData; // Directly use the data if it's not nested under result
             }
@@ -115,7 +151,7 @@ export class ContractReviewComponent implements OnInit {
   }
 
   // Format data to match our interface
-  formatContractData(data: any): ContractData {
+  async formatContractData(data: any): Promise<ContractData> {
     const formattedData: ContractData = {};
     
     // Map known fields to our interface
@@ -124,21 +160,21 @@ export class ContractReviewComponent implements OnInit {
     }
     
     if (data.key_terms || data.key_provisions) {
-      formattedData['Key Terms'] = this.formatArrayOrString(data.key_terms || data.key_provisions);
+      formattedData['Key Terms'] = await this.formatArrayOrString(data.key_terms || data.key_provisions);
     }
     
     if (data.obligations) {
-      formattedData['Obligations'] = this.formatArrayOrString(data.obligations);
+      formattedData['Obligations'] = await this.formatArrayOrString(data.obligations);
     }
     
     if (data.parties) {
-      formattedData['Parties'] = this.formatArrayOrString(data.parties);
+      formattedData['Parties'] = await this.formatArrayOrString(data.parties);
     }
     
     // Include other fields that might be present
     for (const key in data) {
       if (!formattedData[key] && !['summary', 'key_terms', 'key_provisions', 'obligations', 'parties'].includes(key)) {
-        formattedData[key] = this.formatArrayOrString(data[key]);
+        formattedData[key] = await this.formatArrayOrString(data[key]);
       }
     }
     
@@ -152,13 +188,14 @@ export class ContractReviewComponent implements OnInit {
   }
 
   // Helper to format array data as a string
-  formatArrayOrString(data: any): string {
+  async formatArrayOrString(data: any): Promise<string> {
     if (Array.isArray(data)) {
       return data.map((item, index) => `${index + 1}. ${item}`).join('\n\n');
     } else if (typeof data === 'object' && data !== null) {
       return JSON.stringify(data, null, 2);
     } else {
-      return String(data || '');
+      // Convert Markdown to HTML
+      return marked.parseInline(String(data || ''));
     }
   }
 

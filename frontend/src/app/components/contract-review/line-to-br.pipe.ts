@@ -11,19 +11,44 @@ export class LineToBrPipe implements PipeTransform {
   transform(value: string): SafeHtml {
     if (!value) return '';
     
-    // Replace newlines with <br> tags
-    const withBrs = value.replace(/\n/g, '<br>');
+    // First process markdown-style bullets and sub-bullets
+    let processed = value
+      // Transform markdown bullets (- item) to HTML
+      .replace(/^-\s+(.+)$/gm, '<li>$1</li>')
+      // Transform markdown bullets (* item) to HTML
+      .replace(/^\*\s+(.+)$/gm, '<li>$1</li>')
+      // Transform markdown sub-bullets (  - item) to HTML with proper indentation
+      .replace(/^(\s{2,})-\s+(.+)$/gm, '<li class="nested">$2</li>')
+      // Transform markdown sub-bullets (  * item) to HTML with proper indentation
+      .replace(/^(\s{2,})\*\s+(.+)$/gm, '<li class="nested">$2</li>')
+      // Transform numbered lists (1. item)
+      .replace(/^(\d+)\.\s+(.+)$/gm, '<li class="numbered">$2</li>');
     
-    // Make numbered lists look better
-    const withLists = withBrs.replace(/(\d+\.\s.*?)(<br>|$)/g, '<p class="list-item">$1</p>');
+    // Wrap sequences of <li> elements with <ul>
+    processed = processed.replace(/((?:<li.*?>.*?<\/li>)+)/g, '<ul>$1</ul>');
     
-    // Check if content has HTML
-    if (/<[a-z][\s\S]*>/i.test(withLists)) {
-      // Content already has HTML
-      return this.sanitizer.bypassSecurityTrustHtml(withLists);
-    } else {
-      // Plain text with formatting
-      return this.sanitizer.bypassSecurityTrustHtml(withLists);
-    }
+    // Handle headings
+    processed = processed
+      .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+      .replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      
+    // Handle bold and italic
+    processed = processed
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/\_\_(.+?)\_\_/g, '<strong>$1</strong>')
+      .replace(/\_(.+?)\_/g, '<em>$1</em>');
+    
+    // Handle code blocks
+    processed = processed
+      .replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    // Replace newlines with <br> tags for remaining text
+    processed = processed.replace(/\n/g, '<br>');
+    
+    return this.sanitizer.bypassSecurityTrustHtml(processed);
   }
 }
