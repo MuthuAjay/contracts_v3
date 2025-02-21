@@ -1,7 +1,10 @@
 <div class="extraction-container">
     <div class="header">
       <h2>Information Extraction Results</h2>
-      <button (click)="refreshData()" class="refresh-btn">Refresh Data</button>
+      <button (click)="refreshData()" class="refresh-btn">
+        <span class="material-icons">refresh</span>
+        Refresh Data
+      </button>
     </div>
   
     <!-- Loading indicator -->
@@ -20,23 +23,41 @@
       <p>No extraction data available. Please run an extraction analysis first.</p>
     </div>
   
-    <!-- Data display -->
-    <div *ngIf="!loading && !error && extractionData.length > 0" class="data-table-container">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Term</th>
-            <th>Extracted Value</th>
-            <th>Timestamp</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of extractionData">
-            <td>{{ item.term }}</td>
-            <td>{{ item.extracted_value }}</td>
-            <td>{{ item.timestamp | date:'medium' }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Categorized data display -->
+    <div *ngIf="!loading && !error && extractionData.length > 0" class="sections-container">
+      <!-- Create an accordion section for each category -->
+      <div *ngFor="let category of categories" class="section-accordion" [class.empty]="!hasCategoryResults(category)">
+        <div class="section-header" (click)="toggleSection(category)" [class.expanded]="isSectionExpanded(category)">
+          <h3>{{ category }}</h3>
+          <div class="section-badge" *ngIf="getResultsForCategory(category).length > 0">
+            {{ getResultsForCategory(category).length }}
+          </div>
+          <span class="expand-icon">{{ isSectionExpanded(category) ? '−' : '+' }}</span>
+        </div>
+        
+        <!-- Section content (expanded when clicked) -->
+        <div class="section-content" *ngIf="isSectionExpanded(category)" [@expandCollapse]>
+          <div *ngIf="getResultsForCategory(category).length === 0" class="empty-category">
+            <p>No data available for this section.</p>
+          </div>
+          
+          <table *ngIf="getResultsForCategory(category).length > 0" class="data-table">
+            <thead>
+              <tr>
+                <th>Term</th>
+                <th>Extracted Value</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of getResultsForCategory(category)">
+                <td class="term-cell">{{ item.term }}</td>
+                <td class="value-cell">{{ item.extracted_value }}</td>
+                <td class="timestamp-cell">{{ item.timestamp | date:'medium' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
