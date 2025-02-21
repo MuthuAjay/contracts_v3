@@ -1,95 +1,88 @@
-// contract-review.component.scss
 .contract-review-container {
-  padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #f5f7fa;
-  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Roboto', Arial, sans-serif;
 
   .header-section {
-    margin-bottom: 32px;
-    background: white;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
 
     h1 {
-      font-size: 28px;
-      color: #2c3e50;
-      margin-bottom: 24px;
-      font-weight: 600;
+      font-size: 24px;
+      font-weight: 500;
+      color: #333;
+      margin: 10px 0;
+    }
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      background-color: #f5f5f5;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+      
+      mat-icon {
+        margin-right: 5px;
+        font-size: 18px;
+        height: 18px;
+        width: 18px;
+      }
+      
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+
+    .analysis-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+      
+      .analysis-type {
+        background-color: #e8eaf6;
+        color: #3f51b5;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      
+      .analysis-date {
+        color: #757575;
+        font-size: 14px;
+      }
     }
 
     .navigation-tabs {
       display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 10px;
+      
       button {
         padding: 8px 16px;
-        border: none;
         background: none;
-        color: #64748b;
-        cursor: pointer;
-        font-weight: 500;
+        border: none;
         border-radius: 4px;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-
+        cursor: pointer;
+        font-size: 14px;
+        color: #555;
+        transition: all 0.2s;
+        
         &:hover {
-          background-color: #f1f5f9;
-          color: #0f172a;
+          background-color: #f5f5f5;
         }
-
+        
         &.active {
-          background-color: #2563eb;
+          background-color: #3f51b5;
           color: white;
-        }
-      }
-    }
-  }
-
-  .content-section {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: 1fr;
-
-    .content-card {
-      background: white;
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      }
-
-      mat-card-header {
-        padding: 16px 24px;
-        border-bottom: 1px solid #e2e8f0;
-
-        mat-card-title {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: #1e293b;
-          font-size: 18px;
-
-          mat-icon {
-            color: #3b82f6;
-          }
-        }
-      }
-
-      mat-card-content {
-        padding: 24px;
-
-        .section-content {
-          color: #475569;
-          line-height: 1.6;
-          white-space: pre-line;
-          font-size: 15px;
         }
       }
     }
@@ -100,14 +93,65 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 48px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-
+    padding: 50px 0;
+    
     p {
-      margin-top: 16px;
-      color: #64748b;
+      margin-top: 20px;
+      color: #757575;
+    }
+  }
+
+  .content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    .content-card {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      
+      mat-card-header {
+        background-color: #f5f5f5;
+        padding: 16px;
+        
+        mat-card-title {
+          display: flex;
+          align-items: center;
+          font-size: 18px;
+          color: #333;
+          margin: 0;
+          
+          mat-icon {
+            margin-right: 10px;
+            color: #3f51b5;
+          }
+        }
+      }
+      
+      mat-card-content {
+        padding: 20px;
+        
+        .section-content {
+          font-size: 16px;
+          line-height: 1.6;
+          color: #333;
+          
+          // Style for list items (applied via the pipe)
+          .list-item {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #e0e0e0;
+          }
+          
+          // Fix visibility issues
+          * {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+          }
+        }
+      }
     }
   }
 
@@ -116,45 +160,38 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 48px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-
+    padding: 50px 0;
+    
     mat-icon {
       font-size: 48px;
-      height: 48px;
       width: 48px;
-      color: #94a3b8;
-      margin-bottom: 16px;
+      height: 48px;
+      color: #bdbdbd;
+      margin-bottom: 20px;
     }
-
+    
     p {
-      color: #64748b;
+      color: #757575;
+      font-size: 18px;
+      margin-bottom: 20px;
     }
   }
 }
 
-// Media Queries for Responsiveness
+// Responsive adjustments
 @media (max-width: 768px) {
   .contract-review-container {
-    padding: 16px;
-
+    padding: 15px;
+    
     .header-section {
-      padding: 16px;
-
-      h1 {
-        font-size: 24px;
-      }
-    }
-
-    .content-section .content-card {
-      mat-card-header mat-card-title {
-        font-size: 16px;
-      }
-
-      mat-card-content {
-        padding: 16px;
+      .navigation-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 5px;
+        
+        button {
+          flex: 0 0 auto;
+        }
       }
     }
   }
