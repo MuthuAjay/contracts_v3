@@ -20,27 +20,33 @@
         <p>No extraction data available. Please run an extraction analysis first.</p>
     </div>
 
-    <div *ngIf="!loading && !error && extractionData.length > 0" class="two-column-layout">
-        <!-- Left Column - Categories -->
+    <div *ngIf="!loading && !error && extractionData.length > 0" 
+         class="two-column-layout" 
+         [@fadeInOut]>
+        
         <div class="categories-column">
             <div *ngFor="let category of categories" 
                  class="category-item" 
                  [class.active]="isSectionExpanded(category)"
                  [class.empty]="!hasCategoryResults(category)"
-                 (click)="toggleSection(category)">
+                 (click)="toggleSection(category)"
+                 [@fadeInOut]>
                 <span class="category-name">{{ category }}</span>
-                <div class="section-badge" *ngIf="getResultsForCategory(category).length > 0">
-                    {{ getResultsForCategory(category).length }}
-                </div>
             </div>
         </div>
 
-        <!-- Right Column - Section Table -->
         <div class="table-column">
             <ng-container *ngFor="let category of categories">
-                <div *ngIf="isSectionExpanded(category)" class="section-table" [@expandCollapse]>
-                    <h3>{{ category }}</h3>
-                    <table class="data-table" *ngIf="hasCategoryResults(category)">
+                <div *ngIf="isSectionExpanded(category)" 
+                     class="section-table" 
+                     [@expandCollapse]>
+                    <h3>
+                        {{ category }}
+                        <span class="section-badge" *ngIf="getResultsForCategory(category).length > 0">
+                            {{ getResultsForCategory(category).length }}
+                        </span>
+                    </h3>
+                    <table class="data-table" *ngIf="hasCategoryResults(category)" [@tableAnimation]>
                         <thead>
                             <tr>
                                 <th>Term</th>
@@ -49,14 +55,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of getResultsForCategory(category)">
+                            <tr *ngFor="let item of getResultsForCategory(category)"
+                                [@fadeInOut]>
                                 <td class="term-cell">{{ item.term }}</td>
                                 <td class="value-cell">{{ item.extracted_value }}</td>
                                 <td class="timestamp-cell">{{ item.timestamp | date:'medium' }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div *ngIf="!hasCategoryResults(category)" class="empty-category">
+                    <div *ngIf="!hasCategoryResults(category)" 
+                         class="empty-category"
+                         [@fadeInOut]>
                         <p>No data available for this section.</p>
                     </div>
                 </div>

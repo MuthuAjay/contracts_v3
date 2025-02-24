@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { trigger, state, style, transition, animate, sequence, query, stagger } from '@angular/animations';
 
 interface ExtractionResult {
   term: string;
@@ -24,14 +24,41 @@ interface ExtractionData {
   animations: [
     trigger('expandCollapse', [
       state('void', style({ 
-        height: '0',
-        overflow: 'hidden'
+        opacity: 0,
+        transform: 'translateY(20px)'
       })),
       state('*', style({ 
-        height: '*',
-        overflow: 'hidden'
+        opacity: 1,
+        transform: 'translateY(0)'
       })),
-      transition('void <=> *', animate('300ms ease-in-out'))
+      transition('void => *', [
+        animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ]),
+      transition('* => void', [
+        animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ])
+    ]),
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-10px)' }),
+        animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)', 
+          style({ opacity: 1, transform: 'translateY(0)' }))
+      ]),
+      transition(':leave', [
+        animate('150ms cubic-bezier(0.4, 0.0, 0.2, 1)', 
+          style({ opacity: 0, transform: 'translateY(-10px)' }))
+      ])
+    ]),
+    trigger('tableAnimation', [
+      transition(':enter', [
+        query('tr', [
+          style({ opacity: 0, transform: 'translateY(10px)' }),
+          stagger(30, [
+            animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)', 
+              style({ opacity: 1, transform: 'translateY(0)' }))
+          ])
+        ], { optional: true })
+      ])
     ])
   ]
 })
