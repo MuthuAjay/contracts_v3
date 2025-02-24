@@ -1,10 +1,15 @@
 <div class="extraction-container">
     <div class="header">
-        <h2>Information Extraction Results</h2>
-        <button (click)="refreshData()" class="refresh-btn">
-            <span class="material-icons">refresh</span>
-            Refresh Data
-        </button>
+        <div class="header-left">
+            <a class="back-btn" href="/Contract">Back to Contracts</a>
+            <h2>Information Extraction Results</h2>
+        </div>
+        <div class="header-right">
+            <button (click)="refreshData()" class="refresh-btn">
+                <span class="material-icons">refresh</span>
+                Refresh Data
+            </button>
+        </div>
     </div>
 
     <div *ngIf="loading" class="loading-indicator">
@@ -42,7 +47,7 @@
                      [@expandCollapse]>
                     <h3>
                         {{ category }}
-                        <span class="section-badge" *ngIf="getResultsForCategory(category).length > 0">
+                        <span class="term-count-badge" *ngIf="getResultsForCategory(category).length > 0">
                             {{ getResultsForCategory(category).length }}
                         </span>
                     </h3>
