@@ -6,77 +6,160 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 32px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
 
     h1 {
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 32px;
+      background: linear-gradient(45deg, #2d3748, #4a5568);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
     }
   }
   
   .new-contract-btn {
-    background: #454545;
+    background: linear-gradient(45deg, #3182ce, #4299e1);
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 12px 24px;
     border-radius: 6px;
     font-weight: 500;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    font-size: 15px;
+    transform-origin: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
   }
   
   .filters {
     display: flex;
     gap: 16px;
     margin-bottom: 24px;
-  }
-  
-  .search-box {
-    flex: 1;
-    position: relative;
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 32px;
+
+    .search-box {
+      flex: 1;
+      position: relative;
+      
+      input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #E5E7EB;
+        border-radius: 6px;
+        font-size: 14px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Inset shadow for depth */
+        transition: all 0.3s ease;
+        border: 2px solid #e2e8f0;
+
+        &:focus {
+          border-color: #4299e1;
+          box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+      }
+    }
     
-    input {
-      width: 100%;
-      padding: 8px 12px;
+    .dropdown {
+      padding: 12px 16px;
       border: 1px solid #E5E7EB;
       border-radius: 6px;
+      background: white;
+      min-width: 160px;
       font-size: 14px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+      transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid #e2e8f0;
+
+      &:focus {
+        border-color: #A0AEC0; /* Highlight on focus */
+        outline: none; /* Remove default focus outline */
+      }
+
+      &:hover {
+        border-color: #4299e1;
+      }
     }
-  }
-  
-  .dropdown {
-    padding: 8px 12px;
-    border: 1px solid #E5E7EB;
-    border-radius: 6px;
-    background: white;
-    min-width: 160px;
-    font-size: 14px;
   }
   
   .table-view {
     background-color: #fff;
     padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a more prominent shadow */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
   }
   
   table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  th {
-    text-align: left;
-    padding: 12px 16px;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #6B7280;
-    border-bottom: 1px solid #E5E7EB;
-  }
-  
-  td {
-    padding: 16px;
-    border-bottom: 1px solid #E5E7EB;
-    font-size: 14px;
+
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #6B7280;
+      border-bottom: 1px solid #E5E7EB;
+      background-color: #F7FAFC; /* Light background for header */
+      background: #f8fafc;
+      font-weight: 600;
+      padding: 16px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background: #f1f5f9;
+      }
+    }
+    
+    td {
+      padding: 16px;
+      border-bottom: 1px solid #E5E7EB;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: #f8fafc;
+      }
+    }
+
+    tr {
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateX(4px);
+      }
+    }
   }
   
   .status {
@@ -84,15 +167,21 @@
     border-radius: 12px;
     font-size: 12px;
     font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    padding: 6px 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
     
     &.active {
       background: #DCFCE7;
       color: #166534;
+      background: linear-gradient(45deg, #dcfce7, #bbf7d0);
     }
     
     &.review {
       background: #FEF9C3;
       color: #854D0E;
+      background: linear-gradient(45deg, #fef9c3, #fde68a);
     }
   }
   
@@ -101,6 +190,11 @@
       margin: 0px 10px;
       text-decoration: none;
       font-size: 14px;
+      transition: color 0.3s ease; /* Smooth transition for hover effect */
+
+      &:hover {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle text shadow on hover */
+      }
     }
     
     .view {
@@ -113,6 +207,55 @@
     
     .delete {
       color: #DC2626;
+    }
+
+    display: flex;
+    gap: 8px;
+
+    button {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      font-weight: 500;
+
+      &.view {
+        background: #ebf8ff;
+        color: #3182ce;
+
+        &:hover {
+          background: #bee3f8;
+          transform: translateY(-1px);
+        }
+      }
+
+      &.history {
+        background: #f0fff4;
+        color: #38a169;
+
+        &:hover {
+          background: #c6f6d5;
+          transform: translateY(-1px);
+        }
+      }
+
+      &.delete {
+        background: #fff5f5;
+        color: #e53e3e;
+
+        &:hover {
+          background: #fed7d7;
+          transform: translateY(-1px);
+        }
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
     }
   }
   
@@ -129,6 +272,18 @@
       background: white;
       border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover and click effects */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+      
+      &:hover {
+        background: #F3F4F6; /* Lighter background on hover */
+        transform: translateY(-1px); /* Slight lift on hover */
+      }
+
+      &:active {
+        transform: translateY(0); /* Reset position on click */
+        box-shadow: none; /* Remove shadow on click */
+      }
       
       &.current {
         background: #F3F4F6;
@@ -196,6 +351,11 @@
     cursor: pointer;
     margin-bottom: 20px;
     position: relative;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+
+    &:hover {
+      background-color: rgba(214, 214, 214, 0.2); /* Lighten on hover */
+    }
   }
 
   .folder-icon {
@@ -246,6 +406,7 @@
         padding: 9px 10px;
         border: solid 1px #e8e8e8;
         border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   }
 
   .file-icon {
@@ -276,11 +437,17 @@
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
-  }
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover and click effects */
 
-  .continue-button:hover {
-    background: #1f1f1f;
-    color: #fff;
+    &:hover {
+      background: #1f1f1f;
+      color: #fff;
+      transform: translateY(-1px); /* Slight lift on hover */
+    }
+
+    &:active {
+      transform: translateY(0); /* Reset position on click */
+    }
   }
 
   .file-input {
@@ -301,6 +468,13 @@
     border-radius: 6px;
     font-size: 16px;
     color: rgb(51, 51, 51);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+
+    &:focus {
+      border-color: #A0AEC0; /* Highlight on focus */
+      outline: none; /* Remove default focus outline */
+    }
   }
 
   @keyframes spin {
@@ -315,5 +489,265 @@
     width: 20px;
     height: 20px;
     animation: spin 1s linear infinite;
+  }
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.loading-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, #ffffff, #f8fafc);
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+}
+
+.loading-content p {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.loading-content.active {
+  transform: scale(1);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+/* Analysis Dropdown Styles */
+.document-analysis {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .analysis-dropdown {
+    padding: 8px 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    background: white;
+    min-width: 160px;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+    min-width: 180px;
+    padding: 10px 16px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: #A0AEC0; /* Highlight on focus */
+      outline: none; /* Remove default focus outline */
+    }
+
+    &:hover {
+      border-color: #4299e1;
+    }
+  }
+
+  .run-analysis-btn {
+    background: #3B82F6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover and click effects */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    background: linear-gradient(45deg, #3182ce, #4299e1);
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: darken(#3B82F6, 10%); /* Darken on hover */
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0); /* Reset position on click */
+      box-shadow: none; /* Remove shadow on click */
+    }
+
+    &:disabled {
+      background-color: #9CA3AF; /* Grey out when disabled */
+      cursor: not-allowed;
+      background: #cbd5e0;
+      transform: none;
+    }
+  }
+}
+
+/* Last Analysis Badge Styles */
+.last-analysis {
+  margin-top: 8px;
+
+  .analysis-badge {
+    background-color: #6B7280;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  }
+}
+
+/* Contract ID Styles */
+.contract-id {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+/* No Data Message Styles */
+.no-data {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  color: #6B7280;
+}
+
+/* History Modal Styles */
+.history-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #ffffff, #f8fafc);
+    border-radius: 16px;
+    padding: 24px;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+  }
+
+  .modal-content.active {
+    transform: scale(1);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E5E7EB;
+
+    h2 {
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .modal-body {
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background: white;
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+
+      &:hover {
+        transform: translateX(4px);
+        border-color: #4299e1;
+      }
+
+      .history-type {
+        font-weight: 500;
+      }
+
+      .history-date {
+        color: #6B7280;
+        font-size: 14px;
+      }
+
+      .view-btn {
+        background: #3B82F6;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        background: linear-gradient(45deg, #3182ce, #4299e1);
+        
+        &:hover {
+          background-color: darken(#3B82F6, 10%);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+        }
+      }
+    }
+  }
+
+  .no-history {
+    text-align: center;
+    color: #6B7280;
   }
 }
