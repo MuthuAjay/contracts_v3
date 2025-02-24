@@ -228,31 +228,47 @@ class ExtractionProcessor:
     
     
     def generate_response_format(self, values):
-        response_format = ''
-        for value in values:
-            response_format += f"{value}: " + "<extracted_value>" + "\n"
-        
-        return response_format
+        """Generate expected response format with placeholders."""
+        return '\n'.join([f'"{value}": "<extracted_value>"' for value in values])
             
-
-    def _build_extraction_prompt(self, context: str, value: List) -> str:
-        """Build extraction prompt"""
-        return f"""From the following text {context}
-        Extract the following fields from the OCR content of the contract document:
-        maintain the sequence of the fields as per the contract
-
-        {value}
-
-        Response Format:
-        {self.generate_response_format(value)}
-
-        Note: 
-        Strictly return the Output in a json format
-        Strictly Do Not add any text in the reponse other than the answer
-        Do not return any other information or analysis
-        Do not Hallucinate the data. If the data is not present in the context, do not make any assumptions.
-        Do not print any other information or analysis
-        Do not return in List Format 
+    def _build_extraction_prompt(self, context: str, values: List) -> str:
+        """Build an optimized extraction prompt with strict JSON formatting."""
+        field_list = ', '.join([f'"{v}"' for v in values])
+        
+        return f"""
+        TASK: Extract specific fields from a contract document.
+        
+        DOCUMENT CONTENT:
+        ```
+        {context}
+        ```
+        
+        FIELDS TO EXTRACT (in this order):
+        {field_list}
+        
+        RESPONSE FORMAT:
+        You MUST return ONLY a valid JSON object with double quotes around ALL keys and values.
+        
+        Example of CORRECT format:
+        {{
+        "field1": "extracted value 1",
+        "field2": "extracted value 2"
+        }}
+        
+        Examples of INCORRECT formats:
+        {{ field1: "extracted value 1", field2: "extracted value 2" }}  // Missing quotes around keys
+        {{ 'field1': 'extracted value 1', 'field2': 'extracted value 2' }}  // Single quotes instead of double
+        
+        EXTRACTION RULES:
+        - If a field is not found, use empty string: ""
+        - All JSON keys and string values MUST have double quotes
+        - No trailing commas allowed in the JSON
+        - Ensure all special characters in values are properly escaped
+        
+        IMPORTANT:
+        - Return ONLY the JSON object with no explanations or additional text
+        - The response MUST be valid, parseable JSON
+        - Do not include backticks (```) or json tags around the response
         """
 
     def clean_json_string(self, json_str):
