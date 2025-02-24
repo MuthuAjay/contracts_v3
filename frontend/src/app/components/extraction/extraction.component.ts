@@ -32,20 +32,20 @@ interface ExtractionData {
         transform: 'translateY(0)'
       })),
       transition('void => *', [
-        animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+        animate('400ms ease-in-out') // Slightly longer duration with gentler easing
       ]),
       transition('* => void', [
-        animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+        animate('300ms ease-in-out')
       ])
     ]),
     trigger('fadeInOut', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(-10px)' }),
-        animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)', 
+        animate('300ms ease-in-out', 
           style({ opacity: 1, transform: 'translateY(0)' }))
       ]),
       transition(':leave', [
-        animate('150ms cubic-bezier(0.4, 0.0, 0.2, 1)', 
+        animate('200ms ease-in-out', 
           style({ opacity: 0, transform: 'translateY(-10px)' }))
       ])
     ]),

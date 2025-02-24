@@ -348,6 +348,7 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #90a4ae #f5f7fa;
+  scroll-behavior: smooth; // Enable smooth scrolling
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -397,6 +398,7 @@
   padding: 24px;
   overflow-y: auto;
   overflow-x: hidden; // Prevent horizontal scroll
+  scroll-behavior: smooth; // Enable smooth scrolling
   
   h3 {
     position: relative; // Change from sticky to relative
