@@ -17,6 +17,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  h2 {
+    font-family: var(--font-primary);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
 }
 
 .header-left {
@@ -200,6 +207,8 @@
   text-align: center;
   color: #718096;
   font-style: italic;
+  font-family: var(--font-primary);
+  font-size: 14px;
 }
 
 /* Table styling */
@@ -218,6 +227,45 @@
   transform: translateZ(0);
   will-change: transform, opacity;
   backface-visibility: hidden;
+
+  th {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  td {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .term-cell {
+    font-weight: 500;
+  }
+
+  .value-cell {
+    font-weight: 400;
+  }
+
+  .confidence-cell {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .timestamp-cell {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .section-cell {
+    font-size: 13px;
+    font-weight: 500;
+  }
 }
 
 .data-table th, .data-table td {
@@ -246,14 +294,36 @@
 
 .data-table th, .data-table td {
   &:nth-child(1) { // Term column
-    width: 30%;
+    width: 20%;
   }
   &:nth-child(2) { // Value column
-    width: 45%;
+    width: 35%;
   }
-  &:nth-child(3) { // Timestamp column
-    width: 25%;
+  &:nth-child(3) { // Section column
+    width: 15%;
   }
+  &:nth-child(4) { // Confidence column
+    width: 10%;
+  }
+  &:nth-child(5) { // Timestamp column
+    width: 20%;
+  }
+}
+
+.confidence-cell {
+  text-align: center;
+  font-weight: 500;
+  
+  &:hover {
+    cursor: help;
+  }
+}
+
+.section-cell {
+  color: #718096;
+  font-style: normal; // Remove italic
+  font-family: var(--font-primary);
+  font-weight: 500;
 }
 
 .term-cell {
@@ -346,6 +416,19 @@
   .table-column {
     flex: 1;
   }
+
+  .data-table {
+    td, th {
+      &:nth-child(3),  // Hide section column
+      &:nth-child(4) { // Hide confidence column
+        display: none;
+      }
+      
+      &:nth-child(1) { width: 30%; } // Term
+      &:nth-child(2) { width: 40%; } // Value
+      &:nth-child(5) { width: 30%; } // Timestamp
+    }
+  }
 }
 
 // Update two-column layout
@@ -384,6 +467,9 @@
   padding: 16px 20px;
   border-bottom: 1px solid #f0f0f0;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 500;
 
   &:hover {
     background-color: #f5f7fa;
@@ -513,4 +599,5 @@
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
+  font-family: var(--font-primary);
 }

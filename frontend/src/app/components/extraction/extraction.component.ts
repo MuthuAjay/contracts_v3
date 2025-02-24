@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate, sequence, query, stagger } from '@angular/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 interface ExtractionResult {
   term: string;
   extracted_value: string;
+  section?: string;
+  confidence_score?: number;
   timestamp: string;
   category?: string;
 }
@@ -17,7 +20,7 @@ interface ExtractionData {
 
 @Component({
   selector: 'app-extraction',
-  imports: [CommonModule],
+  imports: [CommonModule, MatTooltipModule],
   templateUrl: './extraction.component.html',
   styleUrl: './extraction.component.scss',
   standalone: true,
@@ -278,6 +281,8 @@ export class ExtractionComponent implements OnInit {
       return {
         term: 'Unknown',
         extracted_value: String(item),
+        section: 'N/A',
+        confidence_score: 0,
         timestamp: new Date().toISOString(),
         category: 'Additional Terms and Conditions'
       };
@@ -288,6 +293,9 @@ export class ExtractionComponent implements OnInit {
       extracted_value: typeof item.extracted_value === 'object' ? 
         JSON.stringify(item.extracted_value) : 
         String(item.extracted_value || ''),
+      section: item.section || 'N/A',
+      confidence_score: typeof item.confidence_score === 'number' ? 
+        item.confidence_score : 0,
       timestamp: item.timestamp || new Date().toISOString(),
       category: item.category || null
     };

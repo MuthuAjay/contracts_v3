@@ -170,7 +170,42 @@ class ExtractionProcessor:
             list(self.extraction_types.items()), columns=["Term", "Terms"]
         )
 
+    def extract_sections(self, content, agent, section):
+        extract_sections_prompt = f"""
+        Analyze the following text:
+        ---
+        {content}
+        ---
+        
+        The value "{section}" has been extracted from this text.
+        
+        Task:
+        1. Identify specifically which section/part of the document contains this value "{section}"
+        2. Determine how confident you are that this value belongs to the identified section
+        
+        Return ONLY a JSON with exactly these two fields:
+        - "section": The name of the section where "{section}" appears (e.g., "Header", "Personal Information", "Employment History", etc.)
+        - "confidence_score": A decimal between 0.0 and 1.0 representing your confidence
+        
+        Rules:
+        - Section name must be 5 words or less
+        - If you cannot determine the section, use "Unknown" with appropriate confidence score
+        - Do not add any explanations, notes, or other text in your response
+        - Return only valid JSON format
+        
+        Example valid response:
+        {{"section": "Contact Information", "confidence_score": 0.95}}
+        """
+        
+        response = agent.run(extract_sections_prompt)
+        
+        return response.content
+        
+
     def process_extractions(self, content, vec, agent) -> None:
+        
+        self.agent = agent
+        
         """Process all extractions"""
         for key, value in self.contract_sections.items():
             if key == "Contract Metadata":
@@ -178,19 +213,20 @@ class ExtractionProcessor:
             else:
                 context = content
 
-            response = agent.run(self._build_extraction_prompt(context, value))
-            self._store_result([response.content])
+            response = self.agent.run(self._build_extraction_prompt(context, value))
+            self._store_result([response.content], context)
 
             # break
             self.check_results(value)
             
         if len(self.error_strs) > 0:
             for error_str in self.error_strs:
-                response = agent.run(error_str)
-                self._store_result([response.content])
+                response = self.agent.run(error_str)
+                self._store_result([response.content], context)
                 
                 self.check_results(value)
-                
+    
+    
     def generate_response_format(self, values):
         response_format = ''
         for value in values:
@@ -214,7 +250,7 @@ class ExtractionProcessor:
         Strictly return the Output in a json format
         Strictly Do Not add any text in the reponse other than the answer
         Do not return any other information or analysis
-        Do not Hallucinate the data. If the data is not present in the OCR content, do not make any assumptions.
+        Do not Hallucinate the data. If the data is not present in the context, do not make any assumptions.
         Do not print any other information or analysis
         Do not return in List Format 
         """
@@ -276,17 +312,44 @@ class ExtractionProcessor:
 
         return merged_data
 
-    def _store_result(self, response: Any) -> None:
+    def _store_result(self, response: Any, context: str) -> None:
         """Store extraction result with section information"""
         parsed_response = self._parse_response(response)
 
         for key, value in parsed_response.items():
             if value == None or value == "":
                 value = "Not Found"
+                section = "Not Found"
+                confidence_score = "Not Found"
+                
+            elif value == "Not Found":
+                section = "Not Found"
+                confidence_score = "Not Found"
+                
+            elif value == "Not mentioned":
+                section = "Not mentioned"
+                confidence_score = "Not mentioned"
+                
+            elif value == "Not applicable":
+                section = "Not applicable"
+                confidence_score = "Not applicable"
+                
+            elif value == "Not Explicitly Mentioned":
+                section = "Not Explicitly Mentioned"
+                confidence_score = "Not Explicitly Mentioned"
+
+            else:
+                section = self.extract_sections(context, self.agent, value)
+                parsed_section = self._parse_response([section])
+                section = parsed_section["section"]
+                confidence_score = parsed_section["confidence_score"]
+
             self.results.append(
                 {
                     "term": key,
                     "extracted_value": value,
+                    "section": section,
+                    "confidence_score": confidence_score,
                     "timestamp": datetime.now().isoformat(),
                 }
             )

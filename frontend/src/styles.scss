@@ -1,9 +1,54 @@
 @use '@angular/material' as mat;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
 
 html, body {
   height: 100%;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #2d3748;
+}
+
+// Consistent heading styles
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+// Consistent button text
+button {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+// Consistent table text
+table {
+  font-family: var(--font-primary);
+  font-size: 14px;
+}
+
+// Table cell defaults
+td, th {
+  font-family: var(--font-primary) !important;
+  font-style: normal !important;
+}
+
+// Remove any inherited italic styles
+.section-cell,
+.value-cell,
+.term-cell,
+.timestamp-cell {
+  font-style: normal !important;
 }
 
 // // Custom Material theme

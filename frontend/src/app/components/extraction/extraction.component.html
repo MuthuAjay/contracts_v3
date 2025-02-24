@@ -56,6 +56,8 @@
                             <tr>
                                 <th>Term</th>
                                 <th>Value</th>
+                                <th>Section</th>
+                                <th class="confidence-col">Confidence</th>
                                 <th>Last Updated</th>
                             </tr>
                         </thead>
@@ -64,6 +66,10 @@
                                 [@fadeInOut]>
                                 <td class="term-cell">{{ item.term }}</td>
                                 <td class="value-cell">{{ item.extracted_value }}</td>
+                                <td class="section-cell">{{ item.section || 'N/A' }}</td>
+                                <td class="confidence-cell" [matTooltip]="item.confidence_score | number:'1.4-4'">
+                                    {{ item.confidence_score | percent:'1.0-0' }}
+                                </td>
                                 <td class="timestamp-cell">{{ item.timestamp | date:'medium' }}</td>
                             </tr>
                         </tbody>

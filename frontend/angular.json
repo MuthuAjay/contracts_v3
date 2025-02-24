@@ -91,7 +91,7 @@
               "frontend/src/assets"
             ],
             "styles": [
-              "frontend/src/styles.scss",
+              "src/styles.scss",
               "node_modules/github-markdown-css/github-markdown.css",
               "node_modules/highlight.js/styles/github.css"
             ],
