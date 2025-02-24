@@ -322,6 +322,12 @@ export class ExtractionComponent implements OnInit {
 
   // Toggle section expansion
   toggleSection(category: string): void {
+    // Close all other sections first
+    Object.keys(this.expandedSections).forEach(key => {
+      if (key !== category) {
+        this.expandedSections[key] = false;
+      }
+    });
     this.expandedSections[category] = !this.expandedSections[category];
   }
 
