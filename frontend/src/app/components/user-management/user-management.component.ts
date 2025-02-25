@@ -237,10 +237,10 @@ export class UserManagementComponent implements OnInit {
         this.router.navigate(['/contract-review']);
         break;
       case 'legal_research':
-        this.router.navigate(['/legal-research']);
+        this.router.navigate(['/legal_research']);
         break;
       case 'risk_assessment':
-        this.router.navigate(['/risk-assessment']);
+        this.router.navigate(['/risk_assessment']);
         break;
       case 'information_extraction':
         this.router.navigate(['/extraction']);

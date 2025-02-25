@@ -1,0 +1,103 @@
+<div class="contract-review-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <button class="back-button" (click)="backToContracts()">
+        <mat-icon>arrow_back</mat-icon> Back to Contracts
+      </button>
+      
+      <h1>Leagal Review: {{ fileName }}</h1>
+      
+      <div class="analysis-info">
+        <span class="analysis-type">{{ analysisType | titlecase }}</span>
+        <span class="analysis-date" *ngIf="analysisDate">Analysis Date: {{ analysisDate | date:'medium' }}</span>
+      </div>
+      
+      
+    </div>
+  
+    <!-- Loading State -->
+    <!-- <div *ngIf="isLoading" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Loading contract analysis...</p>
+    </div> -->
+  
+    <!-- Main Content -->
+    <div class="content-section" *ngIf="!isLoading && contractData">
+      <!-- Contract Review Section -->
+      <mat-card *ngIf="(currentSection === 'all' || currentSection === 'review') && contractData['Contract Review']" class="content-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>description</mat-icon>
+            Legal Review Summary
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="section-content markdown-body" [innerHTML]="contractData['Contract Review'] | lineToBr"></div>
+        </mat-card-content>
+      </mat-card>
+  
+      <!-- Key Terms Section -->
+      <mat-card *ngIf="(currentSection === 'all' || currentSection === 'terms') && contractData['Key Terms']" class="content-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>key</mat-icon>
+            Key Terms
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="section-content markdown-body" [innerHTML]="contractData['Key Terms'] | lineToBr"></div>
+        </mat-card-content>
+      </mat-card>
+  
+      <!-- Obligations Section -->
+      <mat-card *ngIf="(currentSection === 'all' || currentSection === 'obligations') && contractData['Obligations']" class="content-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>assignment</mat-icon>
+            Obligations
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="section-content markdown-body" [innerHTML]="contractData['Obligations'] | lineToBr"></div>
+        </mat-card-content>
+      </mat-card>
+  
+      <!-- Parties Section -->
+      <mat-card *ngIf="(currentSection === 'all' || currentSection === 'parties') && contractData['Parties']" class="content-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>people</mat-icon>
+            Parties Involved
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="section-content markdown-body" [innerHTML]="contractData['Parties'] | lineToBr"></div>
+        </mat-card-content>
+      </mat-card>
+  
+      <!-- Dynamic additional sections -->
+      <ng-container *ngFor="let section of getSections()">
+        <mat-card 
+          *ngIf="!['Contract Review', 'Key Terms', 'Obligations', 'Parties'].includes(section) && 
+                 (currentSection === 'all' || currentSection === section.toLowerCase())" 
+          class="content-card">
+          <mat-card-header>
+            <mat-card-title>
+              <mat-icon>article</mat-icon>
+              {{ section }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="section-content markdown-body" [innerHTML]="contractData[section] | lineToBr"></div>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    </div>
+  
+    <!-- No Data State -->
+    <div *ngIf="!isLoading && !contractData" class="no-data-container">
+      <mat-icon>error_outline</mat-icon>
+      <p>No contract review data available</p>
+      <button mat-button color="primary" (click)="backToContracts()">Return to Contracts</button>
+    </div>
+  </div>

@@ -13,6 +13,9 @@ import { AuthGuard } from './auth/auth.guard';
 import { ReviewComponent } from './components/review/review.component';
 import { ExtractionComponent } from './components/extraction/extraction.component';
 import { ContractReviewComponent } from './components/contract-review/contract-review.component';
+import { LegalResearchComponent } from './components/legal-research/legal-research.component';
+import { RiskAssessmentComponent } from './components/risk-assessment/risk-assessment.component';
+import { ContractSummaryComponent } from './components/contract-summary/contract-summary.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,7 +30,10 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent,},
   { path: 'Integration', component: ReviewComponent,},
   { path: 'extraction', component: ExtractionComponent,},
-  { path: 'contract-review', component: ContractReviewComponent,}
+  { path: 'contract-review', component: ContractReviewComponent,},
+  { path: 'legal_research', component: LegalResearchComponent,},
+  { path: 'risk_assessment', component: RiskAssessmentComponent,},
+  { path: 'contract_summary', component: ContractSummaryComponent,}
 ];
 
 @NgModule({

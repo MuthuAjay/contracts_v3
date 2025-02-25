@@ -158,7 +158,7 @@ def perform_legal_research(
 
 
 def perform_risk_assessment(
-    content: str, agent_manager: AgentManager
+    content: str, agent_manager: AgentManager, collection_name: str
 ) -> Optional[Dict[str, Any]]:
 
     agent = agent_manager.create_agent(
