@@ -35,29 +35,31 @@ interface ExtractionData {
         transform: 'translateY(0)'
       })),
       transition('void => *', [
-        animate('400ms ease-in-out') // Slightly longer duration with gentler easing
+        animate('450ms ease-out') // Smoother entry
       ]),
       transition('* => void', [
-        animate('300ms ease-in-out')
+        animate('350ms ease-in')
       ])
     ]),
     trigger('fadeInOut', [
       transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(-10px)' }),
-        animate('300ms ease-in-out', 
+        style({ opacity: 0, transform: 'translateY(-5px)' }),
+        animate('300ms ease-out', 
           style({ opacity: 1, transform: 'translateY(0)' }))
       ]),
       transition(':leave', [
-        animate('200ms ease-in-out', 
-          style({ opacity: 0, transform: 'translateY(-10px)' }))
+        animate('250ms ease-in', 
+          style({ opacity: 0, transform: 'translateY(-5px)' }))
       ])
     ]),
     trigger('tableAnimation', [
       transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(10px)' }),
+        animate('400ms 150ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
         query('tr', [
           style({ opacity: 0, transform: 'translateY(10px)' }),
-          stagger(30, [
-            animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)', 
+          stagger(25, [
+            animate('300ms ease-out', 
               style({ opacity: 1, transform: 'translateY(0)' }))
           ])
         ], { optional: true })
