@@ -5,99 +5,118 @@
         <mat-icon>arrow_back</mat-icon> Back to Contracts
       </button>
       
-      <h1>Leagal Review: {{ fileName }}</h1>
+      <h1>Risk Assessment: {{ fileName }}</h1>
       
       <div class="analysis-info">
         <span class="analysis-type">{{ analysisType | titlecase }}</span>
         <span class="analysis-date" *ngIf="analysisDate">Analysis Date: {{ analysisDate | date:'medium' }}</span>
       </div>
       
-      
+      <!-- Debug info -->
+      <div *ngIf="!contractData && rawData" class="debug-info">
+        <button mat-button color="warn" (click)="loadContractData()">
+          <mat-icon>refresh</mat-icon> Reload Data
+        </button>
+        <p>Data loaded but not displayed properly. Check console for details.</p>
+      </div>
     </div>
   
     <!-- Loading State -->
-    <!-- <div *ngIf="isLoading" class="loading-container">
+    <div *ngIf="isLoading" class="loading-container">
       <mat-spinner diameter="50"></mat-spinner>
-      <p>Loading contract analysis...</p>
-    </div> -->
+      <p>Loading risk assessment data...</p>
+    </div>
   
     <!-- Main Content -->
     <div class="content-section" *ngIf="!isLoading && contractData">
-      <!-- Contract Review Section -->
-      <mat-card *ngIf="(currentSection === 'all' || currentSection === 'review') && contractData['Contract Review']" class="content-card">
+      <!-- Legal Risks Section -->
+      <mat-card *ngIf="contractData['legal']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('legal')">
         <mat-card-header>
           <mat-card-title>
-            <mat-icon>description</mat-icon>
-            Legal Review Summary
+            <mat-icon>gavel</mat-icon>
+            Legal Risks
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <div class="section-content markdown-body" [innerHTML]="contractData['Contract Review'] | lineToBr"></div>
+          <div class="section-content markdown-body" [innerHTML]="contractData['legal']"></div>
         </mat-card-content>
       </mat-card>
   
-      <!-- Key Terms Section -->
-      <mat-card *ngIf="(currentSection === 'all' || currentSection === 'terms') && contractData['Key Terms']" class="content-card">
+      <!-- Financial Risks Section -->
+      <mat-card *ngIf="contractData['financial']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('financial')">
         <mat-card-header>
           <mat-card-title>
-            <mat-icon>key</mat-icon>
-            Key Terms
+            <mat-icon>attach_money</mat-icon>
+            Financial Risks
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <div class="section-content markdown-body" [innerHTML]="contractData['Key Terms'] | lineToBr"></div>
+          <div class="section-content markdown-body" [innerHTML]="contractData['financial']"></div>
         </mat-card-content>
       </mat-card>
   
-      <!-- Obligations Section -->
-      <mat-card *ngIf="(currentSection === 'all' || currentSection === 'obligations') && contractData['Obligations']" class="content-card">
+      <!-- Operational Risks Section -->
+      <mat-card *ngIf="contractData['operational']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('operational')">
         <mat-card-header>
           <mat-card-title>
-            <mat-icon>assignment</mat-icon>
-            Obligations
+            <mat-icon>build</mat-icon>
+            Operational Risks
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <div class="section-content markdown-body" [innerHTML]="contractData['Obligations'] | lineToBr"></div>
+          <div class="section-content markdown-body" [innerHTML]="contractData['operational']"></div>
         </mat-card-content>
       </mat-card>
   
-      <!-- Parties Section -->
-      <mat-card *ngIf="(currentSection === 'all' || currentSection === 'parties') && contractData['Parties']" class="content-card">
+      <!-- Compliance Risks Section -->
+      <mat-card *ngIf="contractData['compliance']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('compliance')">
         <mat-card-header>
           <mat-card-title>
-            <mat-icon>people</mat-icon>
-            Parties Involved
+            <mat-icon>verified_user</mat-icon>
+            Compliance Risks
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <div class="section-content markdown-body" [innerHTML]="contractData['Parties'] | lineToBr"></div>
+          <div class="section-content markdown-body" [innerHTML]="contractData['compliance']"></div>
         </mat-card-content>
       </mat-card>
-  
+      
       <!-- Dynamic additional sections -->
       <ng-container *ngFor="let section of getSections()">
         <mat-card 
-          *ngIf="!['Contract Review', 'Key Terms', 'Obligations', 'Parties'].includes(section) && 
-                 (currentSection === 'all' || currentSection === section.toLowerCase())" 
-          class="content-card">
+          *ngIf="!['legal', 'financial', 'operational', 'compliance', 'Raw Data'].includes(section)" 
+          class="content-card risk-card" 
+          [ngClass]="'risk-' + getRiskLevel(section)">
           <mat-card-header>
             <mat-card-title>
-              <mat-icon>article</mat-icon>
-              {{ section }}
+              <mat-icon>assessment</mat-icon>
+              {{ section | titlecase }} Risks
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <div class="section-content markdown-body" [innerHTML]="contractData[section] | lineToBr"></div>
+            <div class="section-content markdown-body" [innerHTML]="contractData[section]"></div>
           </mat-card-content>
         </mat-card>
       </ng-container>
+
+      <!-- Raw data display as fallback -->
+      <mat-card *ngIf="getSections().length === 0 && contractData['Raw Data']" class="content-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>code</mat-icon>
+            Risk Assessment Data
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <pre class="raw-data">{{ contractData['Raw Data'] | json }}</pre>
+        </mat-card-content>
+      </mat-card>
     </div>
   
     <!-- No Data State -->
     <div *ngIf="!isLoading && !contractData" class="no-data-container">
       <mat-icon>error_outline</mat-icon>
-      <p>No contract review data available</p>
+      <p>No risk assessment data available</p>
       <button mat-button color="primary" (click)="backToContracts()">Return to Contracts</button>
     </div>
-  </div>
+</div>
