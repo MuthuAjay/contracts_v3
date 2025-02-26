@@ -57,20 +57,23 @@
     </div>
   </div>
   
-  <!-- Input Area -->
+  <!-- Input Area - Now positioned absolutely -->
   <div class="input-container">
     <textarea
       #inputArea
       [(ngModel)]="newMessage"
-      placeholder="Type your message..."
+      placeholder="Type your message here..."
       (keydown)="onKeyDown($event)"
       (input)="onInput()"
       [disabled]="isLoading || !currentContract"
+      rows="1"
+      aria-label="Message input"
     ></textarea>
     <button 
       [disabled]="!newMessage.trim() || isLoading || !currentContract" 
       (click)="sendMessage()"
       class="send-button"
+      aria-label="Send message"
     >
       <i class="fas fa-paper-plane"></i>
     </button>

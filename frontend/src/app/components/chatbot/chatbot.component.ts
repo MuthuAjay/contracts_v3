@@ -68,6 +68,13 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
     
     this.initializeChat();
     this.loadStoredMessages();
+    
+    // Ensure input is properly sized on init
+    setTimeout(() => {
+      if (this.inputArea) {
+        this.resetInputHeight();
+      }
+    }, 100);
   }
 
   ngAfterViewChecked(): void {
@@ -183,6 +190,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
     } finally {
       this.isLoading = false;
       this.saveMessages();
+      this.resetInputHeight();
     }
   }
 
@@ -310,9 +318,15 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   private scrollToBottom(): void {
     try {
-      this.messageContainer.nativeElement.scrollTop = 
-        this.messageContainer.nativeElement.scrollHeight;
-    } catch (err) {}
+      setTimeout(() => {
+        if (this.messageContainer) {
+          const element = this.messageContainer.nativeElement;
+          element.scrollTop = element.scrollHeight;
+        }
+      }, 50);
+    } catch (err) {
+      console.error('Error scrolling to bottom', err);
+    }
   }
 
   private generateMessageId(): string {
@@ -321,14 +335,33 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   public onInput(): void {
     const textarea = this.inputArea.nativeElement;
+    // Reset height to measure correctly
     textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
+    // Set to scrollHeight but with a max
+    const newHeight = Math.min(textarea.scrollHeight, 150);
+    textarea.style.height = `${newHeight}px`;
+    
+    // Adjust scroll position when typing area expands
+    if (textarea.scrollHeight > 70) {
+      this.scrollToBottom();
+    }
+  }
+  
+  // Add method to reset input height
+  private resetInputHeight(): void {
+    if (this.inputArea) {
+      const textarea = this.inputArea.nativeElement;
+      textarea.style.height = 'auto';
+      textarea.style.height = `${Math.min(textarea.scrollHeight, 44)}px`;
+    }
   }
 
   public clearChat(): void {
     this.messages = [];
     this.initializeChat();
     localStorage.removeItem('chatMessages');
+    this.resetInputHeight();
+    this.newMessage = '';
   }
   
   public returnToContracts(): void {
