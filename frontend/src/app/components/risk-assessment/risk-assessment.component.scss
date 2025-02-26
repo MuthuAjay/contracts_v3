@@ -79,10 +79,14 @@
       flex-wrap: wrap;
       gap: 12px;
       border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 12px;
+      padding: 10px 0;
+      margin-top: 20px;
+      overflow-x: auto;
       
       button {
-        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
         background: none;
         border: none;
         border-radius: 6px;
@@ -91,6 +95,14 @@
         font-weight: 500;
         color: #4a5568;
         transition: all 0.2s ease;
+        white-space: nowrap;
+        
+        mat-icon {
+          margin-right: 8px;
+          font-size: 18px;
+          height: 18px;
+          width: 18px;
+        }
         
         &:hover {
           background-color: #edf2f7;
@@ -229,6 +241,29 @@
       color: #757575;
       font-size: 18px;
       margin-bottom: 20px;
+    }
+  }
+
+  .no-risks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      color: #bdbdbd;
+      margin-bottom: 16px;
+    }
+    
+    p {
+      color: #757575;
+      font-size: 18px;
     }
   }
 
@@ -527,4 +562,57 @@ mat-card-content {
   0% { opacity: 0.6; }
   50% { opacity: 1; }
   100% { opacity: 0.6; }
+}
+
+// Risk tab color indicators
+.navigation-tabs button {
+  position: relative;
+  padding-bottom: 12px;
+  
+  &.active[class*="legal"] {
+    background-color: rgba(229, 62, 62, 0.8);
+  }
+  
+  &.active[class*="financial"] {
+    background-color: rgba(237, 137, 54, 0.8);
+  }
+  
+  &.active[class*="operational"] {
+    background-color: rgba(56, 161, 105, 0.8);
+  }
+  
+  &.active[class*="compliance"] {
+    background-color: rgba(66, 153, 225, 0.8);
+  }
+  
+  &:not(.active)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    transition: width 0.3s ease;
+  }
+  
+  &:hover:not(.active)::after {
+    width: 80%;
+  }
+  
+  &[class*="legal"]:not(.active)::after {
+    background-color: rgba(229, 62, 62, 0.5);
+  }
+  
+  &[class*="financial"]:not(.active)::after {
+    background-color: rgba(237, 137, 54, 0.5);
+  }
+  
+  &[class*="operational"]:not(.active)::after {
+    background-color: rgba(56, 161, 105, 0.5);
+  }
+  
+  &[class*="compliance"]:not(.active)::after {
+    background-color: rgba(66, 153, 225, 0.5);
+  }
 }

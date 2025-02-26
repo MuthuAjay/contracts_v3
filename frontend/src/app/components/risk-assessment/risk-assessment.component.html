@@ -19,6 +19,17 @@
         </button>
         <p>Data loaded but not displayed properly. Check console for details.</p>
       </div>
+
+      <!-- Category Tabs -->
+      <div class="navigation-tabs" *ngIf="!isLoading && contractData">
+        <button 
+          *ngFor="let category of getCategories()" 
+          [class.active]="currentSection === category"
+          (click)="changeSection(category)">
+          <mat-icon>{{ getCategoryIcon(category) }}</mat-icon>
+          {{ category === 'all' ? 'All Risks' : (category | titlecase) }}
+        </button>
+      </div>
     </div>
   
     <!-- Loading State -->
@@ -30,7 +41,7 @@
     <!-- Main Content -->
     <div class="content-section" *ngIf="!isLoading && contractData">
       <!-- Legal Risks Section -->
-      <mat-card *ngIf="contractData['legal']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('legal')">
+      <mat-card *ngIf="shouldShowSection('legal') && contractData['legal']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('legal')">
         <mat-card-header>
           <mat-card-title>
             <mat-icon>gavel</mat-icon>
@@ -43,7 +54,7 @@
       </mat-card>
   
       <!-- Financial Risks Section -->
-      <mat-card *ngIf="contractData['financial']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('financial')">
+      <mat-card *ngIf="shouldShowSection('financial') && contractData['financial']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('financial')">
         <mat-card-header>
           <mat-card-title>
             <mat-icon>attach_money</mat-icon>
@@ -56,7 +67,7 @@
       </mat-card>
   
       <!-- Operational Risks Section -->
-      <mat-card *ngIf="contractData['operational']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('operational')">
+      <mat-card *ngIf="shouldShowSection('operational') && contractData['operational']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('operational')">
         <mat-card-header>
           <mat-card-title>
             <mat-icon>build</mat-icon>
@@ -69,7 +80,7 @@
       </mat-card>
   
       <!-- Compliance Risks Section -->
-      <mat-card *ngIf="contractData['compliance']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('compliance')">
+      <mat-card *ngIf="shouldShowSection('compliance') && contractData['compliance']" class="content-card risk-card" [ngClass]="'risk-' + getRiskLevel('compliance')">
         <mat-card-header>
           <mat-card-title>
             <mat-icon>verified_user</mat-icon>
@@ -84,7 +95,8 @@
       <!-- Dynamic additional sections -->
       <ng-container *ngFor="let section of getSections()">
         <mat-card 
-          *ngIf="!['legal', 'financial', 'operational', 'compliance', 'Raw Data'].includes(section)" 
+          *ngIf="!['legal', 'financial', 'operational', 'compliance', 'Raw Data'].includes(section) && 
+                 shouldShowSection(section)" 
           class="content-card risk-card" 
           [ngClass]="'risk-' + getRiskLevel(section)">
           <mat-card-header>
@@ -98,6 +110,12 @@
           </mat-card-content>
         </mat-card>
       </ng-container>
+
+      <!-- No risks message when filtering shows nothing -->
+      <div *ngIf="currentSection !== 'all' && !contractData[currentSection]" class="no-risks-container">
+        <mat-icon>info</mat-icon>
+        <p>No {{ currentSection | titlecase }} risks found in this assessment.</p>
+      </div>
 
       <!-- Raw data display as fallback -->
       <mat-card *ngIf="getSections().length === 0 && contractData['Raw Data']" class="content-card">
