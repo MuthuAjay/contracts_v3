@@ -1,138 +1,303 @@
 <div class="contract-review-container">
-  <!-- Header Section -->
+  <!-- Header Section with enhanced layout -->
   <div class="header-section">
-    <button class="back-button" (click)="backToContracts()">
-      <mat-icon>arrow_back</mat-icon> Back to Contracts
-    </button>
-    
-    <h1>Contract Analysis: {{ fileName }}</h1>
-    
-    <div class="analysis-info">
-      <span class="analysis-type">{{ analysisType | titlecase }}</span>
-      <span class="analysis-date" *ngIf="analysisDate">Analysis Date: {{ analysisDate | date:'medium' }}</span>
+    <div class="header-top">
+      <button class="back-button" (click)="backToContracts()">
+        <mat-icon>arrow_back</mat-icon> Back to Contracts
+      </button>
+      
+      <div class="header-actions">
+        <button mat-icon-button matTooltip="Print Analysis" aria-label="Print" (click)="printAnalysis()">
+          <mat-icon>print</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Reload Data" aria-label="Reload" (click)="reloadData()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
     </div>
     
-    <div class="navigation-tabs">
-      <button 
-        [class.active]="currentSection === 'all'"
-        (click)="setCurrentSection('all')">
-        All Sections
-      </button>
-      <button 
-        [class.active]="currentSection === 'review'"
-        (click)="setCurrentSection('review')">
-        Review
-      </button>
-      <button 
-        [class.active]="currentSection === 'terms'"
-        (click)="setCurrentSection('terms')">
-        Key Terms
-      </button>
-      <button 
-        [class.active]="currentSection === 'obligations'"
-        (click)="setCurrentSection('obligations')">
-        Obligations
-      </button>
-      <button 
-        [class.active]="currentSection === 'parties'"
-        (click)="setCurrentSection('parties')">
-        Parties
-      </button>
-      <!-- Dynamic sections for additional data -->
-      <ng-container *ngFor="let section of getSections()">
+    <h1>Contract Analysis: <span class="filename">{{ fileName }}</span></h1>
+    
+    <div class="analysis-info">
+      <div class="analysis-badge">
+        <mat-icon>assessment</mat-icon>
+        <span class="analysis-type">{{ analysisType | titlecase }}</span>
+      </div>
+      <span class="analysis-date" *ngIf="analysisDate">
+        <mat-icon>calendar_today</mat-icon>
+        {{ analysisDate | date:'medium' }}
+      </span>
+    </div>
+    
+    <!-- Section Navigation with improved design -->
+    <div class="navigation-container">
+      <p class="nav-label">Navigate Sections:</p>
+      <div class="navigation-tabs">
         <button 
-          *ngIf="!['Contract Review', 'Key Terms', 'Obligations', 'Parties'].includes(section)"
-          [class.active]="currentSection === section.toLowerCase()"
-          (click)="setCurrentSection(section.toLowerCase())">
-          {{ section }}
+          [class.active]="currentSection === 'all'"
+          (click)="setCurrentSection('all')">
+          <mat-icon>dashboard</mat-icon>
+          All Sections
         </button>
-      </ng-container>
+        <button 
+          [class.active]="currentSection === 'review'"
+          (click)="setCurrentSection('review')">
+          <mat-icon>description</mat-icon>
+          Review
+        </button>
+        <button 
+          [class.active]="currentSection === 'terms'"
+          (click)="setCurrentSection('terms')">
+          <mat-icon>key</mat-icon>
+          Key Terms
+        </button>
+        <button 
+          [class.active]="currentSection === 'obligations'"
+          (click)="setCurrentSection('obligations')">
+          <mat-icon>assignment</mat-icon>
+          Obligations
+        </button>
+        <button 
+          [class.active]="currentSection === 'parties'"
+          (click)="setCurrentSection('parties')">
+          <mat-icon>people</mat-icon>
+          Parties
+        </button>
+        <!-- Dynamic sections for additional data -->
+        <ng-container *ngFor="let section of getSections()">
+          <button 
+            *ngIf="!['Contract Review', 'Key Terms', 'Obligations', 'Parties', 'Raw Data', 'Error', 'Debug Info'].includes(section)"
+            [class.active]="currentSection === section.toLowerCase()"
+            (click)="setCurrentSection(section.toLowerCase())">
+            <mat-icon>article</mat-icon>
+            {{ section }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+    
+    <!-- View options toggle (only show view mode options, remove table of contents toggle) -->
+    <div class="view-options">
+      <div class="view-toggle">
+        <button [class.active]="viewMode === 'cards'" (click)="setViewMode('cards')">
+          <mat-icon>grid_view</mat-icon>
+          Card View
+        </button>
+        <button [class.active]="viewMode === 'list'" (click)="setViewMode('list')">
+          <mat-icon>view_list</mat-icon>
+          List View
+        </button>
+        <button [class.active]="viewMode === 'compact'" (click)="setViewMode('compact')">
+          <mat-icon>view_compact</mat-icon>
+          Compact
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Loading State -->
+  <!-- Loading State with improved animation -->
   <div *ngIf="isLoading" class="loading-container">
-    <mat-spinner diameter="50"></mat-spinner>
+    <div class="loading-animation">
+      <mat-spinner diameter="60"></mat-spinner>
+    </div>
     <p>Loading contract analysis...</p>
   </div>
 
-  <!-- Main Content -->
-  <div class="content-section" *ngIf="!isLoading && contractData">
+  <!-- Main Content with enhanced cards but no table of contents -->
+  <div class="content-section" 
+     *ngIf="!isLoading && contractData" 
+     [ngClass]="{
+       'all-sections-view': currentSection === 'all',
+       'compact-view': viewMode === 'compact',
+       'list-view': viewMode === 'list',
+       'card-view': viewMode === 'cards'
+     }">
+    
     <!-- Contract Review Section -->
-    <mat-card *ngIf="(currentSection === 'all' || currentSection === 'review') && contractData['Contract Review']" class="content-card">
+    <mat-card *ngIf="(currentSection === 'all' || currentSection === 'review') && contractData['Contract Review']" 
+             class="content-card review-card" 
+             [ngClass]="{'full-width': currentSection === 'all' || viewMode === 'list'}"
+             id="section-review">
+      <div class="section-anchor" id="anchor-review"></div>
       <mat-card-header>
-        <mat-card-title>
+        <div class="card-icon-container">
           <mat-icon>description</mat-icon>
+        </div>
+        <mat-card-title>
           Contract Review Summary
         </mat-card-title>
+        <mat-card-subtitle>
+          Key findings and general observations
+        </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-        <div class="section-content markdown-body" [innerHTML]="contractData['Contract Review'] | lineToBr"></div>
+      <mat-card-content [ngClass]="{'limit-height': viewMode === 'compact' && currentSection === 'all'}">
+        <div class="section-content markdown-body" [innerHTML]="contractData['Contract Review']"></div>
       </mat-card-content>
     </mat-card>
 
     <!-- Key Terms Section -->
-    <mat-card *ngIf="(currentSection === 'all' || currentSection === 'terms') && contractData['Key Terms']" class="content-card">
+    <mat-card *ngIf="(currentSection === 'all' || currentSection === 'terms') && contractData['Key Terms']" 
+             class="content-card terms-card"
+             [ngClass]="{'full-width': currentSection === 'all' || viewMode === 'list'}"
+             id="section-terms">
+      <div class="section-anchor" id="anchor-terms"></div>
       <mat-card-header>
-        <mat-card-title>
+        <div class="card-icon-container">
           <mat-icon>key</mat-icon>
+        </div>
+        <mat-card-title>
           Key Terms
         </mat-card-title>
+        <mat-card-subtitle>
+          Important clauses and provisions
+        </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-        <div class="section-content markdown-body" [innerHTML]="contractData['Key Terms'] | lineToBr"></div>
+      <mat-card-content [ngClass]="{'limit-height': viewMode === 'compact' && currentSection === 'all'}">
+        <div class="section-content markdown-body" [innerHTML]="contractData['Key Terms']"></div>
       </mat-card-content>
     </mat-card>
 
     <!-- Obligations Section -->
-    <mat-card *ngIf="(currentSection === 'all' || currentSection === 'obligations') && contractData['Obligations']" class="content-card">
+    <mat-card *ngIf="(currentSection === 'all' || currentSection === 'obligations') && contractData['Obligations']" 
+             class="content-card obligations-card"
+             [ngClass]="{'full-width': currentSection === 'all' || viewMode === 'list'}"
+             id="section-obligations">
+      <div class="section-anchor" id="anchor-obligations"></div>
       <mat-card-header>
-        <mat-card-title>
+        <div class="card-icon-container">
           <mat-icon>assignment</mat-icon>
+        </div>
+        <mat-card-title>
           Obligations
         </mat-card-title>
+        <mat-card-subtitle>
+          Required actions and responsibilities
+        </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-        <div class="section-content markdown-body" [innerHTML]="contractData['Obligations'] | lineToBr"></div>
+      <mat-card-content [ngClass]="{'limit-height': viewMode === 'compact' && currentSection === 'all'}">
+        <div class="section-content markdown-body" [innerHTML]="contractData['Obligations']"></div>
       </mat-card-content>
     </mat-card>
 
     <!-- Parties Section -->
-    <mat-card *ngIf="(currentSection === 'all' || currentSection === 'parties') && contractData['Parties']" class="content-card">
+    <mat-card *ngIf="(currentSection === 'all' || currentSection === 'parties') && contractData['Parties']" 
+             class="content-card parties-card"
+             [ngClass]="{'full-width': currentSection === 'all' || viewMode === 'list'}"
+             id="section-parties">
+      <div class="section-anchor" id="anchor-parties"></div>
       <mat-card-header>
-        <mat-card-title>
+        <div class="card-icon-container">
           <mat-icon>people</mat-icon>
+        </div>
+        <mat-card-title>
           Parties Involved
         </mat-card-title>
+        <mat-card-subtitle>
+          Entities bound by this contract
+        </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-        <div class="section-content markdown-body" [innerHTML]="contractData['Parties'] | lineToBr"></div>
+      <mat-card-content [ngClass]="{'limit-height': viewMode === 'compact' && currentSection === 'all'}">
+        <div class="section-content markdown-body" [innerHTML]="contractData['Parties']"></div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Debug Raw Data Section -->
+    <mat-card *ngIf="(currentSection === 'all' || currentSection === 'raw') && contractData['Raw Data']" 
+             class="content-card"
+             [ngClass]="{'full-width': currentSection === 'all' || viewMode === 'list'}"
+             id="section-raw">
+      <div class="section-anchor" id="anchor-raw"></div>
+      <mat-card-header>
+        <div class="card-icon-container">
+          <mat-icon>code</mat-icon>
+        </div>
+        <mat-card-title>
+          Raw Data
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content [ngClass]="{'limit-height': viewMode === 'compact' && currentSection === 'all'}">
+        <div class="section-content raw-data" [innerHTML]="contractData['Raw Data']"></div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Error Debug Section -->
+    <mat-card *ngIf="contractData['Error']" 
+             class="content-card error-card"
+             [ngClass]="{'full-width': currentSection === 'all' || viewMode === 'list'}"
+             id="section-error">
+      <div class="section-anchor" id="anchor-error"></div>
+      <mat-card-header>
+        <div class="card-icon-container">
+          <mat-icon>error</mat-icon>
+        </div>
+        <mat-card-title>
+          Error Information
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content [ngClass]="{'limit-height': viewMode === 'compact' && currentSection === 'all'}">
+        <div class="section-content markdown-body" [innerHTML]="contractData['Error']"></div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Debug Info Section -->
+    <mat-card *ngIf="contractData['Debug Info']" 
+             class="content-card debug-card"
+             [ngClass]="{'full-width': currentSection === 'all' || viewMode === 'list'}"
+             id="section-debug">
+      <div class="section-anchor" id="anchor-debug"></div>
+      <mat-card-header>
+        <div class="card-icon-container">
+          <mat-icon>bug_report</mat-icon>
+        </div>
+        <mat-card-title>
+          Debug Information
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content [ngClass]="{'limit-height': viewMode === 'compact' && currentSection === 'all'}">
+        <div class="section-content markdown-body" [innerHTML]="contractData['Debug Info']"></div>
       </mat-card-content>
     </mat-card>
 
     <!-- Dynamic additional sections -->
     <ng-container *ngFor="let section of getSections()">
       <mat-card 
-        *ngIf="!['Contract Review', 'Key Terms', 'Obligations', 'Parties'].includes(section) && 
+        *ngIf="!['Contract Review', 'Key Terms', 'Obligations', 'Parties', 'Raw Data', 'Error', 'Debug Info'].includes(section) && 
                (currentSection === 'all' || currentSection === section.toLowerCase())" 
-        class="content-card">
+        class="content-card"
+        [ngClass]="{'full-width': currentSection === 'all' || viewMode === 'list'}"
+        [id]="formatSectionId(section)">
+        <div class="section-anchor" [id]="formatSectionId(section, 'anchor')"></div>
         <mat-card-header>
-          <mat-card-title>
+          <div class="card-icon-container">
             <mat-icon>article</mat-icon>
+          </div>
+          <mat-card-title>
             {{ section }}
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          <div class="section-content markdown-body" [innerHTML]="contractData[section] | lineToBr"></div>
+        <mat-card-content [ngClass]="{'limit-height': viewMode === 'compact' && currentSection === 'all'}">
+          <div class="section-content markdown-body" [innerHTML]="contractData[section]"></div>
         </mat-card-content>
       </mat-card>
     </ng-container>
   </div>
 
-  <!-- No Data State -->
+  <!-- No Data State with improved visuals -->
   <div *ngIf="!isLoading && !contractData" class="no-data-container">
-    <mat-icon>error_outline</mat-icon>
-    <p>No contract review data available</p>
-    <button mat-button color="primary" (click)="backToContracts()">Return to Contracts</button>
+    <div class="empty-state-icon">
+      <mat-icon>error_outline</mat-icon>
+    </div>
+    <h2>No Contract Analysis Available</h2>
+    <p>There is no review data available for this contract</p>
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="backToContracts()">
+        <mat-icon>arrow_back</mat-icon>
+        Return to Contracts
+      </button>
+      <button mat-stroked-button color="accent" (click)="reloadData()">
+        <mat-icon>refresh</mat-icon>
+        Retry Loading
+      </button>
+    </div>
   </div>
 </div>
