@@ -278,11 +278,15 @@ class ExtractionProcessor:
         EXTRACTION STRATEGY:
         You are a contract metadata specialist. Follow these steps:
         
-        First, identify basic contract information (Contract Name, Agreement Type, Country).
+        First, identify basic contract information (Contract Name, Agreement Type, Country, Contract Details).
+        Note Agreement Type can be one of the following: Non-Disclosure Agreement, Service Agreement, Master Service Agreement, etc.
+        Note Contract Details can include the contract purpose, scope, and key terms (In Two Lines). 
         Second, extract entity information (Entity Name, Counterparty Name).
         Third, determine ownership and classification details (Department, SPOC, Agreement Group).
         Fourth, extract family relationship information (Family Agreement, Hierarchy).
         Finally, identify any document management details (Scanned status, Summary).
+        Note Family Documents Present can be Yes/No.
+        Note Summary should be a short overview of the contract.
         """,
             
             "Key Dates and Duration": f"""
@@ -299,8 +303,9 @@ class ExtractionProcessor:
         EXTRACTION STRATEGY:
         You are a contract timeline analyst. Follow these steps:
         
-        First, identify start dates (Signature Date, Effective Date, Contract Start Date).
+        First, identify start dates (Signature Date, Effective Date, Contract Start Date), Like When the Agreement Start.
         Second, determine duration information (Contract Duration, End Date).
+        If End Date is not explicitly mentioned, calculate it based on the Start Date and Duration.
         Third, extract special timing provisions (Contingent Contract, Perpetual Contract).
         Fourth, identify service level timelines (SLA details).
         Finally, extract administrative dates (Stamping Date, Franking Date).
