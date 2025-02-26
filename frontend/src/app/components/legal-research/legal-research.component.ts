@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -7,8 +7,10 @@ import { LineToBrPipe } from '../contract-review/line-to-br.pipe';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-import { marked } from 'marked';
+import { MarkdownToHtmlPipe } from './legal-research.pipe';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-legal-research',
@@ -22,80 +24,115 @@ import { marked } from 'marked';
       MatIconModule,
       MatTooltipModule,
       MatExpansionModule,
-      LineToBrPipe
-    ]
+      MatButtonModule,
+      LineToBrPipe,
+      MarkdownToHtmlPipe
+  ],
+  standalone: true
 })
-export class LegalResearchComponent {
+export class LegalResearchComponent implements OnInit {
   contractData: any = null;
   isLoading = true;
   currentSection = 'all';
   fileName: string = '';
   analysisType: string = '';
   analysisDate: Date | null = null;
+  rawData: any = null; // Store raw data for debugging
 
-
-   constructor(private router: Router) {}
+  constructor(private router: Router, private sanitizer: DomSanitizer) {}
   
-    ngOnInit() {
-      this.loadContractData();
-    }
+  ngOnInit() {
+    this.loadContractData();
+  }
 
   // Return to contracts list
   backToContracts() {
     this.router.navigate(['/Contract']);
   }
 
-
   getSections(): string[] {
     if (!this.contractData) return [];
     return Object.keys(this.contractData).filter(key => 
-      this.contractData![key] && this.contractData![key].trim() !== ''
+      this.contractData![key] && typeof this.contractData![key] === 'string' && this.contractData![key].trim() !== ''
     );
   }
 
   async loadContractData() {
     try {
-      // First try to get data from current_analysis
+      // Get data from localStorage
       const currentAnalysis = localStorage.getItem('legal_research');
-
-      console.log("info", currentAnalysis)
+      console.log("Legal research data:", currentAnalysis);
       
       if (currentAnalysis) {
         const analysisData = JSON.parse(currentAnalysis);
-        this.fileName = analysisData.fileName;
-        this.analysisType = analysisData.type;
-        this.analysisDate = new Date(analysisData.analysisDate);
+        this.rawData = analysisData; // Store for debugging
+        this.fileName = analysisData.fileName || 'Unknown File';
+        this.analysisType = analysisData.type || 'Legal Research';
+        this.analysisDate = analysisData.analysisDate ? new Date(analysisData.analysisDate) : new Date();
         
-        // Format the data to match our interface
+        // Format the data
         if (analysisData.result) {
-          // If result is a string, put it in Contract Review
-          if (typeof analysisData.result['Legal Research'] === 'string') {
+          // Direct access to Legal Research content
+          let legalResearch = analysisData.result['Legal Research'];
+          
+          // Check what we're dealing with
+          console.log("Legal Research type:", typeof legalResearch);
+          
+          if (typeof legalResearch === 'string') {
+            // It's a string, use directly
             this.contractData = {
-              'Contract Review': analysisData.result['Legal Research']
+              'Research Results': this.sanitizer.bypassSecurityTrustHtml(marked.parse(legalResearch, { async: false }) as string)
             };
-          } 
-          // If result is an object, map it to our interface
-          else if (typeof analysisData.result['Legal Research'] === 'object') {
-            this.contractData = analysisData.result['Legal Research'];
+          } else if (typeof legalResearch === 'object') {
+            // It's an object, process each key
+            const formattedData: any = {};
+            
+            Object.keys(legalResearch).forEach(key => {
+              const content = legalResearch[key];
+              if (typeof content === 'string' && content.trim() !== '') {
+                try {
+                  const html = marked.parse(content, { async: false }) as string;
+                  formattedData[key] = this.sanitizer.bypassSecurityTrustHtml(html);
+                } catch (err) {
+                  console.error(`Error parsing markdown for ${key}:`, err);
+                  formattedData[key] = content; // Use raw if parsing fails
+                }
+              }
+            });
+            
+            this.contractData = formattedData;
           }
         }
         
-        console.log('Contract Data (from current_analysis):', this.contractData);
-      } 
-      
-      
-     
+        console.log('Formatted Legal Research Data:', this.contractData);
+      }
     } catch (error) {
-      console.error('Error loading contract data:', error);
+      console.error('Error loading legal research data:', error);
+      // Show raw data if parsing fails
+      const currentAnalysis = localStorage.getItem('legal_research');
+      if (currentAnalysis) {
+        try {
+          const data = JSON.parse(currentAnalysis);
+          if (data.result && data.result['Legal Research']) {
+            this.contractData = {
+              'Raw Data': data.result['Legal Research']
+            };
+          }
+        } catch (e) {
+          console.error('Failed to display raw data:', e);
+        }
+      }
     } finally {
       this.isLoading = false;
     }
   }
-  
-
-
-
-  
-  
-
 }
+
+// Import marked for direct use in the component
+import { marked } from 'marked';
+
+// Configure marked options for better list handling
+marked.setOptions({
+  breaks: true,
+  gfm: true
+});
